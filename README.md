@@ -1,2 +1,2 @@
-# owlapy
-OWL API port for Python
+# OWLAPy
+Nothing to see here, yet...
