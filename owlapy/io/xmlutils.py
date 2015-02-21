@@ -199,7 +199,6 @@ def get_nc_name_suffix_index(s):
     while i > -1:
         char = s[i]
         if is_nc_name_start_char(char):
-            print('%s: %s' % (char, is_nc_name_start_char(char)))
             idx = i
 
         if not is_nc_name_char(char):
