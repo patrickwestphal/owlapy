@@ -1,5 +1,8 @@
+from enum import Enum
 
+from .namespaces import Namespaces
 
-builtin_vocabulary = {
-    # TODO: go on here 20150220:1334
-}
+class BuiltInVocabulary(Enum):
+    DUBLIN_CORE = 1,
+    SKOS = 2,
+    SWRL = 3
