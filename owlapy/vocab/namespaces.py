@@ -1,6 +1,5 @@
 from enum import Enum
 
-# from owlapy.model import IRI
 import owlapy.model
 
 

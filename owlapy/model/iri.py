@@ -7,7 +7,7 @@ from urllib import parse as p
 from rdflib import URIRef
 
 from owlapy.io import xmlutils
-from owlapy.vocab import Namespaces
+from owlapy.vocab import namespaces
 
 
 class IRIException(Exception):
@@ -268,10 +268,10 @@ class IRI(object):
         :return: boolean indicating whether the IRI is in the reserved
             vocabulary
         """
-        return Namespaces.OWL.in_namespace(self.prefix) or \
-            Namespaces.RDF.in_namespace(self.prefix) or \
-            Namespaces.RDFS.in_namespace(self.prefix) or \
-            Namespaces.XSD.in_namespace(self.prefix)
+        return namespaces.Namespaces.OWL.in_namespace(self.prefix) or \
+            namespaces.Namespaces.RDF.in_namespace(self.prefix) or \
+            namespaces.Namespaces.RDFS.in_namespace(self.prefix) or \
+            namespaces.Namespaces.XSD.in_namespace(self.prefix)
 
     def is_thing(self):
         """Determines if this IRI is equal to owl:Thing
@@ -280,7 +280,7 @@ class IRI(object):
             <http://www.w3.org/2002/07/owl#Thing>
         """
         return self.remainder is not None and self.remainder == 'Thing' and \
-            Namespaces.OWL.in_namespace(self.prefix)
+            namespaces.Namespaces.OWL.in_namespace(self.prefix)
 
     def is_nothing(self):
         """Determines if this IRI is equal to owl:Nothing
@@ -289,7 +289,7 @@ class IRI(object):
             <http://www.w3.org/2002/07/owl#Nothing>
         """
         return self.remainder is not None and self.remainder == 'Nothing' and \
-            Namespaces.OWL.in_namespace(self.prefix)
+            namespaces.Namespaces.OWL.in_namespace(self.prefix)
 
     def is_plain_literal(self):
         """Determines if this IRI is equal to rdf:PlainLiteral
@@ -298,7 +298,7 @@ class IRI(object):
             <http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral>
         """
         return self.remainder == 'PlainLiteral' and \
-            Namespaces.RDF.in_namespace(self.prefix)
+            namespaces.Namespaces.RDF.in_namespace(self.prefix)
 
     def to_quoted_string(self):
         """:return: This IRI surrounded by angled brackets"""
