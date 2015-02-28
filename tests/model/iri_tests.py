@@ -1365,42 +1365,42 @@ class TestIRI(unittest.TestCase):
         self.assertEqual(iri_str, str(iri))
 
     def test_create_03(self):
-        with tempfile.TemporaryDirectory() as dir:
+        with tempfile.TemporaryDirectory() as directory:
             file_name = 'deleteme.txt'
-            file_path = os.path.join(dir, file_name)
+            file_path = os.path.join(directory, file_name)
             file = open(file_path, 'w')
 
             iri = IRI.create(file)
             self.assertEqual('file://%s' % file_path, str(iri))
 
     def test_create_04(self):
-        with tempfile.TemporaryDirectory() as dir:
+        with tempfile.TemporaryDirectory() as directory:
             file_name = 'deleteme.txt'
-            file_path = os.path.join(dir, file_name)
+            file_path = os.path.join(directory, file_name)
             file = open(file_path, 'w')
 
             iri = IRI.create(file, 'should/be/ignored')
             self.assertEqual('file://%s' % file_path, str(iri))
 
     def test_create_05(self):
-        with tempfile.TemporaryDirectory() as dir:
+        with tempfile.TemporaryDirectory() as directory:
             file_name = 'delete me.txt'
-            file_path = os.path.join(dir, file_name)
+            file_path = os.path.join(directory, file_name)
             file = open(file_path, 'w')
 
             quoted_file_name = 'delete+me.txt'
-            file_iri = 'file://' + dir + os.path.sep + quoted_file_name
+            file_iri = 'file://' + directory + os.path.sep + quoted_file_name
             iri = IRI.create(file)
             self.assertEqual(file_iri, str(iri))
 
     def test_create_06(self):
-        with tempfile.TemporaryDirectory() as dir:
+        with tempfile.TemporaryDirectory() as directory:
             file_name = 'delete me.txt'
-            file_path = os.path.join(dir, file_name)
+            file_path = os.path.join(directory, file_name)
             file = open(file_path, 'w')
 
             quoted_file_name = 'delete+me.txt'
-            file_iri = 'file://' + dir + os.path.sep + quoted_file_name
+            file_iri = 'file://' + directory + os.path.sep + quoted_file_name
             iri = IRI.create(file, 'should/be/ignored')
             self.assertEqual(file_iri, str(iri))
 
