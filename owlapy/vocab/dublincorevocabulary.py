@@ -1,12 +1,8 @@
 from enum import Enum
 
 from owlapy.vocab.namespaces import Namespaces
+from owlapy.vocab import ClassProperty
 from owlapy.model import IRI
-
-
-class ClassProperty(property):
-    def __get__(self, cls, owner):
-        return self.fget.__get__(None, owner)()
 
 
 class DublinCoreVocabulary(Enum):
