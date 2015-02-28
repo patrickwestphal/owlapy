@@ -7,6 +7,7 @@ from urllib import parse as p
 import rdflib
 
 from owlapy.model import IRI
+from owlapy.model.iri import IRIException
 
 
 class TestIRI(unittest.TestCase):
@@ -1418,70 +1419,137 @@ class TestIRI(unittest.TestCase):
 
     # <generate_document_iri tests> -------------------------------------------
     def test_generate_document_iri(self):
-        self.fail()
+        ont_iri = IRI.generate_document_iri()
+        self.assertTrue(isinstance(ont_iri, IRI))
+        self.assertTrue(str(ont_iri).startswith('owlapi:ontology'))
     # </generate_document_iri tests> ------------------------------------------
 
     # <prefixed_by tests> -----------------------------------------------------
-    def test_prefixed_by(self):
-        self.fail()
+    # prefix is None
+    def test_prefixed_by_01(self):
+        prefix = None
+        iri = IRI('http://example.org/foo#', 'bar')
+        try:
+            prefixed_iri = iri.prefixed_by(prefix)
+            self.fail('prefixing with None should raise an error')
+        except IRIException as e:
+            pass
+
+    # remainder is None
+    def test_prefixed_by_02(self):
+        prefix = 'http://example.com/foo#'
+        iri = IRI('http://example.org/bar#')
+        prefixed_iri = iri.prefixed_by(prefix)
+        self.assertEqual(prefix, prefixed_iri)
+
+    # prefix and remainder are not None
+    def test_prefixed_by_03(self):
+        prefix = 'http://example.com/foo#'
+        iri = IRI('http://example.org/foo#bar')
+        prefixed_iri = iri.prefixed_by(prefix)
+        self.assertEqual('http://example.com/foo#bar', str(prefixed_iri))
     # </prefixed_by tests> ----------------------------------------------------
 
     # <get_short_form tests> --------------------------------------------------
-    def test_get_short_form(self):
-        self.fail()
+    def test_get_short_form_01(self):
+        iri = IRI('http://example.org/foo#', 'bar')
+        self.assertEqual('bar', iri.get_short_form())
+
+    def test_get_short_form_02(self):
+        iri = IRI('http://example.org/')
+        self.assertEqual(iri.to_quoted_string(), iri.get_short_form())
+
+    def test_get_short_form_03(self):
+        iri = IRI('http://example.org/foo/bar#')
+        self.assertEqual('bar#', iri.get_short_form())
     # </get_short_form tests> -------------------------------------------------
 
     # <accept tests> ----------------------------------------------------------
-    def test_accept(self):
-        self.fail()
+    def test_accept_01(self):
+        class TestVisitor1(object):
+            def visit(self, iri):
+                return 'TEST'
+
+        iri = IRI('http://example.org/foo#bar')
+        visitor = TestVisitor1()
+        self.assertEqual('TEST', iri.accept(visitor))
+
+    def test_accept_02(self):
+        class TestPrefixVisitor(object):
+            def visit(self, iri):
+                return iri.prefix
+
+        visitor = TestPrefixVisitor()
+        prefix = 'http://example.org/foo/bar#'
+        suffix = 'baz'
+        iri = IRI(prefix, suffix)
+        self.assertEqual(prefix, iri.accept(visitor))
     # </accept tests> ---------------------------------------------------------
+
+    # <get_classes_in_signature tests> ----------------------------------------
+    def test_get_classes_in_signature(self):
+        iri = IRI('http://example.org/foo#bar')
+        self.assertEqual([], iri.get_classes_in_signature())
+    # </get_classes_in_signature tests> ---------------------------------------
 
     # <get_data_properties_in_signature tests> --------------------------------
     def test_get_data_properties_in_signature(self):
-        self.fail()
+        iri = IRI('http://example.org/foo#bar')
+        self.assertEqual([], iri.get_data_properties_in_signature())
     # </get_data_properties_in_signature tests> -------------------------------
 
     # <get_individuals_in_signature tests> ------------------------------------
     def test_get_individuals_in_signature(self):
-        self.fail()
+        iri = IRI('http://example.org/foo#bar')
+        self.assertEqual([], iri.get_individuals_in_signature())
     # </get_individuals_in_signature tests> -----------------------------------
 
     # <get_object_properties_in_signature tests> ------------------------------
     def test_get_object_properties_in_signature(self):
-        self.fail()
+        iri = IRI('http://example.org/foo#bar')
+        self.assertEqual([], iri.get_object_properties_in_signature())
     # </get_object_properties_in_signature tests> -----------------------------
 
     # <get_signature tests> ---------------------------------------------------
     def test_get_signature(self):
-        self.fail()
+        iri = IRI('http://example.org/foo#bar')
+        self.assertEqual([], iri.get_signature())
     # </get_signature tests> --------------------------------------------------
 
     # <contains_entity_in_signature tests> ------------------------------------
     def test_contains_entity_in_signature(self):
-        self.fail()
+        iri1 = IRI('http://example.org/foo#bar')
+        iri2 = IRI('http://example.org/foo#baz')
+        # should return False no matter what iri2 looks like
+        self.assertFalse(iri1.contains_entity_in_signature(iri2))
     # </contains_entity_in_signature tests> -----------------------------------
 
     # <get_anonymous_individuals tests> ---------------------------------------
     def test_get_anonymous_individuals(self):
-        self.fail()
+        iri = IRI('http://example.org/foo#bar')
+        self.assertEqual([], iri.get_anonymous_individuals())
     # </get_anonymous_individuals tests> --------------------------------------
 
     # <get_datatypes_in_signature tests> --------------------------------------
     def test_get_datatypes_in_signature(self):
-        self.fail()
+        iri = IRI('http://example.org/foo#bar')
+        self.assertEqual([], iri.get_datatypes_in_signature())
     # </get_datatypes_in_signature tests> -------------------------------------
 
     # <get_nested_class_expressions tests> ------------------------------------
     def test_get_nested_class_expressions(self):
-        self.fail()
+        iri = IRI('http://example.org/foo#bar')
+        self.assertEqual([], iri.get_nested_class_expressions())
     # </get_nested_class_expressions tests> -----------------------------------
 
     # <is_top_entity tests> ---------------------------------------------------
     def test_is_top_entity(self):
-        self.fail()
+        iri = IRI('http://example.org/foo#bar')
+        self.assertFalse(iri.is_top_entity())
     # </is_top_entity tests> --------------------------------------------------
 
     # <is_bottom_entity tests> ------------------------------------------------
     def test_is_bottom_entity(self):
-        self.fail()
+        iri = IRI('http://example.org/foo#bar')
+        self.assertFalse(iri.is_bottom_entity())
     # </is_bottom_entity tests> -----------------------------------------------

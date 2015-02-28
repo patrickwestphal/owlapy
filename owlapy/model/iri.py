@@ -1,5 +1,6 @@
 import os
 import re
+import time
 
 from urllib import parse as p
 
@@ -7,6 +8,14 @@ from rdflib import URIRef
 
 from owlapy.io import xmlutils
 from owlapy.vocab import Namespaces
+
+
+class IRIException(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return repr(self.value)
 
 
 class IRI(object):
@@ -328,126 +337,88 @@ class IRI(object):
         # works in case of iri string and URIRef
         return IRI(iri_or_file_or_uri)
 
-    def generate_document_iri(self):
-        """TODO: comment
+    @classmethod
+    def generate_document_iri(cls):
+        """Returns an auto-generated ontology document IRI.
 
-        :return: TODO
+        :return: an auto-generated ontology document IRI. The IRI has the form
+            owlapi:ontologyTIMESTAMPHASH
         """
-        # public static IRI generateDocumentIRI() {
-        raise NotImplementedError()
+        return cls.create("owlapi:ontology%i" % hash(time.time()))
 
     def prefixed_by(self, prefix):
-        """TODO: comment
+        """Replaces the original prefix with the one given as argument
 
-        :param prefix: TODO
-        :return: TODO
+        :param prefix: the prefix to use for replacing the IRI namespace
+        :return: prefix plus IRI ncname
         """
-        # public String prefixedBy(String prefix) {
-        raise NotImplementedError()
+        if prefix is None:
+            raise IRIException('The prefix that should replace the original '
+                               'one cannot be None')
+
+        if self.remainder:
+            return prefix + self.remainder
+
+        return prefix
 
     def get_short_form(self):
-        """TODO: comment
+        """Returns a short form of this IRI which is either its remainder, a
+        certain substring of the prefix or the iri as quoted string
 
-        :return: TODO
+        :return: the short form of this iri
         """
-        # public String getShortForm() {
-        raise NotImplementedError()
+        if self.remainder:
+            return self.remainder
+
+        last_slash_idx = self.prefix.rfind('/')
+        if last_slash_idx > -1 and last_slash_idx != len(self.prefix) - 1:
+            return self.prefix[last_slash_idx+1:]
+
+        return self.to_quoted_string()
 
     def accept(self, visitor):
-        """TODO: comment
+        """Accepts a visitor
 
-        :param visitor:
-        :return:
+        :param visitor: a visitor, i.e. an object that has a visit method
+        :return: whatever the visitor's visit method returns
         """
-        # public void accept(OWLObjectVisitor visitor) {
-        # public <O> O accept(OWLObjectVisitorEx<O> visitor) {
-        # public void accept(OWLAnnotationSubjectVisitor visitor) {
-        # public <E> E accept(OWLAnnotationSubjectVisitorEx<E> visitor) {
-        # public void accept(OWLAnnotationValueVisitor visitor) {
-        # public <O> O accept(OWLAnnotationValueVisitorEx<O> visitor) {
-        # from interfaces:
-        # void accept(OWLAnnotationValueVisitor visitor);
-        # <O> O accept(OWLAnnotationValueVisitorEx<O> visitor);
-        # void accept(OWLAnnotationSubjectVisitor visitor);
-        # <O> O accept(OWLAnnotationSubjectVisitorEx<O> visitor);
-        raise NotImplementedError()
+        return visitor.visit(self)
+
+    def get_classes_in_signature(self):
+        return []
 
     def get_data_properties_in_signature(self):
-        """TODO: comment
-
-        :return: TODO
-        """
-        # public Set<OWLDataProperty> getDataPropertiesInSignature() {
-        raise NotImplementedError()
+        return []
 
     def get_individuals_in_signature(self):
-        """TODO: comment
-
-        :return: TODO
-        """
-        # public Set<OWLNamedIndividual> getIndividualsInSignature() {
-        raise NotImplementedError()
+        return []
 
     def get_object_properties_in_signature(self):
-        """TODO: comment
-
-        :return: TODO
-        """
-        # public Set<OWLObjectProperty> getObjectPropertiesInSignature() {
-        raise NotImplementedError()
+        return []
 
     def get_signature(self):
-        """TODO: comment
+        return []
 
-        :return: TODO
+    def contains_entity_in_signature(self, owl_entity):
+        """Return False, no matter what owl_entity looks like since an IRI
+        itself does not really have a signature
+
+        :param owl_entity: an owlapy.model.OWLEntity object
+        :return: False
         """
-        # public Set<OWLEntity> getSignature() {
-        raise NotImplementedError()
-
-    def contains_entity_in_signature(self):
-        """TODO: comment
-
-        :return: TODO
-        """
-        # public boolean containsEntityInSignature(OWLEntity owlEntity) {
-        raise NotImplementedError()
+        return False
 
     def get_anonymous_individuals(self):
-        """TODO: comment
-
-        :return: TODO
-        """
-        # public Set<OWLAnonymousIndividual> getAnonymousIndividuals() {
-        raise NotImplementedError()
+        return []
 
     def get_datatypes_in_signature(self):
-        """TODO: comment
-
-        :return: TODO
-        """
-        # public Set<OWLDatatype> getDatatypesInSignature() {
-        raise NotImplementedError()
+        return []
 
     def get_nested_class_expressions(self):
-        """TODO: comment
-
-        :return: TODO
-        """
-        # public Set<OWLClassExpression> getNestedClassExpressions() {
-        raise NotImplementedError()
+        return []
 
     def is_top_entity(self):
-        """TODO: comment
-
-        :return: TODO
-        """
-        # public boolean isTopEntity() {
-        raise NotImplementedError()
+        return False
 
     def is_bottom_entity(self):
-        """TODO: comment
-
-        :return: TODO
-        """
-        # public boolean isBottomEntity() {
-        raise NotImplementedError()
+        return False
