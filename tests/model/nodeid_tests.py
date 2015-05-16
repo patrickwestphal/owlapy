@@ -23,7 +23,7 @@ class TestNodeID(unittest.TestCase):
     def test___eq__01(self):
         """node ID vs. None --> False"""
         node_id = NodeID('23')
-        self.assertFalse(node_id == None)
+        self.assertFalse(node_id is None)
 
     def test___eq__02(self):
         """None vs. node ID --> False"""
@@ -187,7 +187,7 @@ class TestNodeID(unittest.TestCase):
         id_str2 = '_:23'
         len_id_str2 = len(id_str2)
         node_id2 = NodeID(id_str2)
-        diff = len_id_str1- len_id_str2  # 4
+        diff = len_id_str1 - len_id_str2  # 4
         self.assertEqual(diff, node_id1.compare_to(node_id2))
 
     def test_compare_to_05(self):
@@ -198,7 +198,7 @@ class TestNodeID(unittest.TestCase):
         id_str2 = '_:23lala'
         len_id_str2 = len(id_str2)
         node_id2 = NodeID(id_str2)
-        diff = len_id_str1- len_id_str2  # -4
+        diff = len_id_str1 - len_id_str2  # -4
         self.assertEqual(diff, node_id1.compare_to(node_id2))
 
     def test_compare_to_06(self):
@@ -209,7 +209,7 @@ class TestNodeID(unittest.TestCase):
         id_str2 = '_:23z'
         diff_char_int_id_str2 = ord('z')  # 122
         node_id2 = NodeID(id_str2)
-        diff = diff_char_int_id_str1 - diff_char_int_id_str2 # -25
+        diff = diff_char_int_id_str1 - diff_char_int_id_str2  # -25
         self.assertEqual(diff, node_id1.compare_to(node_id2))
 
     def test_compare_to_07(self):
@@ -220,11 +220,11 @@ class TestNodeID(unittest.TestCase):
         id_str2 = '_:23a'
         diff_char_int_id_str2 = ord('a')  # 97
         node_id2 = NodeID(id_str2)
-        diff = diff_char_int_id_str1 - diff_char_int_id_str2 # 25
+        diff = diff_char_int_id_str1 - diff_char_int_id_str2  # 25
         self.assertEqual(diff, node_id1.compare_to(node_id2))
 
     def test___hash__(self):
         id_str1 = '_:23'
-        id_str1_hash  = hash(id_str1)
+        id_str1_hash = hash(id_str1)
         node_id1 = NodeID(id_str1)
         self.assertEqual(id_str1_hash, hash(node_id1))
