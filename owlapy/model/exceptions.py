@@ -1,0 +1,2 @@
+class OWLRuntimeException(Exception):
+    pass
