@@ -1,6 +1,7 @@
 import unittest
 
 from owlapy.model import OWLIndividual
+from owlapy.model import OWLVisitor
 
 
 class TestOWLIndividual(unittest.TestCase):
@@ -13,6 +14,26 @@ class TestOWLIndividual(unittest.TestCase):
         indiv1 = OWLIndividual()
         indiv2 = OWLIndividual()
         self.assertTrue(indiv1 == indiv2)
+
+    def test_is_named(self):
+        indiv = OWLIndividual()
+        self.assertRaises(NotImplementedError, OWLIndividual.is_named,
+                          indiv)
+
+    def test_is_anonymous(self):
+        indiv = OWLIndividual()
+        self.assertRaises(NotImplementedError, OWLIndividual.is_anonymous,
+                          indiv)
+
+    def test_as_owl_named_individual(self):
+        indiv = OWLIndividual()
+        self.assertRaises(NotImplementedError,
+                          OWLIndividual.as_owl_named_individual, indiv)
+
+    def test_as_owl_anonymous_individual(self):
+        indiv = OWLIndividual()
+        self.assertRaises(NotImplementedError,
+                          OWLIndividual.as_owl_anonymous_individual, indiv)
 
     def test_get_types(self):
         self.fail()  # OWLOntology has to be implemented first
@@ -46,3 +67,9 @@ class TestOWLIndividual(unittest.TestCase):
 
     def test_get_different_individuals(self):
         self.fail()  # OWLOntology has to be implemented first
+
+    def test_accept(self):
+        visitor = OWLVisitor()
+        indiv = OWLIndividual()
+        self.assertRaises(NotImplementedError, OWLIndividual.accept,
+                          indiv, visitor)
