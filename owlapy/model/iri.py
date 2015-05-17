@@ -7,6 +7,8 @@ from urllib import parse as p
 from rdflib import URIRef
 
 from owlapy.io import xmlutils
+from .exceptions import OWLRuntimeException
+from .owlvisitor import OWLVisitorEx, OWLVisitor
 from owlapy.vocab import namespaces
 
 
@@ -382,24 +384,39 @@ class IRI(object):
         :param visitor: a visitor, i.e. an object that has a visit method
         :return: whatever the visitor's visit method returns
         """
-        return visitor.visit(self)
+        if isinstance(visitor, OWLVisitorEx):
+            return visitor.visit(self)
 
-    def get_classes_in_signature(self):
+        elif isinstance(visitor, OWLVisitor):
+            visitor.visit(self)
+
+        else:
+            raise OWLRuntimeException('Can only accept instances of'
+                                      'owlapy.model.OWLVisitor or '
+                                      'owlapy.model.OWLVisitorEx')
+
+    @classmethod
+    def get_classes_in_signature(cls):
         return []
 
-    def get_data_properties_in_signature(self):
+    @classmethod
+    def get_data_properties_in_signature(cls):
         return []
 
-    def get_individuals_in_signature(self):
+    @classmethod
+    def get_individuals_in_signature(cls):
         return []
 
-    def get_object_properties_in_signature(self):
+    @classmethod
+    def get_object_properties_in_signature(cls):
         return []
 
-    def get_signature(self):
+    @classmethod
+    def get_signature(cls):
         return []
 
-    def contains_entity_in_signature(self, owl_entity):
+    @classmethod
+    def contains_entity_in_signature(cls, owl_entity):
         """Return False, no matter what owl_entity looks like since an IRI
         itself does not really have a signature
 
@@ -408,13 +425,16 @@ class IRI(object):
         """
         return False
 
-    def get_anonymous_individuals(self):
+    @classmethod
+    def get_anonymous_individuals(cls):
         return []
 
-    def get_datatypes_in_signature(self):
+    @classmethod
+    def get_datatypes_in_signature(cls):
         return []
 
-    def get_nested_class_expressions(self):
+    @classmethod
+    def get_nested_class_expressions(cls):
         return []
 
     def compare_to(self, other):
@@ -445,8 +465,10 @@ class IRI(object):
 
         return len1 - len2
 
-    def is_top_entity(self):
+    @classmethod
+    def is_top_entity(cls):
         return False
 
-    def is_bottom_entity(self):
+    @classmethod
+    def is_bottom_entity(cls):
         return False

@@ -8,7 +8,7 @@ import rdflib
 
 from owlapy.model import IRI
 from owlapy.model.iri import IRIException
-
+from owlapy.model import OWLVisitorEx
 
 class TestIRI(unittest.TestCase):
 
@@ -1466,7 +1466,7 @@ class TestIRI(unittest.TestCase):
 
     # <accept tests> ----------------------------------------------------------
     def test_accept_01(self):
-        class TestVisitor1(object):
+        class TestVisitor1(OWLVisitorEx):
             def visit(self, iri):
                 return 'TEST'
 
@@ -1475,7 +1475,7 @@ class TestIRI(unittest.TestCase):
         self.assertEqual('TEST', iri.accept(visitor))
 
     def test_accept_02(self):
-        class TestPrefixVisitor(object):
+        class TestPrefixVisitor(OWLVisitorEx):
             def visit(self, iri):
                 return iri.prefix
 
