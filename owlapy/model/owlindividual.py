@@ -1,13 +1,12 @@
-from .owlobject import OWLObject
+from .unimplementedclasses import OWLPropertyAssertionObject
 
 
-class OWLIndividual(OWLObject):
+class OWLIndividual(OWLPropertyAssertionObject):
     """Represents a named or anonymous individual."""
 
-    def __cmp__(self, other):
+    def __eq__(self, other):
         return isinstance(other, OWLIndividual)
-        # TODO: go on here <3>
-    
+
     def is_named(self):
         """Determines if this individual is an instance of
         owlapy.model.OWLNamedIndividual. Note that this method is the dual of
@@ -18,9 +17,8 @@ class OWLIndividual(OWLObject):
             otherwise False
         """
         raise NotImplementedError()
-        # boolean isNamed();
 
-    def is_anomymous(self):
+    def is_anonymous(self):
         """Determines if this object is an instance of
         owlapy.model.OWLAnonymousIndividual. Note that
 
@@ -28,8 +26,7 @@ class OWLIndividual(OWLObject):
             (owlapy.model.OWLAnomymouseIndividual) or False if this object
             represents a named individual (owlapy.model.OWLNamedIndividual)
         """
-        raise  NotImplementedError()
-        # boolean isAnonymous();
+        raise NotImplementedError()
 
     def as_owl_named_individual(self):
         """Obtains this individual as a named individual if it is indeed named.
@@ -37,7 +34,6 @@ class OWLIndividual(OWLObject):
         :return: The individual as a named individual
         """
         raise NotImplementedError()
-        # OWLNamedIndividual asOWLNamedIndividual();
 
     def as_owl_anonymous_individual(self):
         """Obtains this individual an anonymous individual if it is indeed
@@ -46,21 +42,28 @@ class OWLIndividual(OWLObject):
         :return: The individual as an anonymous individual
         """
         raise NotImplementedError()
-        # OWLAnonymousIndividual asOWLAnonymousIndividual();
 
     def get_types(self, ontologies):
         """A convenience method, which gets the types of this individual, that
         correspond to the types asserted with axioms in the specified ontology.
 
-        :param ontologis: The owlapy.model.OWLOntology object or a set/list of
+        :param ontologies: The owlapy.model.OWLOntology object or a set/list of
             owlapy.model.OWLOntology objects that should be examined for class
             assertion axioms in order to get the types for this individual.
         :return: A set of class expressions that correspond the asserted types
             of this individual in the specified ontology.
         """
-        raise NotImplementedError()
-        # Set<OWLClassExpression> getTypes(OWLOntology ontology);
-        # Set<OWLClassExpression> getTypes(Set<OWLOntology> ontologies);
+        result = set()
+
+        # in case a single ontology is given, it will be wrapped in a list
+        if not hasattr(ontologies, '__iter__'):
+            ontologies = [ontologies]
+
+        for ontology in ontologies:
+            for axiom in ontology.get_class_assertion_axioms(self):
+                result.add(axiom.get_class_expression())
+
+        return result
 
     def get_object_property_values(self, ontology, property=None):
         """Gets the object property values for this individual, or the asserted
@@ -75,9 +78,25 @@ class OWLIndividual(OWLObject):
             is in a property assertion axiom property(this, i) is in the
             specified ontology.)
         """
-        raise NotImplementedError()
-        # Map<OWLObjectPropertyExpression, Set<OWLIndividual>> getObjectPropertyValues(OWLOntology ontology);
-        # Set<OWLIndividual>                                   getObjectPropertyValues(OWLObjectPropertyExpression property, OWLOntology ontology);
+        if property:
+            result = {}  # OWLObjectPropertyExpression: set<OWLIndividual>>
+
+            for axiom in ontology.get_object_property_assertion_axioms(self):
+                inds = result.get(axiom.property)
+
+                if inds is None:
+                    inds = set()
+                    result[axiom.property] = inds
+
+                inds.add(axiom.object)
+
+        else:  # no property given
+            # OWLObjectPropertyExpression: set<OWLIndividual>
+            map = self.get_object_property_values(ontology)
+            vals = map.get(property)  # set<OWLIndividual>
+            result = set() if vals is None else vals
+
+        return result
 
     def has_object_property_value(self, property, individual, ontology):
         """Tests whether a specific value for a specific object property on this
@@ -94,8 +113,11 @@ class OWLIndividual(OWLObject):
             assertion ObjectPropertyAssertion(property, this, individual),
             otherwise False
         """
-        raise NotImplementedError()
-        # boolean hasObjectPropertyValue(OWLObjectPropertyExpression property,OWLIndividual individual, OWLOntology ontology);
+        for axiom in ontology.get_object_property_assertion_axioms(self):
+            if axiom.property == property and axiom.object == individual:
+                return True
+
+        return False
 
     def has_data_property_value(self, property, value, ontology):
         """Test whether a specific value for a specific data property on this
@@ -112,8 +134,11 @@ class OWLIndividual(OWLObject):
             assertion DataPropertyAssertion(property, this, value), otherwise
             False
         """
-        raise NotImplementedError()
-        # boolean hasDataPropertyValue(OWLDataPropertyExpression property, OWLLiteral value, OWLOntology ontology);
+        for axiom in ontology.get_data_property_assertion_axioms(self):
+            if axiom.property == property and axiom.object == value:
+                return True
+
+        return False
 
     def has_negative_object_property_value(self, property, individual, ontology):
         """Test whether a specific value for a specific object property has been
@@ -131,8 +156,11 @@ class OWLIndividual(OWLObject):
             NegativeObjectPropertyAssertion(property, this, individual),
             otherwise False
         """
-        raise NotImplementedError()
-        # boolean hasNegativeObjectPropertyValue(OWLObjectPropertyExpression property, OWLIndividual individual,OWLOntology ontology);
+        for ax in ontology.get_negative_object_property_assertion_axioms(self):
+            if ax.property == property and ax.object == individual:
+                return True
+
+        return False
 
     def get_negative_object_property_values(self, ontology):
         """Gets the object property values that are explicitly asserted NOT to
@@ -142,8 +170,17 @@ class OWLIndividual(OWLObject):
             for axioms
         :return: A dictionary containing the negative object property values
         """
-        raise NotImplementedError()
-        # Map<OWLObjectPropertyExpression, Set<OWLIndividual>> getNegativeObjectPropertyValues(OWLOntology ontology);
+        result = {}  # OWLObjectPropertyExpression: set<OWLIndividual>
+
+        for ax in ontology.get_negative_object_property_assertion_axioms(self):
+            inds = result.get(ax.property)
+
+            if inds is None:
+                inds = set()
+                result[ax.property] = inds
+            inds.add(ax.object)
+
+        return result
 
     def get_data_property_values(self, ontology, property=None):
         """Gets the values that this individual has for a specific data
@@ -161,9 +198,26 @@ class OWLIndividual(OWLObject):
             specified by the ontology parameter. In case no property is given
             a dictionary of properties and their sets of values is returned.
         """
-        raise NotImplementedError()
-        # Map<OWLDataPropertyExpression, Set<OWLLiteral>> getDataPropertyValues(OWLOntology ontology);
-        # Set<OWLLiteral> getDataPropertyValues(OWLDataPropertyExpression property, OWLOntology ontology);
+
+        if property:
+            result = set()  # set<OWLLiteral>
+
+            for axiom in ontology.get_data_property_assertion_axioms(self):
+                if axiom.property == property:
+                    result.add(axiom.object)
+
+        else:
+            result = {}  # OWLDataPropertyExpression: set<OWLLiteral>
+
+            for axiom in ontology.get_data_property_assertion_axioms(self):
+                vals = result.get(axiom.property)  # set<OWLLiteral>
+
+                if vals is None:
+                    vals = set()
+                    result[axiom.property] = vals
+                vals.add(axiom.object)
+
+        return result
 
     def get_negative_data_property_values(self, ontology):
         """Gets the data property values that are explicitly asserted NOT to
@@ -173,8 +227,18 @@ class OWLIndividual(OWLObject):
             examined for axioms
         :return: A dictionary containing the negative data property values
         """
-        raise NotImplementedError()
-        # Map<OWLDataPropertyExpression, Set<OWLLiteral>> getNegativeDataPropertyValues(OWLOntology ontology);
+        result = {}  # OWLDataPropertyExpression: set<OWLLiteral>
+
+        for axiom in ontology.get_negative_data_property_assertion_axioms(self):
+            inds = result.get(axiom.property)
+
+            if inds is None:
+                inds = set()
+                result[axiom.property] = inds
+
+            inds.add(axiom.object)
+
+        return result
 
     def has_negative_data_property_value(self, property, literal, ontology):
         """Test whether a specific value for a specific data property has been
@@ -192,8 +256,11 @@ class OWLIndividual(OWLObject):
             NegativeDataPropertyAssertion(property, this, literal), otherwise
             False
         """
-        raise NotImplementedError()
-        # boolean hasNegativeDataPropertyValue(OWLDataPropertyExpression property, OWLLiteral literal, OWLOntology ontology);
+        for axiom in ontology.get_negative_data_property_assertion_axioms(self):
+            if axiom.property == property and axiom.object == literal:
+                return True
+
+        return False
 
     def get_same_individuals(self, ontology):
         """A convenience method that examines axioms in an ontology to determine
@@ -203,8 +270,13 @@ class OWLIndividual(OWLObject):
         :return: Individuals (i.e. owlapy.model.OWLIndividual objects) that have
             been asserted to be the same as this individual.
         """
-        raise NotImplementedError()
-        # Set<OWLIndividual> getSameIndividuals(OWLOntology ontology);
+        result = set()  # set<OWLIndividual>
+
+        for axiom in ontology.get_same_individual_axioms(self):
+            result = result.union(axiom.get_individuals())
+
+        result.remove(self)
+        return result
 
     def get_different_individuals(self, ontology):
         """A convenience method that examines axioms in the specified ontology
@@ -215,15 +287,15 @@ class OWLIndividual(OWLObject):
         :return: the set of different individuals (i.e.
             owlapy.model.OWLIndividual)
         """
-        raise NotImplementedError()
-        # Set<OWLIndividual> getDifferentIndividuals(OWLOntology ontology);
+        result = set()  # set<OWLIndividual>
+        for axiom in ontology.get_different_individual_axioms(self):
+            result = result.union(axiom.get_individuals())
 
+        result.remove(self)
+        return result
 
     def accept(self, visitor):
         """
         :param visitor: an owlapy.model.OWLIndividualVisitor object to accept
-        :return:
         """
         raise NotImplementedError()
-        # void accept(OWLIndividualVisitor visitor);
-        # <O> O accept(OWLIndividualVisitorEx<O> visitor);
