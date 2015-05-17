@@ -97,7 +97,7 @@ class TestOWLAnonymousIndividual(unittest.TestCase):
 
     def test_is_anonymous(self):
         anon_indiv = OWLAnonymousIndividual(NodeID('23'))
-        self.assertTrue(anon_indiv.is_anomymous())
+        self.assertTrue(anon_indiv.is_anonymous())
 
     def test_as_owl_named_individual(self):
         anon_indiv = OWLAnonymousIndividual(NodeID('23'))

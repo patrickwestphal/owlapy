@@ -1,9 +1,13 @@
 from owlapy.model import OWLRuntimeException
 from .owlindividual import OWLIndividual
 from .owlvisitor import OWLVisitor, OWLVisitorEx
+from .unimplementedclasses import OWLAnnotationValue
+from .unimplementedclasses import OWLAnnotationSubject
+from .unimplementedclasses import OWLPrimitive
 
 
-class OWLAnonymousIndividual(OWLIndividual):
+class OWLAnonymousIndividual(OWLIndividual, OWLAnnotationValue,
+                             OWLAnnotationSubject, OWLPrimitive):
     """Represents Anonymous Individuals as defined in the OWL 2
     Specification [0]
 
@@ -43,7 +47,7 @@ class OWLAnonymousIndividual(OWLIndividual):
         """
         return False
 
-    def is_anomymous(self):
+    def is_anonymous(self):
         """Determines if this object is an instance of
         owlapy.model.OWLAnonymousIndividual. Note that
 
