@@ -417,6 +417,34 @@ class IRI(object):
     def get_nested_class_expressions(self):
         return []
 
+    def compare_to(self, other):
+        if self == other:
+            return 0
+
+        if not isinstance(other, IRI):
+            return -1
+
+        diff = self.__compare_to(self.prefix, other.prefix)
+        if diff:
+            return diff
+
+        return self.__compare_to(self.remainder, other.remainder)
+
+    @classmethod
+    def __compare_to(cls, str1, str2):
+        len1 = 0 if str1 is None else len(str1)
+        len2 = 0 if str2 is None else len(str2)
+        lim = min(len1, len2)
+
+        for i in range(lim):
+            char1 = str1[i]
+            char2 = str2[i]
+
+            if not char1 == char2:
+                return ord(char1) - ord(char2)
+
+        return len1 - len2
+
     def is_top_entity(self):
         return False
 

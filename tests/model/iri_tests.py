@@ -1553,3 +1553,81 @@ class TestIRI(unittest.TestCase):
         iri = IRI('http://example.org/foo#bar')
         self.assertFalse(iri.is_bottom_entity())
     # </is_bottom_entity tests> -----------------------------------------------
+
+    # <compare_to tests> ------------------------------------------------------
+    def test_compare_to_01(self):
+        """same object --> 0"""
+        iri = IRI('http://ex.org/sth')
+        self.assertEqual(0, iri.compare_to(iri))
+
+    def test_compare_to_02(self):
+        """IRI vs. arbitrary object --> -1"""
+        iri = IRI('http://ex.org/sth')
+        self.assertEqual(-1, iri.compare_to(23))
+
+    def test_compare_to_03(self):
+        """IRI vs. IRI (differing prefix lengths) --> -4"""
+        iri1 = IRI('http://ex.org/sth')  # len(iri1.prefix) == 14
+        iri2 = IRI('http://ex.org/foo/sth')  # len(iri2.prefix) == 18
+        self.assertEqual(-4, iri1.compare_to(iri2))  # == 14 - 18
+
+    def test_compare_to_04(self):
+        """IRI vs. IRI (differing prefix lengths) --> 4"""
+        iri1 = IRI('http://ex.org/foo/sth')  # len(iri1.prefix) == 18
+        iri2 = IRI('http://ex.org/sth')  # len(iri2.prefix) == 14
+        self.assertEqual(4, iri1.compare_to(iri2))  # == 18 - 14
+
+    def test_compare_to_05(self):
+        """IRI vs. IRI (differing chars in prefix) --> -25"""
+        iri1 = IRI('http://ex.org/a/sth')  # ord('a') == 97
+        iri2 = IRI('http://ex.org/z/sth')  # ord('z') == 122
+        self.assertEqual(-25, iri1.compare_to(iri2))  # == 97 - 122
+
+    def test_compare_to_06(self):
+        """IRI vs. IRI (differing chars in prefix) --> 25"""
+        iri1 = IRI('http://ex.org/z/sth')  # ord('z') == 122
+        iri2 = IRI('http://ex.org/a/sth')  # ord('a') == 97
+        self.assertEqual(25, iri1.compare_to(iri2))  # == 122 - 97
+
+    def test_compare_to_07(self):
+        """IRI vs. IRI (same prefixes; remainder w/ differing lengths) --> -4"""
+        iri1 = IRI('http://ex.org/sth')  # len(iri1.remainder) == 3
+        iri2 = IRI('http://ex.org/sthElse')  # len(iri2.remainder) == 7
+        self.assertEqual(-4, iri1.compare_to(iri2))  # == 3 - 7
+
+    def test_compare_to_08(self):
+        """IRI vs. IRI (same prefixes; remainder w/ differing lengths) --> 4"""
+        iri1 = IRI('http://ex.org/sthElse')  # len(iri1.remainder) == 7
+        iri2 = IRI('http://ex.org/sth')  # len(iri1.remainder) == 3
+        self.assertEqual(4, iri1.compare_to(iri2))  # == 7 - 3
+
+    def test_compare_to_09(self):
+        """IRI vs. IRI (same prefixes; differing chars in remainder) --> -25"""
+        iri1 = IRI('http://ex.org/stha')  # ord('a') == 97
+        iri2 = IRI('http://ex.org/sthz')  # ord('z') == 122
+        self.assertEqual(-25, iri1.compare_to(iri2))  # == 97 - 122
+
+    def test_compare_to_10(self):
+        """IRI vs. IRI (same prefixes; differing chars in remainder) --> 25"""
+        iri1 = IRI('http://ex.org/sthz')  # ord('z') == 122
+        iri2 = IRI('http://ex.org/stha')  # ord('a') == 97
+        self.assertEqual(25, iri1.compare_to(iri2))  # == 122 - 97
+
+    def test_compare_to_11(self):
+        """IRI vs. IRI (same prefixes; one remainder None) --> 4"""
+        iri1 = IRI('http://ex.org/')  # remainder is None
+        iri2 = IRI('http://ex.org/sth')
+        self.assertEqual(-3, iri1.compare_to(iri2))
+
+    def test_compare_to_12(self):
+        """IRI vs. IRI (same prefixes; one remainder None) --> 4"""
+        iri1 = IRI('http://ex.org/sth')
+        iri2 = IRI('http://ex.org/')  # remainder is None
+        self.assertEqual(3, iri1.compare_to(iri2))
+
+    def test_compare_to_13(self):
+        """IRI vs. IRI (same prefixes; both remainders None) --> 0"""
+        iri1 = IRI('http://ex.org/')
+        iri2 = IRI('http://ex.org/')
+        self.assertEqual(0, iri1.compare_to(iri2))
+    # </compare_to tests> -----------------------------------------------------
