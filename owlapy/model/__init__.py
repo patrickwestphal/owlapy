@@ -14,6 +14,7 @@ from .owldataallvaluesfrom import OWLDataAllValuesFrom
 from .owldatacardinalityrestriction import OWLCardinalityRestriction
 from .owldataexactcardinality import OWLDataExactCardinality
 from .owldatahasvalue import OWLDataHasValue
+from .owldatamaxcardinality import OWLDataMaxCardinality
 from .owldatamincardinality import OWLDataMinCardinality
 from .owldatapropertyassertionaxiom import OWLDataPropertyAssertionAxiom
 from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
