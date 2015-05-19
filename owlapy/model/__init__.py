@@ -9,6 +9,7 @@ from .owlobject import OWLObject
 from .owlclassaxiom import OWLClassAxiom
 from .owldifferentindividualsaxiom import OWLDifferentIndividualsAxiom
 from .owldisjointclassesaxiom import OWLDisjointClassesAxiom
+from .owldisjointdatapropertiesaxiom import OWLDisjointDataPropertiesAxiom
 from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owlequivalentobjectpropertiesaxiom import \
     OWLEquivalentObjectPropertiesAxiom
