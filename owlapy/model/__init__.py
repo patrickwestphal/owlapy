@@ -12,6 +12,7 @@ from .owlclassaxiom import OWLClassAxiom
 from .owlclassexpression import OWLClassExpression
 from .owldataallvaluesfrom import OWLDataAllValuesFrom
 from .owldatacardinalityrestriction import OWLCardinalityRestriction
+from .owldatacomplementof import OWLDataComplementOf
 from .owldataexactcardinality import OWLDataExactCardinality
 from .owldatahasvalue import OWLDataHasValue
 from .owldatamaxcardinality import OWLDataMaxCardinality
