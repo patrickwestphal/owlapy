@@ -11,3 +11,5 @@ class OWLSubClassOfAxiom(owlapy.model.OWLClassAxiom):
         :param annotations: a set/list of OWLAnnotation objects
         """
         super().__init__(annotations)
+        self.sub_class = sub_class
+        self.super_class = super_class
