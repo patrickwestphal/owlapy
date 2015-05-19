@@ -10,6 +10,8 @@ from .owlindividual import OWLIndividual
 from .owlindividualrelationshipaxiom import OWLIndividualRelationshipAxiom
 from .owllogicalaxiom import OWLLogicalAxiom
 from .owlnamedindividual import OWLNamedIndividual
+from .owlnegativeobjectpropertyassertionaxiom import \
+    OWLNegativeObjectPropertyAssertionAxiom
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
 from .owlsubclassofaxiom import OWLSubClassOfAxiom
 from .owlvisitor import OWLVisitor, OWLVisitorEx
