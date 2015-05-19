@@ -38,5 +38,6 @@ from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
 from .owlpropertyrangeaxiom import OWLPropertyRangeAxiom
 from .owlreflexiveobjectpropertyaxiom import OWLReflexiveObjectPropertyAxiom
 from .owlsubclassofaxiom import OWLSubClassOfAxiom
+from .owlsubpropertyaxiom import OWLSubPropertyAxiom
 from .owlunarypropertyaxiom import OWLUnaryPropertyAxiom
 from .owlvisitor import OWLVisitor, OWLVisitorEx
