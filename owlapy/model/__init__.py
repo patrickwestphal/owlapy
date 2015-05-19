@@ -48,6 +48,7 @@ from .owlobjectcardinalityrestriction import OWLObjectCardinalityRestriction
 from .owlobjectcomplementof import OWLObjectComplementOf
 from .owlobjecthasvalue import OWLObjectHasValue
 from .owlobjectintersectionof import OWLObjectIntersectionOf
+from .owlobjectmincardinality import OWLObjectMinCardinality
 from .owlobjectpropertyassertionaxiom import OWLObjectPropertyAssertionAxiom
 from .owlobjectpropertyaxiom import OWLObjectPropertyAxiom
 from .owlobjectpropertycharacteristicaxiom import \
