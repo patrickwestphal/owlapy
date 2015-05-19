@@ -4,9 +4,9 @@ from .owlanonymousclassexpression import OWLAnonymousClassExpression
 class OWLRestriction(OWLAnonymousClassExpression):
     """TODO: implement"""
 
-    def __init__(self, propery):
+    def __init__(self, property):
         """
-        :param propery: an owlapy.model.OWLPropertyExpression object
+        :param property: an owlapy.model.OWLPropertyExpression object
         """
         super().__init__()
         self.property = property
