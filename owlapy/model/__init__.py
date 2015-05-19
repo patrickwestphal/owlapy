@@ -3,6 +3,7 @@ from .exceptions import OWLRuntimeException
 from .entitytype import EntityType
 from .nodeid import NodeID
 from .owlanonymousindividual import OWLAnonymousIndividual
+from .owlasymmetricobjectpropertyaxiom import OWLAsymmetricObjectPropertyAxiom
 from .owlaxiom import OWLAxiom
 from .owlobject import OWLObject
 from .owlclassaxiom import OWLClassAxiom
