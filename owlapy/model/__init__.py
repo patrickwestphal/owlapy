@@ -12,6 +12,7 @@ from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owlequivalentobjectpropertiesaxiom import \
     OWLEquivalentObjectPropertiesAxiom
 from .owlindividual import OWLIndividual
+from .owlindividualaxiom import OWLIndividualAxiom
 from .owlindividualrelationshipaxiom import OWLIndividualRelationshipAxiom
 from .owllogicalaxiom import OWLLogicalAxiom
 from .owlnamedindividual import OWLNamedIndividual
