@@ -6,6 +6,7 @@ from .owlanonymousindividual import OWLAnonymousIndividual
 from .owlasymmetricobjectpropertyaxiom import OWLAsymmetricObjectPropertyAxiom
 from .owlaxiom import OWLAxiom
 from .owlobject import OWLObject
+from .owlclassassertionaxiom import OWLClassAssertionAxiom
 from .owlclassaxiom import OWLClassAxiom
 from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owldatapropertyrangeaxiom import OWLDataPropertyRangeAxiom
