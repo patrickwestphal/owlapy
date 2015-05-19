@@ -32,6 +32,7 @@ from .owlinverseobjectpropertiesaxiom import OWLInverseObjectPropertiesAxiom
 from .owlirreflexiveobjectpropertyaxiom import OWLIrreflexiveObjectPropertyAxiom
 from .owllogicalaxiom import OWLLogicalAxiom
 from .owlnamedindividual import OWLNamedIndividual
+from .owlnarybooleanclassexpression import OWLNaryBooleanClassExpression
 from .owlnaryclassaxiom import OWLNaryClassAxiom
 from .owlnaryindividualaxiom import OWLNaryIndividualAxiom
 from .owlnarypropertyaxiom import OWLNaryPropertyAxiom
