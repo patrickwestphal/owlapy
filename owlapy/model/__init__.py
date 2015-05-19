@@ -2,6 +2,7 @@ from .iri import IRI
 from .exceptions import OWLRuntimeException
 from .entitytype import EntityType
 from .nodeid import NodeID
+from .owlanonymousclassexpression import OWLAnonymousClassExpression
 from .owlanonymousindividual import OWLAnonymousIndividual
 from .owlasymmetricobjectpropertyaxiom import OWLAsymmetricObjectPropertyAxiom
 from .owlaxiom import OWLAxiom
