@@ -13,7 +13,7 @@ class OWLAxiom(OWLObject):
         """
         super().__init__()
         if annotations:
-            self._annotations = list(annotations)
-            self._annotations.sort()
+            self.annotations = list(annotations)
+            self.annotations.sort()
         else:
-            self._annotations = []
+            self.annotations = []
