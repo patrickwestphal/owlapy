@@ -34,6 +34,7 @@ from .owlequivalentclassesaxiom import OWLEquivalentClassesAxiom
 from .owlequivalentdatapropertiesaxiom import OWLEquivalentDataPropertiesAxiom
 from .owlequivalentobjectpropertiesaxiom import \
     OWLEquivalentObjectPropertiesAxiom
+from .owlfacetrestriction import OWLFacetRestriction
 from .owlfunctionalobjectpropertyaxiom import OWLFunctionalObjectPropertyAxiom
 from .owlfunctionaldatapropertyaxiom import OWLFunctionalDataPropertyAxiom
 from .owlhaskeyaxiom import OWLHasKeyAxiom
