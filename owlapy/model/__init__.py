@@ -44,6 +44,7 @@ from .owlnegativeobjectpropertyassertionaxiom import \
     OWLNegativeObjectPropertyAssertionAxiom
 from .owlobject import OWLObject
 from .owlobjectallvaluesfrom import OWLObjectAllValuesFrom
+from .owlobjectcardinalityrestriction import OWLObjectCardinalityRestriction
 from .owlobjectcomplementof import OWLObjectComplementOf
 from .owlobjecthasvalue import OWLObjectHasValue
 from .owlobjectintersectionof import OWLObjectIntersectionOf
