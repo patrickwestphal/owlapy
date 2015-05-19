@@ -1,4 +1,4 @@
-from owlapy.model import OWLNaryClassAxiom
+from .owlnaryclassaxiom import OWLNaryClassAxiom
 
 
 class OWLDisjointClassesAxiom(OWLNaryClassAxiom):
