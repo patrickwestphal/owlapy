@@ -9,4 +9,4 @@ class OWLObjectOneOf(OWLAnonymousClassExpression):
         :param values: a set of owlapy.model.OWLIndividual objects
         """
         super().__init__()
-        self.values = values
+        self.individuals = values
