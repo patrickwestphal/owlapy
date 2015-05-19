@@ -73,6 +73,7 @@ from .owlobjectpropertyaxiom import OWLObjectPropertyAxiom
 from .owlobjectpropertycharacteristicaxiom import \
     OWLObjectPropertyCharacteristicAxiom
 from .owlobjectpropertydomainaxiom import OWLObjectPropertyDomainAxiom
+from .owlobjectpropertyexpression import OWLObjectPropertyExpression
 from .owlobjectpropertyrangeaxiom import OWLObjectPropertyRangeAxiom
 from .owlobjectsomevaluesfrom import OWLObjectSomeValuesFrom
 from .owlobjectunionof import OWLObjectUnionOf
