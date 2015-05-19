@@ -17,6 +17,8 @@ from .owllogicalaxiom import OWLLogicalAxiom
 from .owlnamedindividual import OWLNamedIndividual
 from .owlnaryclassaxiom import OWLNaryClassAxiom
 from .owlnarypropertyaxiom import OWLNaryPropertyAxiom
+from .owlnegativedatapropertyassertionaxiom import \
+    OWLNegativeDataPropertyAssertionAxiom
 from .owlnegativeobjectpropertyassertionaxiom import \
     OWLNegativeObjectPropertyAssertionAxiom
 from .owlobjectpropertyaxiom import OWLObjectPropertyAxiom
