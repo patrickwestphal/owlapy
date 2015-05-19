@@ -66,6 +66,7 @@ from .owlpropertyaxiom import OWLPropertyAxiom
 from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
 from .owlpropertyrange import OWLPropertyRange
 from .owlpropertyrangeaxiom import OWLPropertyRangeAxiom
+from .owlquantifieddatarestriction import OWLQuantifiedDataRestriction
 from .owlquantifiedobjectrestriction import OWLQuantifiedObjectRestriction
 from .owlquantifiedrestriction import OWLQuantifiedRestriction
 from .owlreflexiveobjectpropertyaxiom import OWLReflexiveObjectPropertyAxiom
