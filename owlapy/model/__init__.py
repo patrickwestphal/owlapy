@@ -54,6 +54,7 @@ from .owlsubclassofaxiom import OWLSubClassOfAxiom
 from .owlsubdatapropertyofaxiom import OWLSubDataPropertyOfAxiom
 from .owlsubobjectpropertyofaxiom import OWLSubObjectPropertyOfAxiom
 from .owlsubpropertyaxiom import OWLSubPropertyAxiom
+from .owlsubpropertychainofaxiom import OWLSubPropertyChainOfAxiom
 from .owlsymmetricobjectpropertyaxiom import OWLSymmetricObjectPropertyAxiom
 from .owltransitiveobjectpropertyaxiom import OWLTransitiveObjectPropertyAxiom
 from .owlunarypropertyaxiom import OWLUnaryPropertyAxiom
