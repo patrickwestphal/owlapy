@@ -13,6 +13,7 @@ from .owlclassexpression import OWLClassExpression
 from .owldatapropertyassertionaxiom import OWLDataPropertyAssertionAxiom
 from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owldatapropertyrangeaxiom import OWLDataPropertyRangeAxiom
+from .owldatasomevaluesfrom import OWLDataSomeValuesFrom
 from .owldeclarationaxiom import OWLDeclarationAxiom
 from .owldifferentindividualsaxiom import OWLDifferentIndividualsAxiom
 from .owldisjointclassesaxiom import OWLDisjointClassesAxiom
