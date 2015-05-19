@@ -69,6 +69,7 @@ from .owlobjectinverseof import OWLObjectInverseOf
 from .owlobjectmaxcardinality import OWLObjectMaxCardinality
 from .owlobjectmincardinality import OWLObjectMinCardinality
 from .owlobjectoneof import OWLObjectOneOf
+from .owlobjectproperty import OWLObjectProperty
 from .owlobjectpropertyassertionaxiom import OWLObjectPropertyAssertionAxiom
 from .owlobjectpropertyaxiom import OWLObjectPropertyAxiom
 from .owlobjectpropertycharacteristicaxiom import \
