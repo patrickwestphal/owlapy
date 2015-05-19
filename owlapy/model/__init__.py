@@ -25,6 +25,7 @@ from .owlfunctionaldatapropertyaxiom import OWLFunctionalDataPropertyAxiom
 from .owlindividual import OWLIndividual
 from .owlindividualaxiom import OWLIndividualAxiom
 from .owlindividualrelationshipaxiom import OWLIndividualRelationshipAxiom
+from .owlirreflexiveobjectpropertyaxiom import OWLIrreflexiveObjectPropertyAxiom
 from .owllogicalaxiom import OWLLogicalAxiom
 from .owlnamedindividual import OWLNamedIndividual
 from .owlnaryclassaxiom import OWLNaryClassAxiom
