@@ -8,6 +8,7 @@ from .owlaxiom import OWLAxiom
 from .owlobject import OWLObject
 from .owlclassassertionaxiom import OWLClassAssertionAxiom
 from .owlclassaxiom import OWLClassAxiom
+from .owldatapropertyassertionaxiom import OWLDataPropertyAssertionAxiom
 from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owldatapropertyrangeaxiom import OWLDataPropertyRangeAxiom
 from .owldeclarationaxiom import OWLDeclarationAxiom
