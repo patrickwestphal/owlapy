@@ -5,6 +5,7 @@ from .nodeid import NodeID
 from .owlanonymousindividual import OWLAnonymousIndividual
 from .owlaxiom import OWLAxiom
 from .owlobject import OWLObject
+from .owlclassaxiom import OWLClassAxiom
 from .owlindividual import OWLIndividual
 from .owllogicalaxiom import OWLLogicalAxiom
 from .owlnamedindividual import OWLNamedIndividual
