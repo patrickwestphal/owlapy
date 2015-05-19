@@ -53,6 +53,7 @@ from .owllogicalaxiom import OWLLogicalAxiom
 from .owllogicalentity import OWLLogicalEntity
 from .owlliteral import OWLLiteral
 from .owlnamedindividual import OWLNamedIndividual
+from .owlnamedobject import OWLNamedObject
 from .owlnarybooleanclassexpression import OWLNaryBooleanClassExpression
 from .owlnaryclassaxiom import OWLNaryClassAxiom
 from .owlnarydatarange import OWLNaryDataRange
