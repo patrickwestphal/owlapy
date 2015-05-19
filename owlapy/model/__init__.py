@@ -79,6 +79,7 @@ from .owlobjectunionof import OWLObjectUnionOf
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
 from .owlpropertyaxiom import OWLPropertyAxiom
 from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
+from .owlpropertyexpression import OWLPropertyExpression
 from .owlpropertyrange import OWLPropertyRange
 from .owlpropertyrangeaxiom import OWLPropertyRangeAxiom
 from .owlquantifieddatarestriction import OWLQuantifiedDataRestriction
