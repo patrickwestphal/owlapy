@@ -13,6 +13,8 @@ from .owlnamedindividual import OWLNamedIndividual
 from .owlnegativeobjectpropertyassertionaxiom import \
     OWLNegativeObjectPropertyAssertionAxiom
 from .owlobjectpropertyaxiom import OWLObjectPropertyAxiom
+from .owlobjectpropertycharacteristicaxiom import \
+    OWLObjectPropertyCharacteristicAxiom
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
 from .owlpropertyaxiom import OWLPropertyAxiom
 from .owlsubclassofaxiom import OWLSubClassOfAxiom
