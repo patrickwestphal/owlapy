@@ -20,6 +20,7 @@ from .owlobjectpropertycharacteristicaxiom import \
     OWLObjectPropertyCharacteristicAxiom
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
 from .owlpropertyaxiom import OWLPropertyAxiom
+from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
 from .owlreflexiveobjectpropertyaxiom import OWLReflexiveObjectPropertyAxiom
 from .owlsubclassofaxiom import OWLSubClassOfAxiom
 from .owlunarypropertyaxiom import OWLUnaryPropertyAxiom
