@@ -1,4 +1,4 @@
-from .unimplementedclasses import OWLObjectPropertyExpression
+from .owlobjectpropertyexpression import OWLObjectPropertyExpression
 
 
 class OWLObjectProperty(OWLObjectPropertyExpression):
