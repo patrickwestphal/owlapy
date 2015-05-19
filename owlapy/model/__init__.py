@@ -26,6 +26,7 @@ from .owldatapropertyexpression import OWLDataPropertyExpression
 from .owldatapropertyrangeaxiom import OWLDataPropertyRangeAxiom
 from .owldatarange import OWLDataRange
 from .owldatasomevaluesfrom import OWLDataSomeValuesFrom
+from .owldatatype import OWLDatatype
 from .owldatatyperestriction import OWLDatatypeRestriction
 from .owldataunionof import OWLDataUnionOf
 from .owldeclarationaxiom import OWLDeclarationAxiom
