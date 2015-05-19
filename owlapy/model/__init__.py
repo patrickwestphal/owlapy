@@ -18,5 +18,6 @@ from .owlobjectpropertycharacteristicaxiom import \
     OWLObjectPropertyCharacteristicAxiom
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
 from .owlpropertyaxiom import OWLPropertyAxiom
+from .owlreflexiveobjectpropertyaxiom import OWLReflexiveObjectPropertyAxiom
 from .owlsubclassofaxiom import OWLSubClassOfAxiom
 from .owlvisitor import OWLVisitor, OWLVisitorEx
