@@ -1,7 +1,7 @@
-import owlapy.model
+from .owllogicalaxiom import OWLLogicalAxiom
 
 
-class OWLClassAxiom(owlapy.model.OWLLogicalAxiom):
+class OWLClassAxiom(OWLLogicalAxiom):
     """TODO: implement"""
 
     def __init__(self, annotations):
