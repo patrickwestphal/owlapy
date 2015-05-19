@@ -21,6 +21,7 @@ from .owldatamincardinality import OWLDataMinCardinality
 from .owldataoneof import OWLDataOneOf
 from .owldatapropertyassertionaxiom import OWLDataPropertyAssertionAxiom
 from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
+from .owldatapropertyexpression import OWLDataPropertyExpression
 from .owldatapropertyrangeaxiom import OWLDataPropertyRangeAxiom
 from .owldatasomevaluesfrom import OWLDataSomeValuesFrom
 from .owldatatyperestriction import OWLDatatypeRestriction
