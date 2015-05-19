@@ -65,6 +65,7 @@ from .owlobjectexactcardinality import OWLObjectExactCardinality
 from .owlobjecthasself import OWLObjectHasSelf
 from .owlobjecthasvalue import OWLObjectHasValue
 from .owlobjectintersectionof import OWLObjectIntersectionOf
+from .owlobjectinverseof import OWLObjectInverseOf
 from .owlobjectmaxcardinality import OWLObjectMaxCardinality
 from .owlobjectmincardinality import OWLObjectMinCardinality
 from .owlobjectoneof import OWLObjectOneOf
