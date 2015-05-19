@@ -5,7 +5,6 @@ from .nodeid import NodeID
 from .owlanonymousindividual import OWLAnonymousIndividual
 from .owlasymmetricobjectpropertyaxiom import OWLAsymmetricObjectPropertyAxiom
 from .owlaxiom import OWLAxiom
-from .owlobject import OWLObject
 from .owlclassassertionaxiom import OWLClassAssertionAxiom
 from .owlclassaxiom import OWLClassAxiom
 from .owldatapropertyassertionaxiom import OWLDataPropertyAssertionAxiom
@@ -39,6 +38,7 @@ from .owlnegativedatapropertyassertionaxiom import \
     OWLNegativeDataPropertyAssertionAxiom
 from .owlnegativeobjectpropertyassertionaxiom import \
     OWLNegativeObjectPropertyAssertionAxiom
+from .owlobject import OWLObject
 from .owlobjectpropertyassertionaxiom import OWLObjectPropertyAssertionAxiom
 from .owlobjectpropertyaxiom import OWLObjectPropertyAxiom
 from .owlobjectpropertycharacteristicaxiom import \
@@ -61,3 +61,4 @@ from .owlsymmetricobjectpropertyaxiom import OWLSymmetricObjectPropertyAxiom
 from .owltransitiveobjectpropertyaxiom import OWLTransitiveObjectPropertyAxiom
 from .owlunarypropertyaxiom import OWLUnaryPropertyAxiom
 from .owlvisitor import OWLVisitor, OWLVisitorEx
+from .swrlpredicate import SWRLPredicate
