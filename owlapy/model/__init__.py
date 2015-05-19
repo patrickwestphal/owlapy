@@ -13,6 +13,7 @@ from .owlclassexpression import OWLClassExpression
 from .owldataallvaluesfrom import OWLDataAllValuesFrom
 from .owldatacardinalityrestriction import OWLCardinalityRestriction
 from .owldatahasvalue import OWLDataHasValue
+from .owldatamincardinality import OWLDataMinCardinality
 from .owldatapropertyassertionaxiom import OWLDataPropertyAssertionAxiom
 from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owldatapropertyrangeaxiom import OWLDataPropertyRangeAxiom
