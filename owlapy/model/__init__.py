@@ -71,5 +71,6 @@ from .owlsubpropertychainofaxiom import OWLSubPropertyChainOfAxiom
 from .owlsymmetricobjectpropertyaxiom import OWLSymmetricObjectPropertyAxiom
 from .owltransitiveobjectpropertyaxiom import OWLTransitiveObjectPropertyAxiom
 from .owlunarypropertyaxiom import OWLUnaryPropertyAxiom
+from .owlvaluerestriction import OWLValueRestriction
 from .owlvisitor import OWLVisitor, OWLVisitorEx
 from .swrlpredicate import SWRLPredicate
