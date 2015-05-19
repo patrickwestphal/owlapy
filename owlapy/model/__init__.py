@@ -7,6 +7,7 @@ from .owlaxiom import OWLAxiom
 from .owlobject import OWLObject
 from .owlclassaxiom import OWLClassAxiom
 from .owlindividual import OWLIndividual
+from .owlindividualrelationshipaxiom import OWLIndividualRelationshipAxiom
 from .owllogicalaxiom import OWLLogicalAxiom
 from .owlnamedindividual import OWLNamedIndividual
 from .owlsubclassofaxiom import OWLSubClassOfAxiom
