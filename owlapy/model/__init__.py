@@ -7,12 +7,13 @@ from .owlasymmetricobjectpropertyaxiom import OWLAsymmetricObjectPropertyAxiom
 from .owlaxiom import OWLAxiom
 from .owlobject import OWLObject
 from .owlclassaxiom import OWLClassAxiom
+from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
+from .owldatapropertyrangeaxiom import OWLDataPropertyRangeAxiom
 from .owldeclarationaxiom import OWLDeclarationAxiom
 from .owldifferentindividualsaxiom import OWLDifferentIndividualsAxiom
 from .owldisjointclassesaxiom import OWLDisjointClassesAxiom
 from .owldisjointdatapropertiesaxiom import OWLDisjointDataPropertiesAxiom
 from .owldisjointunionaxiom import OWLDisjointUnionAxiom
-from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owlequivalentobjectpropertiesaxiom import \
     OWLEquivalentObjectPropertiesAxiom
 from .owlfunctionalobjectpropertyaxiom import OWLFunctionalObjectPropertyAxiom
