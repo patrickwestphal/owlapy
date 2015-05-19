@@ -46,6 +46,7 @@ from .owlobject import OWLObject
 from .owlobjectallvaluesfrom import OWLObjectAllValuesFrom
 from .owlobjectcardinalityrestriction import OWLObjectCardinalityRestriction
 from .owlobjectcomplementof import OWLObjectComplementOf
+from .owlobjectexactcardinality import OWLObjectExactCardinality
 from .owlobjecthasvalue import OWLObjectHasValue
 from .owlobjectintersectionof import OWLObjectIntersectionOf
 from .owlobjectmincardinality import OWLObjectMinCardinality
