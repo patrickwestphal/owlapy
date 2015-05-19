@@ -48,6 +48,7 @@ from .owlobjectpropertycharacteristicaxiom import \
     OWLObjectPropertyCharacteristicAxiom
 from .owlobjectpropertydomainaxiom import OWLObjectPropertyDomainAxiom
 from .owlobjectpropertyrangeaxiom import OWLObjectPropertyRangeAxiom
+from .owlobjectunionof import OWLObjectUnionOf
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
 from .owlpropertyaxiom import OWLPropertyAxiom
 from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
