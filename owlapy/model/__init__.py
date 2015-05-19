@@ -25,6 +25,7 @@ from .owlnegativedatapropertyassertionaxiom import \
     OWLNegativeDataPropertyAssertionAxiom
 from .owlnegativeobjectpropertyassertionaxiom import \
     OWLNegativeObjectPropertyAssertionAxiom
+from .owlobjectpropertyassertionaxiom import OWLObjectPropertyAssertionAxiom
 from .owlobjectpropertyaxiom import OWLObjectPropertyAxiom
 from .owlobjectpropertycharacteristicaxiom import \
     OWLObjectPropertyCharacteristicAxiom
