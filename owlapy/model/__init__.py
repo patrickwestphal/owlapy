@@ -18,6 +18,7 @@ from .owlequivalentdatapropertiesaxiom import OWLEquivalentDataPropertiesAxiom
 from .owlequivalentobjectpropertiesaxiom import \
     OWLEquivalentObjectPropertiesAxiom
 from .owlfunctionalobjectpropertyaxiom import OWLFunctionalObjectPropertyAxiom
+from .owlfunctionaldatapropertyaxiom import OWLFunctionalDataPropertyAxiom
 from .owlindividual import OWLIndividual
 from .owlindividualaxiom import OWLIndividualAxiom
 from .owlindividualrelationshipaxiom import OWLIndividualRelationshipAxiom
