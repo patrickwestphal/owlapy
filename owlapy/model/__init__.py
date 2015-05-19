@@ -41,6 +41,7 @@ from .owlnegativedatapropertyassertionaxiom import \
 from .owlnegativeobjectpropertyassertionaxiom import \
     OWLNegativeObjectPropertyAssertionAxiom
 from .owlobject import OWLObject
+from .owlobjectintersectionof import OWLObjectIntersectionOf
 from .owlobjectpropertyassertionaxiom import OWLObjectPropertyAssertionAxiom
 from .owlobjectpropertyaxiom import OWLObjectPropertyAxiom
 from .owlobjectpropertycharacteristicaxiom import \
