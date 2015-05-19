@@ -50,6 +50,7 @@ from .owlinversefunctionalobjectpropertyaxiom import \
 from .owlinverseobjectpropertiesaxiom import OWLInverseObjectPropertiesAxiom
 from .owlirreflexiveobjectpropertyaxiom import OWLIrreflexiveObjectPropertyAxiom
 from .owllogicalaxiom import OWLLogicalAxiom
+from .owllogicalentity import OWLLogicalEntity
 from .owlliteral import OWLLiteral
 from .owlnamedindividual import OWLNamedIndividual
 from .owlnarybooleanclassexpression import OWLNaryBooleanClassExpression
