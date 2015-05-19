@@ -49,5 +49,6 @@ from .owlsubclassofaxiom import OWLSubClassOfAxiom
 from .owlsubobjectpropertyofaxiom import OWLSubObjectPropertyOfAxiom
 from .owlsubpropertyaxiom import OWLSubPropertyAxiom
 from .owlsymmetricobjectpropertyaxiom import OWLSymmetricObjectPropertyAxiom
+from .owltransitiveobjectpropertyaxiom import OWLTransitiveObjectPropertyAxiom
 from .owlunarypropertyaxiom import OWLUnaryPropertyAxiom
 from .owlvisitor import OWLVisitor, OWLVisitorEx
