@@ -57,6 +57,7 @@ from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
 from .owlpropertyrange import OWLPropertyRange
 from .owlpropertyrangeaxiom import OWLPropertyRangeAxiom
 from .owlreflexiveobjectpropertyaxiom import OWLReflexiveObjectPropertyAxiom
+from .owlrestriction import OWLRestriction
 from .owlsameindividualaxiom import OWLSameIndividualAxiom
 from .owlsubclassofaxiom import OWLSubClassOfAxiom
 from .owlsubdatapropertyofaxiom import OWLSubDataPropertyOfAxiom
