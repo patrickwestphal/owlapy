@@ -19,6 +19,7 @@ from .owldataintersectionof import OWLDataIntersectionOf
 from .owldatamaxcardinality import OWLDataMaxCardinality
 from .owldatamincardinality import OWLDataMinCardinality
 from .owldataoneof import OWLDataOneOf
+from .owldataproperty import OWLDataProperty
 from .owldatapropertyassertionaxiom import OWLDataPropertyAssertionAxiom
 from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owldatapropertyexpression import OWLDataPropertyExpression
