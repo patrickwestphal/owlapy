@@ -9,4 +9,5 @@ from .owlclassaxiom import OWLClassAxiom
 from .owlindividual import OWLIndividual
 from .owllogicalaxiom import OWLLogicalAxiom
 from .owlnamedindividual import OWLNamedIndividual
+from .owlsubclassofaxiom import OWLSubClassOfAxiom
 from .owlvisitor import OWLVisitor, OWLVisitorEx
