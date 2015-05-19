@@ -45,6 +45,7 @@ from .owllogicalaxiom import OWLLogicalAxiom
 from .owlnamedindividual import OWLNamedIndividual
 from .owlnarybooleanclassexpression import OWLNaryBooleanClassExpression
 from .owlnaryclassaxiom import OWLNaryClassAxiom
+from .owlnarydatarange import OWLNaryDataRange
 from .owlnaryindividualaxiom import OWLNaryIndividualAxiom
 from .owlnarypropertyaxiom import OWLNaryPropertyAxiom
 from .owlnegativedatapropertyassertionaxiom import \
