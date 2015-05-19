@@ -14,6 +14,7 @@ from .owldifferentindividualsaxiom import OWLDifferentIndividualsAxiom
 from .owldisjointclassesaxiom import OWLDisjointClassesAxiom
 from .owldisjointdatapropertiesaxiom import OWLDisjointDataPropertiesAxiom
 from .owldisjointunionaxiom import OWLDisjointUnionAxiom
+from .owlequivalentdatapropertiesaxiom import OWLEquivalentDataPropertiesAxiom
 from .owlequivalentobjectpropertiesaxiom import \
     OWLEquivalentObjectPropertiesAxiom
 from .owlfunctionalobjectpropertyaxiom import OWLFunctionalObjectPropertyAxiom
