@@ -19,6 +19,7 @@ from .owlnegativeobjectpropertyassertionaxiom import \
 from .owlobjectpropertyaxiom import OWLObjectPropertyAxiom
 from .owlobjectpropertycharacteristicaxiom import \
     OWLObjectPropertyCharacteristicAxiom
+from .owlobjectpropertydomainaxiom import OWLObjectPropertyDomainAxiom
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
 from .owlpropertyaxiom import OWLPropertyAxiom
 from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
