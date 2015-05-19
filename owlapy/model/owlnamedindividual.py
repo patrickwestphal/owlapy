@@ -16,6 +16,7 @@ class OWLNamedIndividual(OWLIndividual, OWLLogicalEntity):
     def __init__(self, iri):
         """:param iri: an owlapy.model.IRI object
         """
+        super().__init__()
         self.iri = iri
 
     def __str__(self):
