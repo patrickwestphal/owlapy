@@ -13,6 +13,7 @@ from .owldisjointdatapropertiesaxiom import OWLDisjointDataPropertiesAxiom
 from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owlequivalentobjectpropertiesaxiom import \
     OWLEquivalentObjectPropertiesAxiom
+from .owlfunctionalobjectpropertyaxiom import OWLFunctionalObjectPropertyAxiom
 from .owlindividual import OWLIndividual
 from .owlindividualaxiom import OWLIndividualAxiom
 from .owlindividualrelationshipaxiom import OWLIndividualRelationshipAxiom
