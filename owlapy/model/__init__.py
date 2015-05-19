@@ -15,6 +15,7 @@ from .owldatacardinalityrestriction import OWLCardinalityRestriction
 from .owldatacomplementof import OWLDataComplementOf
 from .owldataexactcardinality import OWLDataExactCardinality
 from .owldatahasvalue import OWLDataHasValue
+from .owldataintersectionof import OWLDataIntersectionOf
 from .owldatamaxcardinality import OWLDataMaxCardinality
 from .owldatamincardinality import OWLDataMinCardinality
 from .owldataoneof import OWLDataOneOf
