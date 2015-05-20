@@ -121,6 +121,7 @@ from .swrlatom import SWRLAtom
 from .swrlbinaryatom import SWRLBinaryAtom
 from .swrlclassatom import SWRLClassAtom
 from .swrldatarangeatom import SWRLDataRangeAtom
+from .swrlobjectpropertyatom import SWRLObjectPropertyAtom
 from .swrlpredicate import SWRLPredicate
 from .swrlrule import SWRLRule
 from .swrlunaryatom import SWRLUnaryAtom
