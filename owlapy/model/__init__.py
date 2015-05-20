@@ -33,6 +33,7 @@ from .owldatapropertyrangeaxiom import OWLDataPropertyRangeAxiom
 from .owldatarange import OWLDataRange
 from .owldatasomevaluesfrom import OWLDataSomeValuesFrom
 from .owldatatype import OWLDatatype
+from .owldatatypedefinitionaxiom import OWLDatatypeDefinitionAxiom
 from .owldatatyperestriction import OWLDatatypeRestriction
 from .owldataunionof import OWLDataUnionOf
 from .owldeclarationaxiom import OWLDeclarationAxiom
