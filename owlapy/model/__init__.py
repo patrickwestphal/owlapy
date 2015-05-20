@@ -105,6 +105,7 @@ from .owlquantifiedrestriction import OWLQuantifiedRestriction
 from .owlreflexiveobjectpropertyaxiom import OWLReflexiveObjectPropertyAxiom
 from .owlrestriction import OWLRestriction
 from .owlsameindividualaxiom import OWLSameIndividualAxiom
+from .owlsubannotationpropertyofaxiom import OWLSubAnnotationPropertyOfAxiom
 from .owlsubclassofaxiom import OWLSubClassOfAxiom
 from .owlsubdatapropertyofaxiom import OWLSubDataPropertyOfAxiom
 from .owlsubobjectpropertyofaxiom import OWLSubObjectPropertyOfAxiom
