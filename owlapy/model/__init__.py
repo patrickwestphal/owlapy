@@ -120,6 +120,7 @@ from .owlvisitor import OWLVisitor, OWLVisitorEx
 from .swrlatom import SWRLAtom
 from .swrlbinaryatom import SWRLBinaryAtom
 from .swrlclassatom import SWRLClassAtom
+from .swrldatapropertyatom import SWRLDataPropertyAtom
 from .swrldatarangeatom import SWRLDataRangeAtom
 from .swrlobjectpropertyatom import SWRLObjectPropertyAtom
 from .swrlpredicate import SWRLPredicate
