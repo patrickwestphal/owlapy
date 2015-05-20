@@ -7,6 +7,7 @@ from .owlannotationassertionaxiom import OWLAnnotationAssertionAxiom
 from .owlannotationproperty import OWLAnnotationProperty
 from .owlannotationpropertydomainaxiom import OWLAnnotationPropertyDomainAxiom
 from .owlannotationpropertyrangeaxiom import OWLAnnotationPropertyRangeAxiom
+from .owlannotationvalue import OWLAnnotationValue
 from .owlanonymousclassexpression import OWLAnonymousClassExpression
 from .owlanonymousindividual import OWLAnonymousIndividual
 from .owlasymmetricobjectpropertyaxiom import OWLAsymmetricObjectPropertyAxiom
