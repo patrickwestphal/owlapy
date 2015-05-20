@@ -7,6 +7,7 @@ from .owlanonymousindividual import OWLAnonymousIndividual
 from .owlasymmetricobjectpropertyaxiom import OWLAsymmetricObjectPropertyAxiom
 from .owlaxiom import OWLAxiom
 from .owlcardinalityrestriction import OWLCardinalityRestriction
+from .owlclass import OWLClass
 from .owlclassassertionaxiom import OWLClassAssertionAxiom
 from .owlclassaxiom import OWLClassAxiom
 from .owlclassexpression import OWLClassExpression
