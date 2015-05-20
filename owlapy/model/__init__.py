@@ -119,6 +119,7 @@ from .owlvaluerestriction import OWLValueRestriction
 from .owlvisitor import OWLVisitor, OWLVisitorEx
 from .swrlatom import SWRLAtom
 from .swrlclassatom import SWRLClassAtom
+from .swrldatarangeatom import SWRLDataRangeAtom
 from .swrlpredicate import SWRLPredicate
 from .swrlrule import SWRLRule
 from .swrlunaryatom import SWRLUnaryAtom
