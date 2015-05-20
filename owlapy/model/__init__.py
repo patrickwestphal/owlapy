@@ -117,5 +117,6 @@ from .owltransitiveobjectpropertyaxiom import OWLTransitiveObjectPropertyAxiom
 from .owlunarypropertyaxiom import OWLUnaryPropertyAxiom
 from .owlvaluerestriction import OWLValueRestriction
 from .owlvisitor import OWLVisitor, OWLVisitorEx
+from .swrlatom import SWRLAtom
 from .swrlpredicate import SWRLPredicate
 from .swrlrule import SWRLRule
