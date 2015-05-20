@@ -123,6 +123,7 @@ from .swrlbuiltinatom import SWRLBuiltInAtom
 from .swrlclassatom import SWRLClassAtom
 from .swrldatapropertyatom import SWRLDataPropertyAtom
 from .swrldatarangeatom import SWRLDataRangeAtom
+from .swrldifferentindividualsatom import SWRLDifferentIndividualsAtom
 from .swrlindividualargument import SWRLIndividualArgument
 from .swrlliteralargument import SWRLLiteralArgument
 from .swrlobjectpropertyatom import SWRLObjectPropertyAtom
