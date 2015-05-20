@@ -1,8 +1,8 @@
-from owlapy.model import EntityType
-from owlapy.model import OWLIndividual
-from owlapy.model import OWLRuntimeException
+from .entitytype import EntityType
+from .owlindividual import OWLIndividual
+from .exceptions import OWLRuntimeException
 from .owlvisitor import OWLVisitorEx, OWLVisitor
-from .unimplementedclasses import OWLLogicalEntity
+from .owllogicalentity import OWLLogicalEntity
 import owlapy.util
 
 

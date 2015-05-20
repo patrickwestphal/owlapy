@@ -1,5 +1,6 @@
-from .unimplementedclasses import OWLPropertyRange
-from .unimplementedclasses import SWRLPredicate
+from .owlpropertyrange import OWLPropertyRange
+from .swrlpredicate import SWRLPredicate
+
 
 class OWLClassExpression(OWLPropertyRange, SWRLPredicate):
     """TODO: implement"""

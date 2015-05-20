@@ -1,12 +1,12 @@
-from owlapy.vocab.owlrdfvocabulary import OWLRDFVocabulary
+# from owlapy.vocab.owlrdfvocabulary import OWLRDFVocabulary
 import owlapy.model
 
 
 class OWLObject(object):
     NO_ANNOTATIONS = set()
+    # OWL_THING = OWLClass(OWLRDFVocabulary.OWL_THING.iri)
 
     def __init__(self):
-        self.OWL_THING = owlapy.model.OWLClass(OWLRDFVocabulary.OWL_THING.iri)
         self._hash_code = 0
         self._signature = None  # set<OWLEntity>
         self._anons = None
