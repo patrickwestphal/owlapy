@@ -4,6 +4,7 @@ from .entitytype import EntityType
 from .nodeid import NodeID
 from .owlannotation import OWLAnnotation
 from .owlannotationassertionaxiom import OWLAnnotationAssertionAxiom
+from .owlannotationproperty import OWLAnnotationProperty
 from .owlanonymousclassexpression import OWLAnonymousClassExpression
 from .owlanonymousindividual import OWLAnonymousIndividual
 from .owlasymmetricobjectpropertyaxiom import OWLAsymmetricObjectPropertyAxiom
