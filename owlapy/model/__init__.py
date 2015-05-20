@@ -120,3 +120,4 @@ from .owlvisitor import OWLVisitor, OWLVisitorEx
 from .swrlatom import SWRLAtom
 from .swrlpredicate import SWRLPredicate
 from .swrlrule import SWRLRule
+from .swrlunaryatom import SWRLUnaryAtom
