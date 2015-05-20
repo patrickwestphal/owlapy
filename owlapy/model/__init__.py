@@ -118,6 +118,7 @@ from .owlunarypropertyaxiom import OWLUnaryPropertyAxiom
 from .owlvaluerestriction import OWLValueRestriction
 from .owlvisitor import OWLVisitor, OWLVisitorEx
 from .swrlatom import SWRLAtom
+from .swrlbinaryatom import SWRLBinaryAtom
 from .swrlclassatom import SWRLClassAtom
 from .swrldatarangeatom import SWRLDataRangeAtom
 from .swrlpredicate import SWRLPredicate
