@@ -124,6 +124,7 @@ from .swrlclassatom import SWRLClassAtom
 from .swrldatapropertyatom import SWRLDataPropertyAtom
 from .swrldatarangeatom import SWRLDataRangeAtom
 from .swrlindividualargument import SWRLIndividualArgument
+from .swrlliteralargument import SWRLLiteralArgument
 from .swrlobjectpropertyatom import SWRLObjectPropertyAtom
 from .swrlpredicate import SWRLPredicate
 from .swrlrule import SWRLRule
