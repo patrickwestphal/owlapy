@@ -8,7 +8,7 @@ class OWLLiteral(OWLObject):
     """
     RDF_PLAIN_LITERAL = 23  # FIXME: just a dummy value
 
-    def __init__(self, literal, lang, datatype):
+    def __init__(self, literal, lang=None, datatype=None):
         """
         :param literal: a string containing the actual literal value
         :param lang: a string containing the literal's language tag; can be
