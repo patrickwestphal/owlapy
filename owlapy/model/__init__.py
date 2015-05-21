@@ -43,6 +43,7 @@ from .owldeclarationaxiom import OWLDeclarationAxiom
 from .owldifferentindividualsaxiom import OWLDifferentIndividualsAxiom
 from .owldisjointclassesaxiom import OWLDisjointClassesAxiom
 from .owldisjointdatapropertiesaxiom import OWLDisjointDataPropertiesAxiom
+from .owldisjointobjectpropertiesaxiom import OWLDisjointObjectPropertiesAxiom
 from .owldisjointunionaxiom import OWLDisjointUnionAxiom
 from .owlentity import OWLEntity
 from .owlequivalentclassesaxiom import OWLEquivalentClassesAxiom
