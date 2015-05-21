@@ -9,6 +9,7 @@ from .owlannotationobject import OWLAnnotationObject
 from .owlannotationproperty import OWLAnnotationProperty
 from .owlannotationpropertydomainaxiom import OWLAnnotationPropertyDomainAxiom
 from .owlannotationpropertyrangeaxiom import OWLAnnotationPropertyRangeAxiom
+from .owlannotationsubject import OWLAnnotationSubject
 from .owlannotationvalue import OWLAnnotationValue
 from .owlanonymousclassexpression import OWLAnonymousClassExpression
 from .owlanonymousindividual import OWLAnonymousIndividual
