@@ -6,9 +6,13 @@ from urllib import parse as p
 
 from rdflib import URIRef
 
-from owlapy.io import xmlutils
 from .exceptions import OWLRuntimeException
+from .owlannotationsubject import OWLAnnotationSubject
+from .owlannotationvalue import OWLAnnotationValue
+from .owlprimitive import OWLPrimitive
 from .owlvisitor import OWLVisitorEx, OWLVisitor
+from .swrlpredicate import SWRLPredicate
+from owlapy.io import xmlutils
 from owlapy.vocab import namespaces
 
 
@@ -20,7 +24,8 @@ class IRIException(Exception):
         return repr(self.value)
 
 
-class IRI(object):
+class IRI(OWLAnnotationSubject, OWLAnnotationValue, SWRLPredicate,
+          OWLPrimitive):
     # TODO: make immutable? (if, then fix length and hash)
     # TODO: path normalization (i.e. /foo/../bar --> /bar)
 
