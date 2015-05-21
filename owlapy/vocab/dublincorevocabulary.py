@@ -1,7 +1,7 @@
 from enum import Enum
 
 from owlapy.vocab.namespaces import Namespaces
-from owlapy.vocab import ClassProperty
+from owlapy.util.decorators import ClassProperty
 from owlapy.model import IRI
 
 
