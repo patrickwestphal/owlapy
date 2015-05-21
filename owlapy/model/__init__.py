@@ -5,6 +5,7 @@ from .entitytype import EntityType
 from .nodeid import NodeID
 from .owlannotation import OWLAnnotation
 from .owlannotationassertionaxiom import OWLAnnotationAssertionAxiom
+from .owlannotationobject import OWLAnnotationObject
 from .owlannotationproperty import OWLAnnotationProperty
 from .owlannotationpropertydomainaxiom import OWLAnnotationPropertyDomainAxiom
 from .owlannotationpropertyrangeaxiom import OWLAnnotationPropertyRangeAxiom
