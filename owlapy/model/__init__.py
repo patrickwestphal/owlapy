@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .iri import IRI
 from .exceptions import OWLRuntimeException
 from .entitytype import EntityType
