@@ -22,6 +22,7 @@ from .owldataallvaluesfrom import OWLDataAllValuesFrom
 from .owldatacardinalityrestriction import OWLCardinalityRestriction
 from .owldatacomplementof import OWLDataComplementOf
 from .owldataexactcardinality import OWLDataExactCardinality
+from .owldatafactory import OWLDataFactory
 from .owldatahasvalue import OWLDataHasValue
 from .owldataintersectionof import OWLDataIntersectionOf
 from .owldatamaxcardinality import OWLDataMaxCardinality
