@@ -1,5 +1,5 @@
 from enum import Enum
-from owlapy.vocab import ClassProperty
+from owlapy.util.decorators import ClassProperty
 
 from owlapy.vocab.owlrdfvocabulary import OWLRDFVocabulary
 
