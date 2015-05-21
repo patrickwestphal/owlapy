@@ -97,6 +97,7 @@ from .owlobjectpropertyrangeaxiom import OWLObjectPropertyRangeAxiom
 from .owlobjectsomevaluesfrom import OWLObjectSomeValuesFrom
 from .owlobjectunionof import OWLObjectUnionOf
 from .owlontology import OWLOntology
+from .owlontologyid import OWLOntologyID
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
 from .owlpropertyaxiom import OWLPropertyAxiom
 from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
