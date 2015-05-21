@@ -6,8 +6,8 @@ class OWLSubAnnotationPropertyOfAxiom(OWLAxiom):
 
     def __init__(self, sub_property, super_property, annotations):
         """
-        :param sub_property: an owlapy.model,OWLAnnotationProperty object
-        :param super_property: an owlapy.model,OWLAnnotationProperty object
+        :param sub_property: an owlapy.model.OWLAnnotationProperty object
+        :param super_property: an owlapy.model.OWLAnnotationProperty object
         :param annotations: a set/list of owlapy.model.OWLAnnotation objects
         :return:
         """
