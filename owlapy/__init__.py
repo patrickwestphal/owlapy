@@ -2,4 +2,4 @@ from .collectioncontainer import CollectionContainer
 from .collectioncontainervisitor import CollectionContainerVisitor
 from .owlentitiycollectioncontainercollector import \
     OWLEntityCollectionContainerCollector
-from .owlontologymanager import OWLOntologyManager
+from owlapy.model.owlontologymanager import OWLOntologyManager
