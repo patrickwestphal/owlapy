@@ -1,4 +1,6 @@
+from .exceptions import OWLRuntimeException
 from .owlobject import OWLObject
+from .owlvisitor import OWLVisitorEx, OWLVisitor
 
 
 class OWLDatatypeRestriction(OWLObject):
@@ -13,3 +15,13 @@ class OWLDatatypeRestriction(OWLObject):
         super().__init__()
         self.datatype = datatype
         self.facet_restrictions = facet_restrictions
+
+    def accept(self, visitor):
+        if isinstance(visitor, OWLVisitorEx):
+            return visitor.visit(self)
+        elif isinstance(visitor, OWLVisitor):
+            visitor.visit(self)
+        else:
+            raise OWLRuntimeException('Can only accept instances of'
+                                      'owlapy.model.OWLVisitor or '
+                                      'owlapy.model.OWLVisitorEx')

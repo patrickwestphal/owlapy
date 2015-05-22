@@ -1,4 +1,6 @@
+from .exceptions import OWLRuntimeException
 from .owlclassaxiom import OWLClassAxiom
+from .owlvisitor import OWLVisitorEx, OWLVisitor
 
 
 class OWLSubClassOfAxiom(OWLClassAxiom):
@@ -13,3 +15,13 @@ class OWLSubClassOfAxiom(OWLClassAxiom):
         super().__init__(annotations)
         self.sub_class = sub_class
         self.super_class = super_class
+
+    def accept(self, visitor):
+        if isinstance(visitor, OWLVisitorEx):
+            return visitor.visit(self)
+        elif isinstance(visitor, OWLVisitor):
+            visitor.visit(self)
+        else:
+            raise OWLRuntimeException('Can only accept instances of'
+                                      'owlapy.model.OWLVisitor or '
+                                      'owlapy.model.OWLVisitorEx')

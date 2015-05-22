@@ -1,5 +1,7 @@
+from .exceptions import OWLRuntimeException
 from .owlobject import OWLObject
 from .exceptions import OWLRuntimeException
+from .owlvisitor import OWLVisitorEx, OWLVisitor
 
 
 class OWLLiteral(OWLObject):
@@ -38,3 +40,13 @@ class OWLLiteral(OWLObject):
 
             self.lang = lang
             self.datatype = self.RDF_PLAIN_LITERAL
+
+    def accept(self, visitor):
+        if isinstance(visitor, OWLVisitorEx):
+            return visitor.visit(self)
+        elif isinstance(visitor, OWLVisitor):
+            visitor.visit(self)
+        else:
+            raise OWLRuntimeException('Can only accept instances of'
+                                      'owlapy.model.OWLVisitor or '
+                                      'owlapy.model.OWLVisitorEx')

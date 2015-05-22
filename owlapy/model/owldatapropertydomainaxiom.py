@@ -1,5 +1,7 @@
+from .exceptions import OWLRuntimeException
 from .axiomtype import AxiomType
 from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
+from .owlvisitor import OWLVisitorEx, OWLVisitor
 
 
 class OWLDataPropertyDomainAxiom(OWLPropertyDomainAxiom):
@@ -16,3 +18,13 @@ class OWLDataPropertyDomainAxiom(OWLPropertyDomainAxiom):
     @classmethod
     def get_axiom_type(cls):
         return AxiomType.DATA_PROPERTY_DOMAIN
+
+    def accept(self, visitor):
+        if isinstance(visitor, OWLVisitorEx):
+            return visitor.visit(self)
+        elif isinstance(visitor, OWLVisitor):
+            visitor.visit(self)
+        else:
+            raise OWLRuntimeException('Can only accept instances of'
+                                      'owlapy.model.OWLVisitor or '
+                                      'owlapy.model.OWLVisitorEx')
