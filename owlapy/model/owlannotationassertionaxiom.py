@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlaxiom import OWLAxiom
 
 
@@ -15,3 +16,7 @@ class OWLAnnotationAssertionAxiom(OWLAxiom):
         self.subject = subject
         self.property = property
         self.value = value
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.ANNOTATION_ASSERTION

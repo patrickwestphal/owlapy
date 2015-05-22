@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlnarypropertyaxiom import OWLNaryPropertyAxiom
 
 
@@ -13,3 +14,7 @@ class OWLInverseObjectPropertiesAxiom(OWLNaryPropertyAxiom):
         super().__init__([first, second], annotations)
         self.first = first
         self.second = second
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.INVERSE_OBJECT_PROPERTIES

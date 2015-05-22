@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlaxiom import OWLAxiom
 
 
@@ -11,3 +12,7 @@ class OWLDeclarationAxiom(OWLAxiom):
         """
         super().__init__(annotations)
         self.entity = entity
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.DECLARATION

@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlclassaxiom import OWLClassAxiom
 
 
@@ -13,3 +14,7 @@ class OWLDisjointUnionAxiom(OWLClassAxiom):
         super().__init__(annotations)
         self.owl_class = owl_class
         self.class_expressions = class_expressions
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.DISJOINT_UNION

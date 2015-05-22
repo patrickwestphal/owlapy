@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
 
 
@@ -11,3 +12,7 @@ class OWLObjectPropertyDomainAxiom(OWLPropertyDomainAxiom):
         :param annotations: s set/list of owlapy.model.OWLAnnotation objects
         """
         super().__init__(property, domain, annotations)
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.OBJECT_PROPERTY_DOMAIN

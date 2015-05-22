@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlnaryclassaxiom import OWLNaryClassAxiom
 
 
@@ -12,3 +13,7 @@ class OWLEquivalentClassesAxiom(OWLNaryClassAxiom):
         """
         super().__init__(class_expressions, annotations)
         self.named_classes = None
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.EQUIVALENT_CLASSES

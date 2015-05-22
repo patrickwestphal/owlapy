@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlobjectpropertycharacteristicaxiom import \
     OWLObjectPropertyCharacteristicAxiom
 
@@ -11,3 +12,7 @@ class OWLTransitiveObjectPropertyAxiom(OWLObjectPropertyCharacteristicAxiom):
         :param annotations: a set/list of owlapy.model.OWLAnnotation objects
         """
         super().__init__(property, annotations)
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.TRANSITIVE_OBJECT_PROPERTY

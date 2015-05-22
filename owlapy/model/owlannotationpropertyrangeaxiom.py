@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlaxiom import OWLAxiom
 
 
@@ -13,3 +14,7 @@ class OWLAnnotationPropertyRangeAxiom(OWLAxiom):
         super().__init__(annotations)
         self.property = property
         self.range = range
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.ANNOTATION_PROPERTY_RANGE

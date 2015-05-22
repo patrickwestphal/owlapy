@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owllogicalaxiom import OWLLogicalAxiom
 
 
@@ -14,3 +15,7 @@ class SWRLRule(OWLLogicalAxiom):
         self.head = head
         self.body = body
         # containsAnonymousClassExpressions = hasAnon();
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.SWRL_RULE

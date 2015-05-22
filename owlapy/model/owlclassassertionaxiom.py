@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlindividualaxiom import OWLIndividualAxiom
 
 
@@ -13,3 +14,7 @@ class OWLClassAssertionAxiom(OWLIndividualAxiom):
         super().__init__(annotations)
         self.individual = individual
         self.class_expression = class_expression
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.CLASS_ASSERTION

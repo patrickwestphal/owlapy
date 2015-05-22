@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlnarypropertyaxiom import OWLNaryPropertyAxiom
 
 
@@ -11,3 +12,7 @@ class OWLDisjointDataPropertiesAxiom(OWLNaryPropertyAxiom):
         :param annotations: a set/list of owlapy.model.OWLAnnotation objects
         """
         super().__init__(properties, annotations)
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.DISJOINT_DATA_PROPERTIES

@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlpropertyaxiom import OWLPropertyAxiom
 
 
@@ -15,3 +16,7 @@ class OWLSubPropertyChainOfAxiom(OWLPropertyAxiom):
         super().__init__(annotations)
         self.property_chain = property_chain
         self.super_property = super_property
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.SUB_PROPERTY_CHAIN_OF

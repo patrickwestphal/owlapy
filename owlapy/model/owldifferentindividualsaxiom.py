@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlnaryindividualaxiom import OWLNaryIndividualAxiom
 
 
@@ -10,3 +11,7 @@ class OWLDifferentIndividualsAxiom(OWLNaryIndividualAxiom):
         :param annotations: a set/list of owlapy.model.OWLAnnotation objects
         """
         super().__init__(individuals, annotations)
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.DIFFERENT_INDIVIDUALS

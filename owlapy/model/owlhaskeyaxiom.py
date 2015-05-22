@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owllogicalaxiom import OWLLogicalAxiom
 
 
@@ -14,3 +15,7 @@ class OWLHasKeyAxiom(OWLLogicalAxiom):
         super().__init__(annotations)
         self.class_expression = class_expression
         self.property_expressions = property_expressions
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.HAS_KEY

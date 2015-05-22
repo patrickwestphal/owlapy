@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlaxiom import OWLAxiom
 
 
@@ -13,3 +14,7 @@ class OWLDatatypeDefinitionAxiom(OWLAxiom):
         super().__init__(annotations)
         self.datatype = datatype
         self.data_range = data_range
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.DATATYPE_DEFINITION

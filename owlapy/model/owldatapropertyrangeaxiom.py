@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlpropertyrangeaxiom import OWLPropertyRangeAxiom
 
 
@@ -12,3 +13,7 @@ class OWLDataPropertyRangeAxiom(OWLPropertyRangeAxiom):
         :return:
         """
         super().__init__(property, range, annotations)
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.DATA_PROPERTY_RANGE

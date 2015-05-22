@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlindividualrelationshipaxiom import OWLIndividualRelationshipAxiom
 
 
@@ -12,3 +13,7 @@ class OWLNegativeDataPropertyAssertionAxiom(OWLIndividualRelationshipAxiom):
         :param annotations: a set/list of owlapy.model.OWLAnnotation objects
         """
         super().__init__(subject, property, object, annotations)
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.NEGATIVE_DATA_PROPERTY_ASSERTION

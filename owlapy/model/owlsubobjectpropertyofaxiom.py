@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlsubpropertyaxiom import OWLSubPropertyAxiom
 
 
@@ -11,3 +12,7 @@ class OWLSubObjectPropertyOfAxiom(OWLSubPropertyAxiom):
         :param annotations: a set/list of OWLAnnotation objects
         """
         super().__init__(sub_property, super_property, annotations)
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.SUB_OBJECT_PROPERTY

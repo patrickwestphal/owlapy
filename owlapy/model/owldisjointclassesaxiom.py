@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlnaryclassaxiom import OWLNaryClassAxiom
 
 
@@ -11,3 +12,7 @@ class OWLDisjointClassesAxiom(OWLNaryClassAxiom):
         :param annotations: a set/list of owlapy.model.OWLAnnotation objects
         """
         super().__init__(class_expressions, annotations)
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.DISJOINT_CLASSES

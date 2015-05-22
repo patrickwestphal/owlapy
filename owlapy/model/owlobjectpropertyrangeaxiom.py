@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlpropertyrangeaxiom import OWLPropertyRangeAxiom
 
 
@@ -11,3 +12,7 @@ class OWLObjectPropertyRangeAxiom(OWLPropertyRangeAxiom):
         :param annotations: a set/list of owlapy.model.OWLAnnotation objects
         """
         super().__init__(property, range, annotations)
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.OBJECT_PROPERTY_RANGE

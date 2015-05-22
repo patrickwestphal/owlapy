@@ -1,3 +1,4 @@
+from .axiomtype import AxiomType
 from .owlnarypropertyaxiom import OWLNaryPropertyAxiom
 
 
@@ -12,3 +13,7 @@ class OWLEquivalentDataPropertiesAxiom(OWLNaryPropertyAxiom):
         :return:
         """
         super().__init__(properties, annotations)
+
+    @classmethod
+    def get_axiom_type(cls):
+        return AxiomType.EQUIVALENT_DATA_PROPERTIES
