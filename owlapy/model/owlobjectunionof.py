@@ -6,6 +6,6 @@ class OWLObjectUnionOf(OWLNaryBooleanClassExpression):
 
     def __init__(self, operands):
         """
-        :param operands: a set of OWLClassExpression objects
+        :param operands: a set of owlapy.model.OWLClassExpression objects
         """
         super().__init__(operands)

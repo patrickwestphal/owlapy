@@ -11,6 +11,16 @@ class OWLOntology(OWLObject):
     applied via its OWLOntologyManager.
     """
 
+    def __init__(self, manager, ontology_id):
+        """
+        :param manager: an owlapy.model.OWLOntologyManager object
+        :param ontology_id: an owlapy.model.OWLOntologyID object
+        :return:
+        """
+        super().__init__()
+        self.owl_ontology_manager = manager
+        self.ontology_id = ontology_id
+
     def contains_annotation_property_in_signaturee(
             self, annotation_property, include_imports_closure=False):
         """Determines if the signature of this ontology contains an
