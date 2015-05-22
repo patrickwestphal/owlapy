@@ -139,3 +139,4 @@ from .swrlpredicate import SWRLPredicate
 from .swrlrule import SWRLRule
 from .swrlsameindividualatom import SWRLSameIndividualAtom
 from .swrlunaryatom import SWRLUnaryAtom
+from .swrlvariable import SWRLVariable
