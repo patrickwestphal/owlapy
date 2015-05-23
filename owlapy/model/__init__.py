@@ -12,6 +12,7 @@ from .owlannotationpropertydomainaxiom import OWLAnnotationPropertyDomainAxiom
 from .owlannotationpropertyrangeaxiom import OWLAnnotationPropertyRangeAxiom
 from .owlannotationsubject import OWLAnnotationSubject
 from .owlannotationvalue import OWLAnnotationValue
+from .owlannotationvaluevisitor import OWLAnnotationValueVisitor
 from .owlanonymousclassexpression import OWLAnonymousClassExpression
 from .owlanonymousindividual import OWLAnonymousIndividual
 from .owlasymmetricobjectpropertyaxiom import OWLAsymmetricObjectPropertyAxiom
