@@ -7,6 +7,7 @@ from .owlannotation import OWLAnnotation
 from .owlannotationassertionaxiom import OWLAnnotationAssertionAxiom
 from .owlannotationaxiomvisitor import OWLAnnotationAxiomVisitor
 from .owlannotationobject import OWLAnnotationObject
+from .owlannotationobjectvisitor import OWLAnnotationObjectVisitor
 from .owlannotationproperty import OWLAnnotationProperty
 from .owlannotationpropertydomainaxiom import OWLAnnotationPropertyDomainAxiom
 from .owlannotationpropertyrangeaxiom import OWLAnnotationPropertyRangeAxiom
