@@ -1,6 +1,6 @@
 # from owlapy.vocab.owlrdfvocabulary import OWLRDFVocabulary
 import owlapy.model
-from owlapy.util.owlobjecttypeindexprovider import OWLObjectTypeIndexProvider
+# from owlapy.util.owlobjecttypeindexprovider import OWLObjectTypeIndexProvider
 
 
 class OWLObject(object):
@@ -57,6 +57,7 @@ class OWLObject(object):
         if entity_set is None:
             entity_set = set()  # set<OWLEntity>
             anon = set()  # set<OWLAnonymousIndividual>
+
         # TODO: return copy!!!
         raise NotImplementedError()
 
@@ -118,6 +119,9 @@ class OWLObject(object):
         """
         :param other: an owlapy.model.OWLObject object
         """
+        # FIXME
+        from owlapy.util.owlobjecttypeindexprovider import \
+            OWLObjectTypeIndexProvider
         type_index_provider = OWLObjectTypeIndexProvider()
         this_type_index = type_index_provider.get_type_index(self)
         other_type_index = type_index_provider.get_type_index(other)
