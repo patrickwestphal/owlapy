@@ -45,6 +45,7 @@ from .owldatatype import OWLDatatype
 from .owldatatypedefinitionaxiom import OWLDatatypeDefinitionAxiom
 from .owldatatyperestriction import OWLDatatypeRestriction
 from .owldataunionof import OWLDataUnionOf
+from .owldatavisitor import OWLDataVisitor
 from .owldeclarationaxiom import OWLDeclarationAxiom
 from .owldifferentindividualsaxiom import OWLDifferentIndividualsAxiom
 from .owldisjointclassesaxiom import OWLDisjointClassesAxiom
