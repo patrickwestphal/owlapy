@@ -1,9 +1,11 @@
 # from owlapy.vocab.owlrdfvocabulary import OWLRDFVocabulary
 import owlapy.model
+from owlapy.util.owlobjecttypeindexprovider import OWLObjectTypeIndexProvider
 
 
 class OWLObject(object):
     NO_ANNOTATIONS = set()
+    # FIXME: fix imports
     # OWL_THING = OWLClass(OWLRDFVocabulary.OWL_THING.iri)
 
     def __init__(self):
@@ -55,8 +57,6 @@ class OWLObject(object):
         if entity_set is None:
             entity_set = set()  # set<OWLEntity>
             anon = set()  # set<OWLAnonymousIndividual>
-            # XXX stopped here
- 
         # TODO: return copy!!!
         raise NotImplementedError()
 
@@ -113,3 +113,21 @@ class OWLObject(object):
         #   HasClassesInSignature, HasObjectPropertiesInSignature,
         #   HasDataPropertiesInSignature, HasIndividualsInSignature,
         #   HasDatatypesInSignature
+
+    def compare_to(self, other):
+        """
+        :param other: an owlapy.model.OWLObject object
+        """
+        type_index_provider = OWLObjectTypeIndexProvider()
+        this_type_index = type_index_provider.get_type_index(self)
+        other_type_index = type_index_provider.get_type_index(other)
+        diff = this_type_index - other_type_index
+
+        if diff == 0:
+            return self.compare_object_of_same_type(other)
+        else:
+            return diff
+
+    def compare_object_of_same_type(self, other):
+        raise NotImplementedError('This method should be implement in the '
+                                  'respective subclasses of OWLObject')
