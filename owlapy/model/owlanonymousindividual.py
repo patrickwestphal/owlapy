@@ -1,9 +1,9 @@
 from owlapy.model import OWLRuntimeException
 from .owlindividual import OWLIndividual
 from .owlvisitor import OWLVisitor, OWLVisitorEx
-from .unimplementedclasses import OWLAnnotationValue
-from .unimplementedclasses import OWLAnnotationSubject
-from .unimplementedclasses import OWLPrimitive
+from .owlannotationvalue import OWLAnnotationValue
+from .owlannotationsubject import OWLAnnotationSubject
+from .owlprimitive import OWLPrimitive
 
 
 class OWLAnonymousIndividual(OWLIndividual, OWLAnnotationValue,

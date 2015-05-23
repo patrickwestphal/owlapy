@@ -1,4 +1,4 @@
-from .unimplementedclasses import OWLPropertyAssertionObject
+from .owlpropertyassertionobject import OWLPropertyAssertionObject
 
 
 class OWLIndividual(OWLPropertyAssertionObject):
@@ -198,7 +198,6 @@ class OWLIndividual(OWLPropertyAssertionObject):
             specified by the ontology parameter. In case no property is given
             a dictionary of properties and their sets of values is returned.
         """
-
         if property:
             result = set()  # set<OWLLiteral>
 
