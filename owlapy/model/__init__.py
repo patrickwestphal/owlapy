@@ -63,6 +63,7 @@ from .owlfunctionalobjectpropertyaxiom import OWLFunctionalObjectPropertyAxiom
 from .owlfunctionaldatapropertyaxiom import OWLFunctionalDataPropertyAxiom
 from .owlhaskeyaxiom import OWLHasKeyAxiom
 from .owlindividual import OWLIndividual
+from .owlindividualvisitor import OWLIndividualVisitor
 from .owlindividualaxiom import OWLIndividualAxiom
 from .owlindividualrelationshipaxiom import OWLIndividualRelationshipAxiom
 from .owlinversefunctionalobjectpropertyaxiom import \
