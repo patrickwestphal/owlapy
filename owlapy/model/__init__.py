@@ -39,6 +39,7 @@ from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owldatapropertyexpression import OWLDataPropertyExpression
 from .owldatapropertyrangeaxiom import OWLDataPropertyRangeAxiom
 from .owldatarange import OWLDataRange
+from .owldatarangevisitor import OWLDataRangeVisitor
 from .owldatasomevaluesfrom import OWLDataSomeValuesFrom
 from .owldatatype import OWLDatatype
 from .owldatatypedefinitionaxiom import OWLDatatypeDefinitionAxiom
