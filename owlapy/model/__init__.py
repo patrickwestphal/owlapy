@@ -22,6 +22,7 @@ from .owlclass import OWLClass
 from .owlclassassertionaxiom import OWLClassAssertionAxiom
 from .owlclassaxiom import OWLClassAxiom
 from .owlclassexpression import OWLClassExpression
+from .owlclassexpressionvisitor import OWLClassExpressionVisitor
 from .owldataallvaluesfrom import OWLDataAllValuesFrom
 from .owldatacardinalityrestriction import OWLCardinalityRestriction
 from .owldatacomplementof import OWLDataComplementOf
