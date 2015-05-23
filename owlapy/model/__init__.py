@@ -112,6 +112,7 @@ from .owlpropertyassertionobject import OWLPropertyAssertionObject
 from .owlpropertyaxiom import OWLPropertyAxiom
 from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
 from .owlpropertyexpression import OWLPropertyExpression
+from .owlpropertyexpressionvisitor import OWLPropertyExpressionVisitor
 from .owlpropertyrange import OWLPropertyRange
 from .owlpropertyrangeaxiom import OWLPropertyRangeAxiom
 from .owlquantifieddatarestriction import OWLQuantifiedDataRestriction
