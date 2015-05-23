@@ -53,6 +53,7 @@ from .owldisjointdatapropertiesaxiom import OWLDisjointDataPropertiesAxiom
 from .owldisjointobjectpropertiesaxiom import OWLDisjointObjectPropertiesAxiom
 from .owldisjointunionaxiom import OWLDisjointUnionAxiom
 from .owlentity import OWLEntity
+from .owlentityvisitor import OWLEntityVisitor
 from .owlequivalentclassesaxiom import OWLEquivalentClassesAxiom
 from .owlequivalentdatapropertiesaxiom import OWLEquivalentDataPropertiesAxiom
 from .owlequivalentobjectpropertiesaxiom import \
