@@ -103,6 +103,7 @@ from .owlontology import OWLOntology
 from .owlontologyid import OWLOntologyID
 from .owlprimitive import OWLPrimitive
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
+from .owlpropertyassertionobject import OWLPropertyAssertionObject
 from .owlpropertyaxiom import OWLPropertyAxiom
 from .owlpropertydomainaxiom import OWLPropertyDomainAxiom
 from .owlpropertyexpression import OWLPropertyExpression
