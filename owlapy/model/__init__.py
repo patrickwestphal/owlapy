@@ -109,6 +109,7 @@ from .owlobjectpropertyexpression import OWLObjectPropertyExpression
 from .owlobjectpropertyrangeaxiom import OWLObjectPropertyRangeAxiom
 from .owlobjectsomevaluesfrom import OWLObjectSomeValuesFrom
 from .owlobjectunionof import OWLObjectUnionOf
+from .owlobjectvisitor import OWLObjectVisitor
 from .owlontology import OWLOntology
 from .owlontologyid import OWLOntologyID
 from .owlprimitive import OWLPrimitive
