@@ -136,6 +136,7 @@ from .swrldifferentindividualsatom import SWRLDifferentIndividualsAtom
 from .swrlindividualargument import SWRLIndividualArgument
 from .swrlliteralargument import SWRLLiteralArgument
 from .swrlobjectpropertyatom import SWRLObjectPropertyAtom
+from .swrlobjectvisitor import SWRLObjectVisitor
 from .swrlpredicate import SWRLPredicate
 from .swrlrule import SWRLRule
 from .swrlsameindividualatom import SWRLSameIndividualAtom
