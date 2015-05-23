@@ -74,6 +74,7 @@ from .owllogicalentity import OWLLogicalEntity
 from .owlliteral import OWLLiteral
 from .owlnamedindividual import OWLNamedIndividual
 from .owlnamedobject import OWLNamedObject
+from .owlnamedobjectvisitor import OWLNamedObjectVisitor
 from .owlnarybooleanclassexpression import OWLNaryBooleanClassExpression
 from .owlnaryclassaxiom import OWLNaryClassAxiom
 from .owlnarydatarange import OWLNaryDataRange
