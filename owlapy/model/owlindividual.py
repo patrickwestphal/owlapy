@@ -7,6 +7,9 @@ class OWLIndividual(OWLPropertyAssertionObject):
     def __eq__(self, other):
         return isinstance(other, OWLIndividual)
 
+    def __hash__(self):
+        return super().__hash__()
+
     def is_named(self):
         """Determines if this individual is an instance of
         owlapy.model.OWLNamedIndividual. Note that this method is the dual of
