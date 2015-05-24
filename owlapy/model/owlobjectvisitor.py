@@ -1,4 +1,3 @@
-from .owlannotationaxiomvisitor import OWLAnnotationAxiomVisitor
 from .owlannotationobjectvisitor import OWLAnnotationObjectVisitor
 from .owlannotationvaluevisitor import OWLAnnotationValueVisitor
 from .owlaxiomvisitor import OWLAxiomVisitor
@@ -15,7 +14,6 @@ from .swrlobjectvisitor import SWRLObjectVisitor
 class OWLObjectVisitor(OWLVisitor, OWLAxiomVisitor, OWLClassExpressionVisitor,
                        OWLDataVisitor, OWLPropertyExpressionVisitor,
                        OWLEntityVisitor, OWLNamedObjectVisitor,
-                       OWLAnnotationAxiomVisitor, OWLIndividualVisitor,
-                       OWLAnnotationValueVisitor, OWLAnnotationObjectVisitor,
-                       SWRLObjectVisitor):
+                       OWLIndividualVisitor, OWLAnnotationValueVisitor,
+                       OWLAnnotationObjectVisitor, SWRLObjectVisitor):
     """Marker class"""
