@@ -12,6 +12,14 @@ class OWLObject(object):
         self._hash_code = 0
         self._signature = None  # set<OWLEntity>
         self._anons = None
+        self._hash_code = None
+
+    def __hash__(self):
+        if self._hash_code is None:
+            from owlapy.util.hashcode import HashCode
+            self._hash_code = HashCode.hash_code(self)
+
+        return self._hash_code
 
     @classmethod
     def get_owl_entity(cls, entity_type, iri):
