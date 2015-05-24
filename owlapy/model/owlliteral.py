@@ -41,6 +41,16 @@ class OWLLiteral(OWLObject):
             self.lang = lang
             self.datatype = self.RDF_PLAIN_LITERAL
 
+    def __hash__(self):
+        hash_code = 277
+        hash_code = hash_code * 37  + hash(self.datatype)
+        hash_code = hash_code * 37
+        hash_code += hash(self.literal)
+        if self.lang:
+            hash_code = hash_code * 37 + hash(self.lang)
+
+        return hash_code
+
     def accept(self, visitor):
         if isinstance(visitor, OWLVisitorEx):
             return visitor.visit(self)
