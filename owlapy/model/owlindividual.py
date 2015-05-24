@@ -1,11 +1,17 @@
+from functools import total_ordering
+
 from .owlpropertyassertionobject import OWLPropertyAssertionObject
 
 
+@total_ordering
 class OWLIndividual(OWLPropertyAssertionObject):
     """Represents a named or anonymous individual."""
 
     def __eq__(self, other):
         return isinstance(other, OWLIndividual)
+
+    def __ge__(self, other):
+        return self.compare_to(other) > 0
 
     def __hash__(self):
         return super().__hash__()
