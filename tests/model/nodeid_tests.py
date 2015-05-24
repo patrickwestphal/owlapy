@@ -1,3 +1,4 @@
+import re
 import unittest
 
 from owlapy.model import NodeID
@@ -228,3 +229,62 @@ class TestNodeID(unittest.TestCase):
         id_str1_hash = hash(id_str1)
         node_id1 = NodeID(id_str1)
         self.assertEqual(id_str1_hash, hash(node_id1))
+
+    # tests from OWLAPI
+    def test_should_create_node_string(self):
+        self.assertEqual('_:genid30', NodeID.node_string(30))
+
+
+    def test_should_create_iri_from_node_string(self):
+        self.assertEqual('_:genid-nodeid-somestring_',
+                         NodeID.get_iri_from_node_id('somestring_genid'))
+
+    def test_should_create_next_iri(self):
+        self.assertIsNotNone(re.match('_:genid[0-9]+',
+                                      NodeID.next_anonymous_iri()))
+
+    def test_should_find_anonymous_node(self):
+        self.assertTrue(
+            NodeID.is_anonymous_node_iri('_:sometest_genid_something'))
+        self.assertTrue(NodeID.is_anonymous_node_iri('_:genid_something'))
+        self.assertFalse(
+            NodeID.is_anonymous_node_iri('http://sometest_genid_something'))
+        self.assertFalse(NodeID.is_anonymous_node_iri(None))
+
+    def test_should_find_anonymous_node_iri(self):
+        self.assertTrue(
+            NodeID.is_anonymous_node_iri(IRI('_:sometest_genid_something')))
+        self.assertTrue(NodeID.is_anonymous_node_iri(IRI('_:genid_something')))
+        self.assertFalse(NodeID.is_anonymous_node_iri(
+            IRI('http://sometest_genid_something')))
+        self.assertFalse(NodeID.is_anonymous_node_iri(None))
+
+    def test_should_find_shared_node_iri(self):
+        self.assertFalse(
+            NodeID.is_anonymous_node_id('_:sometest_genid-nodeid-_something'))
+        self.assertTrue(
+            NodeID.is_anonymous_node_id('_:genid-nodeid-_something'))
+        self.assertFalse(NodeID.is_anonymous_node_id(
+            'http://sometest_genid-nodeid-_something'))
+        self.assertFalse(NodeID.is_anonymous_node_id(None))
+
+    def test_should_build_node(self):
+        self.assertTrue(NodeID.is_anonymous_node_iri(
+            NodeID.get_node_id('_:sometest_genid_something').id))
+        self.assertTrue(NodeID.is_anonymous_node_iri(
+            NodeID.get_node_id('http://sometest_genid_something').id))
+        self.assertTrue(NodeID.is_anonymous_node_iri(
+            NodeID.get_node_id(None).id))
+
+        node_id = NodeID.get_node_id(None)
+        self.assertEquals(node_id.id, str(node_id))
+
+        self.assertEquals(NodeID.get_node_id('somestring'),
+                          NodeID.get_node_id('somestring'))
+
+        # compareTo not defined for Python strings...
+        # self.assertEquals(
+        #     NodeID.get_node_id('somestring').compareTo(
+        #         NodeID.get_node_id('someotherstring')),
+        #     'somestring'.compareTo('someotherstring'))
+        self.assertEquals(hash(node_id), hash(str(node_id)))
