@@ -13,6 +13,9 @@ class OWLDataProperty(OWLDataPropertyExpression):
         super().__init__()
         self.iri = iri
 
+    def compare_object_of_same_type(self, other):
+        return self.iri.compare_to(other.iri)
+
     def accept(self, visitor):
         if isinstance(visitor, OWLVisitorEx):
             return visitor.visit(self)
