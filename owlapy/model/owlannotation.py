@@ -33,6 +33,9 @@ class OWLAnnotation(OWLObject):
     def __ge__(self, other):
         return self.compare_to(other) > 0
 
+    def __hash__(self):
+        return super().__hash__()
+
     def compare_object_of_same_type(self, other):
         """
         :param other: an owlapy.model.OWLObject object
