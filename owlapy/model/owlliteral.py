@@ -1,9 +1,13 @@
+from functools import total_ordering
+
 from .exceptions import OWLRuntimeException
 from .owlobject import OWLObject
 from .exceptions import OWLRuntimeException
 from .owlvisitor import OWLVisitorEx, OWLVisitor
+from owlapy.util import str_compare_to
 
 
+@total_ordering
 class OWLLiteral(OWLObject):
     """TODO: implement
     TODO: add literal wrapper
@@ -41,15 +45,38 @@ class OWLLiteral(OWLObject):
             self.lang = lang
             self.datatype = self.RDF_PLAIN_LITERAL
 
+    def __eq__(self, other):
+        if super().__eq__(other):
+            if not isinstance(other, OWLLiteral):
+                return False
+
+            return self.literal == other.literal and \
+                self.datatype == other.datatype and self.lang == other.lang
+        return False
+
     def __hash__(self):
         hash_code = 277
-        hash_code = hash_code * 37  + hash(self.datatype)
+        hash_code = hash_code * 37 + hash(self.datatype)
         hash_code = hash_code * 37
         hash_code += hash(self.literal)
         if self.lang:
             hash_code = hash_code * 37 + hash(self.lang)
 
         return hash_code
+
+    def __ge__(self, other):
+        return self.compare_to(other) >= 0
+
+    def compare_object_of_same_type(self, other):
+        diff = str_compare_to(self.literal, other.literal)
+        if diff:
+            return diff
+
+        diff = self.datatype.compare_to(other.datatype)
+        if diff:
+            return diff
+
+        return str_compare_to(self.lang, other.lang)
 
     def accept(self, visitor):
         if isinstance(visitor, OWLVisitorEx):
