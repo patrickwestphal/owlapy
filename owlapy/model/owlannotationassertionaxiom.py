@@ -9,9 +9,12 @@ class OWLAnnotationAssertionAxiom(OWLAxiom):
 
     def __init__(self, subject, property, value, annotations):
         """
-        :param subject: an owlapy.model.OWLAnnotationSubject object
+        :param subject: an owlapy.model.OWLAnnotationSubject object (i.e. an
+            owlapy.model.IRI or owlapy.model.OWLAnonymousIndividual object)
         :param property: an owlapy.model.OWLAnnotationProperty object
-        :param value: an owlapy.model.OWLAnnotationValue objects
+        :param value: an owlapy.model.OWLAnnotationValue object (i.e. an
+            owlapy.model.IRI, owlapy.model.OWLAnonymousIndividual or
+            owlapy.model.OWLLiteral object)
         :param annotations: a set/list of owlapy.model.OWLAnnotation objects
         """
         super().__init__(annotations)
