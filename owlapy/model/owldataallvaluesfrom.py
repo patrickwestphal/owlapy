@@ -13,7 +13,7 @@ class OWLDataAllValuesFrom(OWLQuantifiedDataRestriction):
             owlapy.model.OWLDataComplementOf object, an
             owlapy,model.OWLDataOneOf object, an owlapy.model.OWLDatatype
             object, an owlapy.model.OWLDatatypeRestriction, or an
-            owlapy.model.OWLNaryDataRange object
+            owlapy.model.OWLNaryDataRange object)
         """
         super().__init__(property, filler)
 
