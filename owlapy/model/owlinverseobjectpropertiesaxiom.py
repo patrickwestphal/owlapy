@@ -14,8 +14,8 @@ class OWLInverseObjectPropertiesAxiom(OWLNaryPropertyAxiom):
         :param annotations: a set/list of OWLAnnotation objects
         """
         super().__init__([first, second], annotations)
-        self.first = first
-        self.second = second
+        self.first_property = first
+        self.second_property = second
 
     @classmethod
     def get_axiom_type(cls):
