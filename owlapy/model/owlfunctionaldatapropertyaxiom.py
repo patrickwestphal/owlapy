@@ -9,14 +9,12 @@ class OWLFunctionalDataPropertyAxiom(OWLPropertyRangeAxiom):
 
     def __init__(self, property, range, annotations):
         """
-        :param property: an owlapy.model.OWLDataPropertyExpression object (i.e.
-            an owlapy.model.OWLDataComplementOf object, an
+        :param property: an owlapy.model.OWLDataPropertyExpression object
+        :param range: an owlapy.model.OWLDataRange object (i.e. an
+            owlapy.model.OWLDataComplementOf object, an
             owlapy.model.OWLDataOneOf object, an owlapy.model.OWLDatatype
             object, an owlapy.model.OWLDatatypeRestriction, or an
             owlapy.model.OWLNaryDataRange object)
-        :param range: an owlapy.model.OWLDataRange object (i.e. an
-            owlapy.model.OWLDataIntersectionOf object, or an
-            owlapy.model.OWLDataUnionOf object)
         :param annotations: a set/list of owlapy.model.OWLAnnotation objects
         """
         super().__init__(property, range, annotations)
