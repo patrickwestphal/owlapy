@@ -11,7 +11,7 @@ class OWLIndividual(OWLPropertyAssertionObject):
         return isinstance(other, OWLIndividual)
 
     def __ge__(self, other):
-        return self.compare_to(other) > 0
+        return self.compare_to(other) >= 0
 
     def __hash__(self):
         return super().__hash__()
