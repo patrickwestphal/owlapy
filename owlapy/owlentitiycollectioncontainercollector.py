@@ -216,8 +216,8 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
             self._process_axiom_annotations(visitee)
 
         elif isinstance(visitee, OWLInverseObjectPropertiesAxiom):
-            visitee.first.accept(self)
-            visitee.second.accept(self)
+            visitee.first_property.accept(self)
+            visitee.second_property.accept(self)
             self._process_axiom_annotations(visitee)
 
         elif isinstance(visitee, OWLHasKeyAxiom):
