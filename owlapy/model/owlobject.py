@@ -1,8 +1,10 @@
 # from owlapy.vocab.owlrdfvocabulary import OWLRDFVocabulary
+from functools import total_ordering
 import owlapy.model
 # from owlapy.util.owlobjecttypeindexprovider import OWLObjectTypeIndexProvider
 
 
+@total_ordering
 class OWLObject(object):
     NO_ANNOTATIONS = set()
     # FIXME: fix imports
@@ -13,6 +15,13 @@ class OWLObject(object):
         self._signature = None  # set<OWLEntity>
         self._anons = None
         self._hash_code = None
+
+    def __eq__(self, other):
+        return id(other) == id(self) or \
+               other is not None and isinstance(other, OWLObject)
+
+    def __ge__(self, other):
+        return self.compare_to(other) >= 0
 
     def __hash__(self):
         if self._hash_code is None:
@@ -141,5 +150,30 @@ class OWLObject(object):
             return diff
 
     def compare_object_of_same_type(self, other):
-        raise NotImplementedError('This method should be implement in the '
-                                  'respective subclasses of OWLObject')
+        raise NotImplementedError('The method compare_object_or_same_type '
+                                  'should be implemented in the respective '
+                                  'subclasses of OWLObject')
+
+    def compare_sets(self, set1, set2):
+        """
+        :param set1: a set of owlapy.model.OWLObject objects
+        :param set2: a set of owlapy.model.OWLObject objects
+        :return:
+        """
+        sorted1 = list(set1)
+        sorted1.sort()
+
+        sorted2 = list(set2)
+        sorted2.sort()
+
+        min_len = min(len(sorted1, sorted2))
+        for i in range(min_len):
+            o1 = sorted1[i]
+            o2 = sorted2[i]
+
+            diff = o1.compare_to(o2)
+
+            if diff:
+                return diff
+
+        return len(sorted1) - len(sorted2)

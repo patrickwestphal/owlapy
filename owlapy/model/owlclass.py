@@ -24,3 +24,10 @@ class OWLClass(OWLClassExpression, OWLLogicalEntity, OWLNamedObject):
             raise OWLRuntimeException('Can only accept instances of'
                                       'owlapy.model.OWLVisitor or '
                                       'owlapy.model.OWLVisitorEx')
+
+    def compare_object_of_same_type(self, other):
+        """
+        :param other: an owlapy.model.OWLObject object
+        :return: an integer indicating the difference  between self and other
+        """
+        return self.iri.compare_to(other.iri)
