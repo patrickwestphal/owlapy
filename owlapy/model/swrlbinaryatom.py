@@ -9,6 +9,8 @@ class SWRLBinaryAtom(SWRLAtom):
         :param predicate: an owlapy.model.SWRLPredicate object
         :param arg0: an owlapy.model.SWRLArgument object
         :param arg1: an owlapy.model.SWRLArgument object
+
+        FIXME: should not be callable!
         """
         super().__init__(predicate)
         self.first_argument = arg0
