@@ -1,6 +1,7 @@
 from functools import total_ordering
 
 from .owlobject import OWLObject
+from .owlobjectvisitor import OWLObjectVisitor
 
 
 @total_ordering
@@ -19,6 +20,9 @@ class OWLAnnotation(OWLObject):
         self.property = property
         self.value = value
         self.annotations = annotations
+
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] =\
+            self._accept_obj_visitor
 
     def __eq__(self, other):
         if super().__eq__(other) and isinstance(other, OWLAnnotation):
@@ -46,3 +50,6 @@ class OWLAnnotation(OWLObject):
             # OWLAnonymousIndividual, OWLLiteral
             return self.value.compare_to(other.value)
 
+    @staticmethod
+    def _accept_obj_visitor(self, visitor):
+        visitor.visit(self)
