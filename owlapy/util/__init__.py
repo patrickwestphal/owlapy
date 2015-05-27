@@ -50,3 +50,11 @@ def str_compare_to(str1, str2):
             return ord(char1) - ord(char2)
 
     return len1 - len2
+
+
+def accept_default(obj, visitor):
+    visitor.visit(obj)
+
+
+def accept_default_ex(obj, visitor):
+    return visitor.visit(obj)
