@@ -89,8 +89,10 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
 
     def __init__(self, to_return, anons_to_return=None):
         """
-        :param to_return: set<OWLEntity>
-        :param anons_to_return: list/set of OWLAnonymousIndividual objects
+        :param to_return: the set of owlapy.model.OWLEntity objects that will
+            contain the results
+        :param anons_to_return: the set that will contain the
+            owlapy.model.OWLAnonymousIndividual objects
         """
         self._objects = to_return
         self._anonymous_individuals = set(anons_to_return) \
@@ -117,9 +119,17 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
         :param axiom: an owlapy.model.OWLAxiom object
         """
         if isinstance(axiom, CollectionContainer):
+            # in the OWLAPI all OWLAxioms implement the CollectionContainer
+            # interface, so the else branch would never be taken:
+            #
+            # public abstract class OWLAxiomImpl extends OWLObjectImpl
+            #                    implements OWLAxiom,
+            #                               CollectionContainer<OWLAnnotation> {
+            # ...
             axiom.accept(self._annotation_visitor)
         else:
             # default behavior: iterate over the annotations outside the axiom
+            # as far as I understand, this branch will never be taken...
             for annotation in axiom.annotations:
                 annotation.accept(self)
 
