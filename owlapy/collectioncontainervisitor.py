@@ -13,8 +13,7 @@ class CollectionContainerVisitor(OWLVisitor):
         """
         pass
 
-    def visit_item(self, annotation):
+    def visit_item(self, entity):
         """
-        :param annotation: an owlapy.model.OWLAnnotation object
+        :param entity: an owlapy.model.OWLAnnotation object
         """
-        annotation.accept(self._collector)

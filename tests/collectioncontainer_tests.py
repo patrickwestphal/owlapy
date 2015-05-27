@@ -11,8 +11,8 @@ from owlapy.model import OWLAnonymousIndividual
 
 class TestCollectionContainer(unittest.TestCase):
     def test_accept(self):
-        entities = [OWLClass(IRI('http://ex.org/SomeCls'))]
-        anons = [OWLAnonymousIndividual(NodeID('_:23'))]
+        entities = {OWLClass(IRI('http://ex.org/SomeCls'))}
+        anons = {OWLAnonymousIndividual(NodeID('_:23'))}
         collector = OWLEntityCollectionContainerCollector(entities, anons)
         coll_container = CollectionContainer()
         visitor = CollectionContainerVisitor(collector)

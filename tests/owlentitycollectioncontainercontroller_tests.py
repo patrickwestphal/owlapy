@@ -9,8 +9,8 @@ from owlapy.model import OWLClass
 
 class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
     def test___init__01(self):
-        entities = [OWLClass(IRI('http://ex.org/SomeCls'))]
-        anons = [OWLAnonymousIndividual(NodeID('_:23'))]
+        entities = {OWLClass(IRI('http://ex.org/SomeCls'))}
+        anons = {OWLAnonymousIndividual(NodeID('_:23'))}
         eccc = OWLEntityCollectionContainerCollector(entities, anons)
 
         self.assertEqual(set(entities), eccc._objects)
@@ -22,7 +22,7 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
         self.assertTrue(eccc.collect_datatypes)
 
     def test___init__02(self):
-        entities = [OWLClass(IRI('http://ex.org/SomeCls'))]
+        entities = {OWLClass(IRI('http://ex.org/SomeCls'))}
         eccc = OWLEntityCollectionContainerCollector(entities)
 
         self.assertEqual(entities, eccc._objects)
@@ -34,8 +34,8 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
         self.assertTrue(eccc.collect_datatypes)
 
     def test_reset(self):
-        entities = [OWLClass(IRI('http://ex.org/SomeCls'))]
-        anons = [OWLAnonymousIndividual(NodeID('_:23'))]
+        entities = {OWLClass(IRI('http://ex.org/SomeCls'))}
+        anons = {OWLAnonymousIndividual(NodeID('_:23'))}
         eccc = OWLEntityCollectionContainerCollector(entities, anons)
 
         self.assertEqual(entities, eccc._objects)

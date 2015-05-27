@@ -11,15 +11,15 @@ from owlapy.model import OWLClass
 
 class TestCollectionContainerVisitor(unittest.TestCase):
     def test___init__(self):
-        entities = [OWLClass(IRI('http://ex.org/SomeCls'))]
-        anons = [OWLAnonymousIndividual(NodeID('_:23'))]
+        entities = {OWLClass(IRI('http://ex.org/SomeCls'))}
+        anons = {OWLAnonymousIndividual(NodeID('_:23'))}
         collector = OWLEntityCollectionContainerCollector(entities, anons)
         coll_container_visitor = CollectionContainerVisitor(collector)
         self.assertEqual(collector, coll_container_visitor._collector)
 
     def test_visit(self):
-        entities = [OWLClass(IRI('http://ex.org/SomeCls'))]
-        anons = [OWLAnonymousIndividual(NodeID('_:23'))]
+        entities = {OWLClass(IRI('http://ex.org/SomeCls'))}
+        anons = {OWLAnonymousIndividual(NodeID('_:23'))}
         collector = OWLEntityCollectionContainerCollector(entities, anons)
         coll_container_visitor = CollectionContainerVisitor(collector)
         coll_container = CollectionContainer()
