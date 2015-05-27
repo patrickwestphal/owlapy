@@ -15,7 +15,7 @@ class OWLAnnotationValueVisitor(object):
         raise NotImplementedError()
 
 
-class OWLAnnotationObjectVisitorEx(OWLAnnotationAxiomVisitorEx):
+class OWLAnnotationValueVisitorEx(OWLAnnotationAxiomVisitorEx):
     """Marker class"""
 
     def visit(self, visitee):
