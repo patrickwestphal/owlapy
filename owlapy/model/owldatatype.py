@@ -1,8 +1,14 @@
 from functools import total_ordering
 
 from .owldatarange import OWLDataRange
+from .owldatarangevisitor import OWLDataRangeVisitor, OWLDataRangeVisitorEx
+from .owldatavisitor import OWLDataVisitor, OWLDataVisitorEx
+from .owlentityvisitor import OWLEntityVisitor, OWLEntityVisitorEx
 from .owllogicalentity import OWLLogicalEntity
 from .owlnamedobject import OWLNamedObject
+from .owlnamedobjectvisitor import OWLNamedObjectVisitor
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
+from owlapy.util import accept_default, accept_default_ex
 
 
 @total_ordering
@@ -15,6 +21,17 @@ class OWLDatatype(OWLDataRange, OWLLogicalEntity, OWLNamedObject):
         """
         super().__init__()
         self.iri = iri
+
+        self._accept_fn_for_visitor_cls[OWLDataRangeVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLDataRangeVisitorEx] =\
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLDataVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLDataVisitorEx] = accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLEntityVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLEntityVisitorEx] = accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLNamedObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
 
     def __eq__(self, other):
         if super().__eq__(other) and isinstance(other, OWLDatatype):
