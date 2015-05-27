@@ -53,6 +53,7 @@ class IRI(OWLAnnotationSubject, OWLAnnotationValue, SWRLPredicate,
         :param fragment: an optional string containing the local part a.k.a.
             remainder a.k.a. fragment a.k.a. suffix of the IRI
         """
+        super().__init__()
         if isinstance(iri_str_or_uri, URIRef):
             iri_str_or_uri = str(iri_str_or_uri)
         if not fragment:

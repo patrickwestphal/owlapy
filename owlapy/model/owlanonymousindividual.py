@@ -15,6 +15,7 @@ class OWLAnonymousIndividual(OWLIndividual, OWLAnnotationValue,
 
     def __init__(self, node_id):
         """:param node_id: a owlapy.model.NodeID object"""
+        super().__init__()
         self.id = node_id
 
     def __str__(self):
