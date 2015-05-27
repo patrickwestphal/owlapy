@@ -138,7 +138,6 @@ from .owlsymmetricobjectpropertyaxiom import OWLSymmetricObjectPropertyAxiom
 from .owltransitiveobjectpropertyaxiom import OWLTransitiveObjectPropertyAxiom
 from .owlunarypropertyaxiom import OWLUnaryPropertyAxiom
 from .owlvaluerestriction import OWLValueRestriction
-from .owlvisitor import OWLVisitor, OWLVisitorEx
 from .swrlatom import SWRLAtom
 from .swrlbinaryatom import SWRLBinaryAtom
 from .swrlbuiltinatom import SWRLBuiltInAtom

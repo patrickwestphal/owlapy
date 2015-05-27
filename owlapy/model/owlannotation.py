@@ -1,8 +1,6 @@
 from functools import total_ordering
 
-from .exceptions import OWLRuntimeException
 from .owlobject import OWLObject
-from .owlvisitor import OWLVisitorEx, OWLVisitor
 
 
 @total_ordering
@@ -48,12 +46,3 @@ class OWLAnnotation(OWLObject):
             # OWLAnonymousIndividual, OWLLiteral
             return self.value.compare_to(other.value)
 
-    def accept(self, visitor):
-        if isinstance(visitor, OWLVisitorEx):
-            return visitor.visit(self)
-        elif isinstance(visitor, OWLVisitor):
-            visitor.visit(self)
-        else:
-            raise OWLRuntimeException('Can only accept instances of'
-                                      'owlapy.model.OWLVisitor or '
-                                      'owlapy.model.OWLVisitorEx')

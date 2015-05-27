@@ -1,7 +1,6 @@
 from functools import total_ordering
 from .exceptions import OWLRuntimeException
 from .owlnarybooleanclassexpression import OWLNaryBooleanClassExpression
-from .owlvisitor import OWLVisitorEx, OWLVisitor
 
 
 @total_ordering
@@ -25,13 +24,3 @@ class OWLObjectUnionOf(OWLNaryBooleanClassExpression):
 
     def __hash__(self):
         return super().__hash__()
-
-    def accept(self, visitor):
-        if isinstance(visitor, OWLVisitorEx):
-            return visitor.visit(self)
-        elif isinstance(visitor, OWLVisitor):
-            visitor.visit(self)
-        else:
-            raise OWLRuntimeException('Can only accept instances of'
-                                      'owlapy.model.OWLVisitor or '
-                                      'owlapy.model.OWLVisitorEx')

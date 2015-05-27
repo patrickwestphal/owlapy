@@ -6,11 +6,9 @@ from urllib import parse as p
 
 from rdflib import URIRef
 
-from .exceptions import OWLRuntimeException
 from .owlannotationsubject import OWLAnnotationSubject
 from .owlannotationvalue import OWLAnnotationValue
 from .owlprimitive import OWLPrimitive
-from .owlvisitor import OWLVisitorEx, OWLVisitor
 from .swrlpredicate import SWRLPredicate
 from owlapy.io import xmlutils
 from owlapy.util import str_compare_to
@@ -383,23 +381,6 @@ class IRI(OWLAnnotationSubject, OWLAnnotationValue, SWRLPredicate,
             return self.prefix[last_slash_idx+1:]
 
         return self.to_quoted_string()
-
-    def accept(self, visitor):
-        """Accepts a visitor
-
-        :param visitor: a visitor, i.e. an object that has a visit method
-        :return: whatever the visitor's visit method returns
-        """
-        if isinstance(visitor, OWLVisitorEx):
-            return visitor.visit(self)
-
-        elif isinstance(visitor, OWLVisitor):
-            visitor.visit(self)
-
-        else:
-            raise OWLRuntimeException('Can only accept instances of'
-                                      'owlapy.model.OWLVisitor or '
-                                      'owlapy.model.OWLVisitorEx')
 
     @classmethod
     def get_classes_in_signature(cls):

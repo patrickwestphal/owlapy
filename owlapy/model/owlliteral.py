@@ -1,9 +1,7 @@
 from functools import total_ordering
 
-from .exceptions import OWLRuntimeException
 from .owlobject import OWLObject
 from .exceptions import OWLRuntimeException
-from .owlvisitor import OWLVisitorEx, OWLVisitor
 from owlapy.util import str_compare_to
 
 
@@ -77,13 +75,3 @@ class OWLLiteral(OWLObject):
             return diff
 
         return str_compare_to(self.lang, other.lang)
-
-    def accept(self, visitor):
-        if isinstance(visitor, OWLVisitorEx):
-            return visitor.visit(self)
-        elif isinstance(visitor, OWLVisitor):
-            visitor.visit(self)
-        else:
-            raise OWLRuntimeException('Can only accept instances of'
-                                      'owlapy.model.OWLVisitor or '
-                                      'owlapy.model.OWLVisitorEx')

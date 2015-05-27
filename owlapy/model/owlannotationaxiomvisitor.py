@@ -1,7 +1,4 @@
-from .owlvisitor import OWLVisitor, OWLVisitorEx
-
-
-class OWLAnnotationAxiomVisitor(OWLVisitor):
+class OWLAnnotationAxiomVisitor(object):
     """Marker class"""
 
     def visit(self, axiom):
@@ -16,7 +13,7 @@ class OWLAnnotationAxiomVisitor(OWLVisitor):
         raise NotImplementedError()
 
 
-class OWLAnnotationVisitorEx(OWLVisitorEx):
+class OWLAnnotationVisitorEx(object):
     """Marker Class"""
 
     def visit(self, axiom):

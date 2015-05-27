@@ -7,11 +7,10 @@ from .owlentityvisitor import OWLEntityVisitor
 from .owlindividualvisitor import OWLIndividualVisitor
 from .owlnamedobjectvisitor import OWLNamedObjectVisitor
 from .owlpropertyexpressionvisitor import OWLPropertyExpressionVisitor
-from .owlvisitor import OWLVisitor
 from .swrlobjectvisitor import SWRLObjectVisitor
 
 
-class OWLObjectVisitor(OWLVisitor, OWLAxiomVisitor, OWLClassExpressionVisitor,
+class OWLObjectVisitor(OWLAxiomVisitor, OWLClassExpressionVisitor,
                        OWLDataVisitor, OWLPropertyExpressionVisitor,
                        OWLEntityVisitor, OWLNamedObjectVisitor,
                        OWLIndividualVisitor, OWLAnnotationValueVisitor,

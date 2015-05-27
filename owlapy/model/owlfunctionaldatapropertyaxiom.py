@@ -1,7 +1,5 @@
-from .exceptions import OWLRuntimeException
 from .axiomtype import AxiomType
 from .owlpropertyrangeaxiom import OWLPropertyRangeAxiom
-from .owlvisitor import OWLVisitorEx, OWLVisitor
 
 
 class OWLFunctionalDataPropertyAxiom(OWLPropertyRangeAxiom):
@@ -22,13 +20,3 @@ class OWLFunctionalDataPropertyAxiom(OWLPropertyRangeAxiom):
     @classmethod
     def get_axiom_type(cls):
         return AxiomType.FUNCTIONAL_DATA_PROPERTY
-
-    def accept(self, visitor):
-        if isinstance(visitor, OWLVisitorEx):
-            return visitor.visit(self)
-        elif isinstance(visitor, OWLVisitor):
-            visitor.visit(self)
-        else:
-            raise OWLRuntimeException('Can only accept instances of'
-                                      'owlapy.model.OWLVisitor or '
-                                      'owlapy.model.OWLVisitorEx')

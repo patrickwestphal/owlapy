@@ -1,7 +1,6 @@
 from .entitytype import EntityType
 from .owlindividual import OWLIndividual
 from .exceptions import OWLRuntimeException
-from .owlvisitor import OWLVisitorEx, OWLVisitor
 from .owllogicalentity import OWLLogicalEntity
 import owlapy.util
 
@@ -117,26 +116,3 @@ class OWLNamedIndividual(OWLIndividual, OWLLogicalEntity):
         :return: an integer indicating the difference between self and obj
         """
         return self.iri.compare_to(obj.iri)
-
-    def accept(self, visitor):
-        """TODO: check if all these visitor classes are really implemented
-        :param visitor: a visitor object of one of the folling classes:
-            - OWLObjectVisitor
-            - OWLObjectVisitorEx
-            - OWLEntityVisitor
-            - OWLEntityVisitorEx
-            - OWLNamedObjectVisitor
-            - OWLIndividualVisitor
-            - OWLIndividualVisitorEx
-        :return: Nothing or whatever the OWLVisitorEx object returns in its
-            visit method
-        """
-        if isinstance(visitor, OWLVisitorEx):
-            return visitor.visit(self)
-
-        elif isinstance(visitor, OWLVisitor):
-            visitor.visit(self)
-        else:
-            raise OWLRuntimeException('Can only accept instances of'
-                                      'owlapy.model.OWLVisitor or '
-                                      'owlapy.model.OWLVisitorEx')

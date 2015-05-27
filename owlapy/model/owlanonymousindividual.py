@@ -1,6 +1,5 @@
-from owlapy.model import OWLRuntimeException
+from .exceptions import OWLRuntimeException
 from .owlindividual import OWLIndividual
-from .owlvisitor import OWLVisitor, OWLVisitorEx
 from .owlannotationvalue import OWLAnnotationValue
 from .owlannotationsubject import OWLAnnotationSubject
 from .owlprimitive import OWLPrimitive
@@ -79,27 +78,3 @@ class OWLAnonymousIndividual(OWLIndividual, OWLAnnotationValue,
         :return:
         """
         return self.id.compare_to(other.id)
-
-    def accept(self, visitor):
-        """TODO: update the visitor class list (i.e. remove those that are not
-        going to be implemented)
-
-        :param visitor: object of one of the following classes:
-            - OWLObjectVisitor
-            - OWLObjectVisitorEx
-            - OWLIndividualVisitor
-            - OWLIndividualVisitorEx
-            - OWLAnnotationValueVisitor
-            - OWLAnnotationValueVisitorEx
-            - OWLAnnotationSubjectVisitor
-            - OWLAnnotationSubjectVisitorEx
-        :return:
-        """
-        if isinstance(visitor, OWLVisitorEx):
-            return visitor.visit(self)
-        elif isinstance(visitor, OWLVisitor):
-            visitor.visit(self)
-        else:
-            raise OWLRuntimeException('Can only accept instances of'
-                                      'owlapy.model.OWLVisitor or '
-                                      'owlapy.model.OWLVisitorEx')

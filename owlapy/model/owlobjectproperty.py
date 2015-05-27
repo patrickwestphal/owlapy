@@ -1,7 +1,6 @@
 from functools import total_ordering
 from .exceptions import OWLRuntimeException
 from .owlobjectpropertyexpression import OWLObjectPropertyExpression
-from .owlvisitor import OWLVisitorEx, OWLVisitor
 
 
 @total_ordering
@@ -32,13 +31,3 @@ class OWLObjectProperty(OWLObjectPropertyExpression):
 
     def compare_object_of_same_type(self, other):
         return self.iri.compare_to(other.iri)
-
-    def accept(self, visitor):
-        if isinstance(visitor, OWLVisitorEx):
-            return visitor.visit(self)
-        elif isinstance(visitor, OWLVisitor):
-            visitor.visit(self)
-        else:
-            raise OWLRuntimeException('Can only accept instances of'
-                                      'owlapy.model.OWLVisitor or '
-                                      'owlapy.model.OWLVisitorEx')
