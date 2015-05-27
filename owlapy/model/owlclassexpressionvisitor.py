@@ -25,3 +25,30 @@ class OWLClassExpressionVisitor(object):
         :return: None
         """
         raise NotImplementedError()
+
+
+class OWLClassExpressionVisitorEx(object):
+
+    def visit(self, ce):
+        """
+        :param ce: an object of one of the following classes:
+            - OWLClass
+            - owlapy.model.OWLObjectIntersectionOf
+            - owlapy.model.OWLObjectUnionOf
+            - owlapy.model.OWLObjectComplementOf
+            - owlapy.model.OWLObjectSomeValuesFrom
+            - owlapy.model.OWLObjectAllValuesFrom
+            - owlapy.model.OWLObjectHasValue
+            - owlapy.model.OWLObjectMinCardinality
+            - owlapy.model.OWLObjectExactCardinality
+            - owlapy.model.OWLObjectMaxCardinality
+            - owlapy.model.OWLObjectHasSelf
+            - owlapy.model.OWLObjectOneOf
+            - owlapy.model.OWLDataSomeValuesFrom
+            - owlapy.model.OWLDataAllValuesFrom
+            - owlapy.model.OWLDataHasValue
+            - owlapy.model.OWLDataMinCardinality
+            - owlapy.model.OWLDataExactCardinality
+            - owlapy.model.OWLDataMaxCardinality
+        """
+        raise NotImplementedError()
