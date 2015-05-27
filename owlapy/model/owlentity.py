@@ -205,13 +205,3 @@ class OWLEntity(OWLObject):
         raise NotImplementedError()
         # Set<OWLAxiom> getReferencingAxioms(OWLOntology ontology);
         # Set<OWLAxiom> getReferencingAxioms(OWLOntology ontology, boolean includeImports);
-
-    def accept(self, visitor):
-        """Accepts a visitor
-
-        :param visitor: a owlapy.model.OWLEntityVisitor object
-        :return:
-        """
-        # void accept(OWLEntityVisitor visitor);
-        # <O> O accept(OWLEntityVisitorEx<O> visitor);
-        raise NotImplementedError()
