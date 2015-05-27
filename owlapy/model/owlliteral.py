@@ -1,8 +1,12 @@
 from functools import total_ordering
 
-from .owlobject import OWLObject
 from .exceptions import OWLRuntimeException
-from owlapy.util import str_compare_to
+from .owldatavisitor import OWLDataVisitor, OWLDataVisitorEx
+from .owlannotationvaluevisitor import OWLAnnotationValueVisitor, \
+    OWLAnnotationValueVisitorEx
+from .owlobject import OWLObject
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
+from owlapy.util import str_compare_to, accept_default, accept_default_ex
 
 
 @total_ordering
@@ -42,6 +46,15 @@ class OWLLiteral(OWLObject):
 
             self.lang = lang
             self.datatype = self.RDF_PLAIN_LITERAL
+
+        self._accept_fn_for_visitor_cls[OWLAnnotationValueVisitor] = \
+            accept_default
+        self._accept_fn_for_visitor_cls[OWLAnnotationValueVisitorEx] = \
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLDataVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLDataVisitorEx] = accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
 
     def __eq__(self, other):
         if super().__eq__(other):
