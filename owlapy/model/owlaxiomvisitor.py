@@ -1,5 +1,5 @@
 from .owlannotationaxiomvisitor import OWLAnnotationAxiomVisitor, \
-    OWLAnnotationVisitorEx
+    OWLAnnotationAxiomVisitorEx
 
 
 class OWLAxiomVisitor(OWLAnnotationAxiomVisitor):
@@ -48,7 +48,7 @@ class OWLAxiomVisitor(OWLAnnotationAxiomVisitor):
         raise NotImplementedError()
 
 
-class OWLAxiomVisitorEx(OWLAnnotationVisitorEx):
+class OWLAxiomVisitorEx(OWLAnnotationAxiomVisitorEx):
 
     def visit(self, axiom):
         """
