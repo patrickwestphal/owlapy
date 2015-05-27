@@ -1,3 +1,6 @@
+import inspect
+
+from .exceptions import OWLRuntimeException
 # from owlapy.vocab.owlrdfvocabulary import OWLRDFVocabulary
 from functools import total_ordering
 import owlapy.model
@@ -15,6 +18,7 @@ class OWLObject(object):
         self._signature = None  # set<OWLEntity>
         self._anons = None
         self._hash_code = None
+        self._accept_fn_for_visitor_cls = {}
 
     def __eq__(self, other):
         return id(other) == id(self) or \
@@ -114,9 +118,23 @@ class OWLObject(object):
         # Set<OWLClassExpression> getNestedClassExpressions();
 
     def accept(self, visitor):
-        raise NotImplementedError()
-        # void accept(OWLObjectVisitor visitor);
-        # <O> O accept(OWLObjectVisitorEx<O> visitor);
+        # first trial: taking the visitor's actual class
+        fn = self._accept_fn_for_visitor_cls.get(type(visitor))
+
+        if fn:
+            return fn(self, visitor)
+
+        else:
+            # second trial: try all superclasses of visitor
+            for cls in inspect.getmro(type(visitor)):
+                fn = self._accept_fn_for_visitor_cls.get(cls)
+
+                if fn:
+                    return fn(self, visitor)
+
+            raise OWLRuntimeException('No suitable accept method found in %s '
+                                      'for visitor of type %s' %
+                                      (type(self), type(visitor)))
 
     def is_top_entity(self):
         raise NotImplementedError()
