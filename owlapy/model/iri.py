@@ -8,11 +8,16 @@ from rdflib import URIRef
 
 from .exceptions import IRIException
 from .owlannotationsubject import OWLAnnotationSubject
+from .owlannotationsubjectvisitor import OWLAnnotationSubjectVisitor, \
+    OWLAnnotationSubjectVisitorEx
 from .owlannotationvalue import OWLAnnotationValue
+from .owlannotationvaluevisitor import OWLAnnotationValueVisitor, \
+    OWLAnnotationValueVisitorEx
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from .owlprimitive import OWLPrimitive
 from .swrlpredicate import SWRLPredicate
 from owlapy.io import xmlutils
-from owlapy.util import str_compare_to
+from owlapy.util import str_compare_to, accept_default, accept_default_ex
 from owlapy.vocab import namespaces
 
 
@@ -57,6 +62,17 @@ class IRI(OWLAnnotationSubject, OWLAnnotationValue, SWRLPredicate,
             self.remainder = fragment
 
         self.namespace = self.prefix
+
+        self._accept_fn_for_visitor_cls[OWLAnnotationSubjectVisitor] =  \
+            accept_default
+        self._accept_fn_for_visitor_cls[OWLAnnotationSubjectVisitorEx] = \
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLAnnotationValueVisitor] = \
+            accept_default
+        self._accept_fn_for_visitor_cls[OWLAnnotationValueVisitorEx] = \
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
 
     @property
     def _iri_str(self):
