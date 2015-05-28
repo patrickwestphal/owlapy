@@ -7,8 +7,9 @@ from urllib import parse as p
 import rdflib
 
 from owlapy.model import IRI
-from owlapy.model.iri import IRIException
-from owlapy.model import OWLVisitorEx
+from owlapy.model import IRIException
+from owlapy.model import OWLObjectVisitorEx
+
 
 class TestIRI(unittest.TestCase):
 
@@ -1466,7 +1467,7 @@ class TestIRI(unittest.TestCase):
 
     # <accept tests> ----------------------------------------------------------
     def test_accept_01(self):
-        class TestVisitor1(OWLVisitorEx):
+        class TestVisitor1(OWLObjectVisitorEx):
             def visit(self, iri):
                 return 'TEST'
 
@@ -1475,7 +1476,7 @@ class TestIRI(unittest.TestCase):
         self.assertEqual('TEST', iri.accept(visitor))
 
     def test_accept_02(self):
-        class TestPrefixVisitor(OWLVisitorEx):
+        class TestPrefixVisitor(OWLObjectVisitorEx):
             def visit(self, iri):
                 return iri.prefix
 
