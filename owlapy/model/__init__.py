@@ -1,6 +1,6 @@
 from .axiomtype import AxiomType
 from .iri import IRI
-from .exceptions import OWLRuntimeException
+from .exceptions import OWLRuntimeException, NoneValueException
 from .entitytype import EntityType
 from .nodeid import NodeID
 from .owlannotation import OWLAnnotation
