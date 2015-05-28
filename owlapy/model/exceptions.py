@@ -4,3 +4,7 @@ class OWLRuntimeException(Exception):
 
 class NoneValueException(Exception):
     """Should be the equivalent of the NullPointerException in Java"""
+
+
+class IllegalArgumentException(Exception):
+    pass
