@@ -6,6 +6,7 @@ from urllib import parse as p
 
 from rdflib import URIRef
 
+from .exceptions import IRIException
 from .owlannotationsubject import OWLAnnotationSubject
 from .owlannotationvalue import OWLAnnotationValue
 from .owlprimitive import OWLPrimitive
@@ -13,14 +14,6 @@ from .swrlpredicate import SWRLPredicate
 from owlapy.io import xmlutils
 from owlapy.util import str_compare_to
 from owlapy.vocab import namespaces
-
-
-class IRIException(Exception):
-    def __init__(self, value):
-        self.value = value
-
-    def __str__(self):
-        return repr(self.value)
 
 
 class IRI(OWLAnnotationSubject, OWLAnnotationValue, SWRLPredicate,
