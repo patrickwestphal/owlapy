@@ -110,7 +110,7 @@ from .owlobjectpropertyexpression import OWLObjectPropertyExpression
 from .owlobjectpropertyrangeaxiom import OWLObjectPropertyRangeAxiom
 from .owlobjectsomevaluesfrom import OWLObjectSomeValuesFrom
 from .owlobjectunionof import OWLObjectUnionOf
-from .owlobjectvisitor import OWLObjectVisitor, OWLEntityVisitorEx
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from .owlontology import OWLOntology
 from .owlontologymanager import OWLOntologyManager
 from .owlontologyid import OWLOntologyID
