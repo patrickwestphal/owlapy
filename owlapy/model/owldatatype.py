@@ -45,5 +45,11 @@ class OWLDatatype(OWLDataRange, OWLLogicalEntity, OWLNamedObject):
     def __hash__(self):
         return super().__hash__()
 
+    def __str__(self):
+        return str(self.iri)
+
+    def __repr__(self):
+        return self.__str__()
+
     def compare_object_of_same_type(self, other):
         return self.iri.compare_to(other.iri)
