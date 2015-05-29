@@ -301,9 +301,3 @@ class OWLIndividual(OWLPropertyAssertionObject):
 
         result.remove(self)
         return result
-
-    def accept(self, visitor):
-        """
-        :param visitor: an owlapy.model.OWLIndividualVisitor object to accept
-        """
-        raise NotImplementedError()

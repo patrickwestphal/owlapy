@@ -7,9 +7,10 @@ from owlapy.model import OWLDataProperty
 from owlapy.model import OWLDatatype
 from owlapy.model import OWLNamedIndividual
 from owlapy.model import OWLObject
+from owlapy.model import OWLObjectVisitor
+from owlapy.model import OWLObjectVisitorEx
 from owlapy.model import OWLObjectProperty
 from owlapy.model import OWLRuntimeException
-from owlapy.model import OWLVisitorEx, OWLVisitor
 from owlapy.model import EntityType
 
 
@@ -204,7 +205,7 @@ class TestOWLNamedIndividual(unittest.TestCase):
         self.assertEqual(-4, indiv1._compare_object_of_same_type(indiv2))
 
     def test_accept_01(self):
-        class DummyVisitor(OWLVisitorEx):
+        class DummyVisitor(OWLObjectVisitorEx):
             def __init__(self):
                 self.visited = False
 
@@ -219,7 +220,7 @@ class TestOWLNamedIndividual(unittest.TestCase):
         self.assertTrue(visitor.visited)
 
     def test_accept_02(self):
-        class DummyVisitor(OWLVisitor):
+        class DummyVisitor(OWLObjectVisitor):
             def __init__(self):
                 self.visited = False
 

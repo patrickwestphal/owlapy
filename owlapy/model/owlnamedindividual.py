@@ -1,7 +1,12 @@
 from .entitytype import EntityType
-from .owlindividual import OWLIndividual
 from .exceptions import OWLRuntimeException
+from .owlentityvisitor import OWLEntityVisitor, OWLEntityVisitorEx
+from .owlindividual import OWLIndividual
+from .owlindividualvisitor import OWLIndividualVisitor, OWLIndividualVisitorEx
 from .owllogicalentity import OWLLogicalEntity
+from .owlnamedobjectvisitor import OWLNamedObjectVisitor
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
+from owlapy.util import accept_default, accept_default_ex
 import owlapy.util
 
 
@@ -17,6 +22,15 @@ class OWLNamedIndividual(OWLIndividual, OWLLogicalEntity):
         """
         super().__init__()
         self.iri = iri
+
+        self._accept_fn_for_visitor_cls[OWLEntityVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLEntityVisitorEx] = accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLIndividualVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLIndividualVisitorEx] = \
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLNamedObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
 
     def __str__(self):
         return str(self.iri)
