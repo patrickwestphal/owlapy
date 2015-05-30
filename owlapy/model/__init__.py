@@ -1,8 +1,9 @@
 from .axiomtype import AxiomType
-from .iri import IRI
+from .datarangetype import DataRangeType
 from .exceptions import OWLRuntimeException, NoneValueException, \
     IllegalArgumentException, IRIException
 from .entitytype import EntityType
+from .iri import IRI
 from .nodeid import NodeID
 from .owlannotation import OWLAnnotation
 from .owlannotationassertionaxiom import OWLAnnotationAssertionAxiom
