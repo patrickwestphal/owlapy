@@ -27,8 +27,9 @@ class TestOWL2Datatype(unittest.TestCase):
         self.assertEqual(Category.CAT_NUMBER, OWL2Datatype.XSD_DOUBLE.category)
         self.assertTrue(OWL2Datatype.XSD_DOUBLE.finite)
         self.assertEqual(
-            '(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|'
-            '(\\+|-)?INF|NaN', OWL2Datatype.XSD_DOUBLE.pattern_string)
+            '\\A(\\+|-)?(([0-9]+(\\.[0-9]*)?|\\.[0-9]+)(([Ee])((\\+|-)?'
+            '([0-9]+)))?|((\\+|-)?INF|NaN))\\Z',
+            OWL2Datatype.XSD_DOUBLE.pattern_string)
         self.assertIsNotNone(OWL2Datatype.XSD_DOUBLE.pattern)
 
         # all examples tested on one attribute
