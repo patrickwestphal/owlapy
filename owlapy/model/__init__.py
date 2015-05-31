@@ -43,13 +43,13 @@ from .owldatapropertydomainaxiom import OWLDataPropertyDomainAxiom
 from .owldatapropertyexpression import OWLDataPropertyExpression
 from .owldatapropertyrangeaxiom import OWLDataPropertyRangeAxiom
 from .owldatarange import OWLDataRange
-from .owldatarangevisitor import OWLDataRangeVisitor
+from .owldatarangevisitor import OWLDataRangeVisitor, OWLDataRangeVisitorEx
 from .owldatasomevaluesfrom import OWLDataSomeValuesFrom
 from .owldatatype import OWLDatatype
 from .owldatatypedefinitionaxiom import OWLDatatypeDefinitionAxiom
 from .owldatatyperestriction import OWLDatatypeRestriction
 from .owldataunionof import OWLDataUnionOf
-from .owldatavisitor import OWLDataVisitor
+from .owldatavisitor import OWLDataVisitor, OWLDataVisitorEx
 from .owldeclarationaxiom import OWLDeclarationAxiom
 from .owldifferentindividualsaxiom import OWLDifferentIndividualsAxiom
 from .owldisjointclassesaxiom import OWLDisjointClassesAxiom
@@ -57,7 +57,7 @@ from .owldisjointdatapropertiesaxiom import OWLDisjointDataPropertiesAxiom
 from .owldisjointobjectpropertiesaxiom import OWLDisjointObjectPropertiesAxiom
 from .owldisjointunionaxiom import OWLDisjointUnionAxiom
 from .owlentity import OWLEntity
-from .owlentityvisitor import OWLEntityVisitor
+from .owlentityvisitor import OWLEntityVisitor, OWLEntityVisitorEx
 from .owlequivalentclassesaxiom import OWLEquivalentClassesAxiom
 from .owlequivalentdatapropertiesaxiom import OWLEquivalentDataPropertiesAxiom
 from .owlequivalentobjectpropertiesaxiom import \
