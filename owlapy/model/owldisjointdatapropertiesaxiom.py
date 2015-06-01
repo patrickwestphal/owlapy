@@ -10,7 +10,7 @@ class OWLDisjointDataPropertiesAxiom(OWLNaryPropertyAxiom):
 
     def __init__(self, properties, annotations):
         """
-        :param properties: a set of owlapy.model.OWLObjectPropertyExpression
+        :param properties: a set of owlapy.model.OWLDataPropertyExpression
             objects
         :param annotations: a set/list of owlapy.model.OWLAnnotation objects
         """
