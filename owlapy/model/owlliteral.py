@@ -1,13 +1,14 @@
 from functools import total_ordering
 
 from .exceptions import OWLRuntimeException
+from .owl2datatype import OWL2Datatype
 from .owldatavisitor import OWLDataVisitor, OWLDataVisitorEx
 from .owlannotationvaluevisitor import OWLAnnotationValueVisitor, \
     OWLAnnotationValueVisitorEx
 from .owlobject import OWLObject
 from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from owlapy.util import str_compare_to, accept_default, accept_default_ex
-from owlapy.vocab.owl2datatype import OWL2Datatype
+from owlapy.vocab.owl2datatype import OWL2Datatype as OWL2DatatypeVoc
 
 
 @total_ordering
@@ -16,7 +17,7 @@ class OWLLiteral(OWLObject):
     TODO: add literal wrapper
     """
     RDF_PLAIN_LITERAL = \
-        OWL2Datatype.get_datatype(OWL2Datatype.RDF_PLAIN_LITERAL)
+        OWL2Datatype.get_datatype(OWL2DatatypeVoc.RDF_PLAIN_LITERAL)
 
     def __init__(self, literal, lang=None, datatype=None):
         """
