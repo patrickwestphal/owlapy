@@ -104,7 +104,7 @@ class OWLObjectTypeIndexProvider(OWLObjectVisitor):
         model.OWLDataComplementOf: (0, DATA_TYPE_INDEX_BASE + 2),
         model.OWLDataOneOf: (0, DATA_TYPE_INDEX_BASE + 3),
         model.OWLDataIntersectionOf: (0, DATA_TYPE_INDEX_BASE + 4),
-        model.OWLDataUnionOf: (0, DATA_TYPE_INDEX_BASE + 5),
+        model.OWLDataUnionOf: (0, AXIOM_TYPE_INDEX_BASE + 5),
         model.OWLDatatypeRestriction: (0, DATA_TYPE_INDEX_BASE + 6),
         model.OWLFacetRestriction: (0, DATA_TYPE_INDEX_BASE + 7),
         model.OWLLiteral: (0, DATA_TYPE_INDEX_BASE + 8),
