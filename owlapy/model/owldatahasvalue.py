@@ -1,4 +1,8 @@
+from .owlclassexpressionvisitor import OWLClassExpressionVisitor, \
+    OWLClassExpressionVisitorEx
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from .owlvaluerestriction import OWLValueRestriction
+from owlapy.util import accept_default, accept_default_ex
 
 
 class OWLDataHasValue(OWLValueRestriction):
@@ -10,3 +14,10 @@ class OWLDataHasValue(OWLValueRestriction):
         :param value: an owlapy.model.OWLLiteral object
         """
         super().__init__(property, value)
+
+        self._accept_fn_for_visitor_cls[OWLClassExpressionVisitor] = \
+            accept_default
+        self._accept_fn_for_visitor_cls[OWLClassExpressionVisitorEx] = \
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
