@@ -1,4 +1,8 @@
+from .owlclassexpressionvisitor import OWLClassExpressionVisitor, \
+    OWLClassExpressionVisitorEx
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from .owlquantifieddatarestriction import OWLQuantifiedDataRestriction
+from owlapy.util import accept_default, accept_default_ex
 
 
 class OWLDataAllValuesFrom(OWLQuantifiedDataRestriction):
@@ -14,3 +18,10 @@ class OWLDataAllValuesFrom(OWLQuantifiedDataRestriction):
             owlapy.model.OWLNaryDataRange object)
         """
         super().__init__(property, filler)
+
+        self._accept_fn_for_visitor_cls[OWLClassExpressionVisitor] = \
+            accept_default
+        self._accept_fn_for_visitor_cls[OWLClassExpressionVisitorEx] = \
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
