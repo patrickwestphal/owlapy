@@ -1,6 +1,7 @@
 from owlapy.model import OWLObjectVisitor
 from owlapy.model import SWRLObjectVisitor
 from owlapy import model
+from owlapy.vocab.owl2datatype import OWL2Datatype
 
 
 class HashCode(OWLObjectVisitor, SWRLObjectVisitor):
@@ -598,6 +599,7 @@ class HashCode(OWLObjectVisitor, SWRLObjectVisitor):
         model.OWLDataComplementOf: _visit_data_complement_of,
         model.OWLDataOneOf: _visit_data_one_of,
         model.OWLDatatype: _visit_datatype,
+        model.OWL2Datatype: _visit_datatype,
         model.OWLDatatypeRestriction: _visit_datatype_restr,
         model.OWLFacetRestriction: _visit_facet_restr,
         model.OWLLiteral: _visit_literal,
