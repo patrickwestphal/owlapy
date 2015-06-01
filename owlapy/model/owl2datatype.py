@@ -216,3 +216,12 @@ class OWL2Datatype(OWLDatatype):
 
     def is_bottom_entity(self):
         return False
+
+    def compare_to(self, other):
+        if not isinstance(other, OWLDatatype):
+            from owlapy.util.owlobjecttypeindexprovider import \
+                OWLObjectTypeIndexProvider
+            provider = OWLObjectTypeIndexProvider()
+            return provider.get_type_index(other)
+
+        return self.iri.compare_to(other.iri)

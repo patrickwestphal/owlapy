@@ -5,6 +5,7 @@ from owlapy.model import EntityType
 from owlapy.model import IRI
 from owlapy.model import OWL2Datatype
 from owlapy.model import OWLDatatype
+from owlapy.model import OWLObjectProperty
 from owlapy.model import OWLObjectVisitor
 from owlapy.model import OWLObjectVisitorEx
 from owlapy.model import OWLRuntimeException
@@ -331,7 +332,23 @@ class OWL2DatatypeTest(unittest.TestCase):
         self.assertFalse(
             OWL2Datatype(OWL2DtypeVoc.RDF_XML_LITERAL).is_bottom_entity())
 
+    def test_compare_to_01(self):
+        """same object"""
+        dtype = OWL2Datatype(OWL2DtypeVoc.XSD_STRING)
+        self.assertEqual(0, dtype.compare_to(dtype))
 
+    def test_compare_to_02(self):
+        """differing class"""
+        dtype = OWL2Datatype(OWL2DtypeVoc.XSD_STRING)  # OWL2Datatype
+        # ObjectProperty --> index = 1002
+        other = OWLObjectProperty(IRI('http://ex.org/prop'))
 
+        self.assertEqual(1002, dtype.compare_to(other))
 
-
+    def test_compare_to_03(self):
+        """same class, differing IRI"""
+        iri_diff = OWL2DtypeVoc.RDF_PLAIN_LITERAL.iri.compare_to(
+            OWL2DtypeVoc.XSD_INTEGER.iri)
+        dtype1 = OWL2Datatype(OWL2DtypeVoc.RDF_PLAIN_LITERAL)
+        dtype2 = OWL2Datatype(OWL2DtypeVoc.XSD_INTEGER)
+        self.assertEqual(iri_diff, dtype1.compare_to(dtype2))
