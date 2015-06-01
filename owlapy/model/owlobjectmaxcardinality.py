@@ -1,4 +1,8 @@
+from .owlclassexpressionvisitor import OWLClassExpressionVisitor, \
+    OWLClassExpressionVisitorEx
 from .owlobjectcardinalityrestriction import OWLObjectCardinalityRestriction
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
+from owlapy.util import accept_default, accept_default_ex
 
 
 class OWLObjectMaxCardinality(OWLObjectCardinalityRestriction):
@@ -11,3 +15,10 @@ class OWLObjectMaxCardinality(OWLObjectCardinalityRestriction):
         :param filler: an owlapy.model.OWLClassExpression
         """
         super().__init__(property, cardinality, filler)
+
+        self._accept_fn_for_visitor_cls[OWLClassExpressionVisitor] = \
+            accept_default
+        self._accept_fn_for_visitor_cls[OWLClassExpressionVisitorEx] = \
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
