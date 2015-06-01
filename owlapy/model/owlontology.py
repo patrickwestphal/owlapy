@@ -1,5 +1,7 @@
-from .exceptions import OWLRuntimeException
+from .owlnamedobjectvisitor import OWLNamedObjectVisitor
 from .owlobject import OWLObject
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
+from owlapy.util import accept_default, accept_default_ex
 
 
 class OWLOntology(OWLObject):
@@ -21,6 +23,10 @@ class OWLOntology(OWLObject):
         super().__init__()
         self.owl_ontology_manager = manager
         self.ontology_id = ontology_id
+
+        self._accept_fn_for_visitor_cls[OWLNamedObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
 
     def contains_annotation_property_in_signaturee(
             self, annotation_property, include_imports_closure=False):
