@@ -3,7 +3,11 @@ import unittest
 from owlapy.vocab.owl2datatype import OWL2Datatype
 from owlapy.vocab.owl2datatype import Category
 from owlapy.model import IRI
+from owlapy.model import EntityType
+from owlapy.model import OWLDatatype
+from owlapy.model import OWLDataVisitor, OWLDataVisitorEx
 from owlapy.model import OWLRuntimeException
+from owlapy.model import DataRangeType
 
 
 class TestOWL2Datatype(unittest.TestCase):
@@ -199,13 +203,13 @@ class TestOWL2Datatype(unittest.TestCase):
 
         self.assertEqual(
             OWL2Datatype.XSD_UNSIGNED_BYTE,
-            OWL2Datatype._get_datatype(built_in_dtype_01))
+            OWL2Datatype.get_datatype(built_in_dtype_01))
         self.assertEqual(
             OWL2Datatype.XSD_INTEGER,
-            OWL2Datatype._get_datatype(built_in_dtype_02))
-        self.assertRaises(OWLRuntimeException, OWL2Datatype._get_datatype,
+            OWL2Datatype.get_datatype(built_in_dtype_02))
+        self.assertRaises(OWLRuntimeException, OWL2Datatype.get_datatype,
                           not_built_in_dtype)
-        self.assertRaises(OWLRuntimeException, OWL2Datatype._get_datatype,
+        self.assertRaises(OWLRuntimeException, OWL2Datatype.get_datatype,
                           not_a_dtype_iri)
 
     def test_is_numeric(self):
@@ -221,7 +225,7 @@ class TestOWL2Datatype(unittest.TestCase):
             Category.CAT_NUMBER.facets, OWL2Datatype.XSD_INTEGER.get_facets())
 
     def test_get_datatype(self):
-        self.fail()  # OWLDataFactory needs to be implemented first
+        self.fail('OWLDataFactory needs to be implemented first')
 
     def test_is_in_lexical_space_rdf_xmlliteral(self):  # 01
         lex01 = 'test01'

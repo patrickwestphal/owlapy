@@ -1,10 +1,10 @@
 import re
 from enum import Enum
 
-from owlapy.model.iri import IRI
-from owlapy.model import IllegalArgumentException, OWLRuntimeException
+from owlapy.model import IllegalArgumentException
+from owlapy.model import OWLRuntimeException
+from owlapy.model import IRI
 from owlapy.util.decorators import ClassProperty
-from owlapy.model.owldatatype import OWLDatatype
 from owlapy.vocab.owlfacet import OWLFacet
 from owlapy.vocab.namespaces import Namespaces
 from owlapy.vocab.xsdvocabulary import XSDVocabulary
@@ -235,13 +235,17 @@ class OWL2Datatype(Enum):
         return datatype_iri in cls.ALL_IRIS
 
     @classmethod
-    def _get_datatype(cls, datatype):
+    def get_datatype(cls, datatype):
         """Given an IRI that identifies an owlapy.model.OWLDatatype, this
         method obtains the corresponding OWL2Datatype
 
-        :param datatype: The datatype's owlapy.model.IRI object. Not None
+        :param datatype: The datatype's owlapy.model.IRI object or an
+            owlapy.model.OWL2Datatype object
         :return: The OWL2Datatype that has the specified IRI
         """
+        if isinstance(datatype, OWL2Datatype):
+            datatype = datatype.iri
+
         if not cls.is_built_in(datatype):
             raise OWLRuntimeException('%s is not a built in datatype!' %
                                       str(datatype))
@@ -268,21 +272,18 @@ class OWL2Datatype(Enum):
         """
         return self.category.facets
 
-    def get_datatype(self, data_factory_or_dtype):
-        """Gets the equivalent OWLDatatype from the given factory or the
-        corresponding OWL2Datatype object if the first argument is an
-        owlapy.model.OWLDatatype.
+    def get_dtype(self, data_factory):
+        """Gets the equivalent OWLDatatype from the given factory
 
-        :param data_factory_or_dtype: an owlapy.model.OWLDataFactory or a
-            owlapy.model.IRI object
+        :param data_factory: an owlapy.model.OWLDataFactory
         :return: An owlapy.model.OWLDatatype that has the same IRI as this
-            OWL2Datatype or an OWL2Datatype that has the same IRI as the
-            input Datatype
+            OWL2Datatype
         """
-        if isinstance(data_factory_or_dtype, OWLDatatype):
-            return self._get_datatype(data_factory_or_dtype)
+        from owlapy.model import OWLDatatype
+        if isinstance(data_factory, OWLDatatype):
+            return self.get_datatype(data_factory)
 
-        return data_factory_or_dtype.get_owl_datatype(self.iri)
+        return data_factory.get_owl_datatype(self.iri)
 
     def is_in_lexical_space(self, string):
         """Determines if the specified input string is in the lexical space of
