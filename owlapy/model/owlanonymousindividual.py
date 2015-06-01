@@ -1,8 +1,15 @@
+from .owlannotationsubjectvisitor import OWLAnnotationSubjectVisitor,\
+    OWLAnnotationSubjectVisitorEx
 from .exceptions import OWLRuntimeException
-from .owlindividual import OWLIndividual
-from .owlannotationvalue import OWLAnnotationValue
 from .owlannotationsubject import OWLAnnotationSubject
+from .owlannotationvaluevisitor import OWLAnnotationValueVisitor, \
+    OWLAnnotationValueVisitorEx
+from .owlannotationvalue import OWLAnnotationValue
+from .owlindividual import OWLIndividual
+from .owlindividualvisitor import OWLIndividualVisitor, OWLIndividualVisitorEx
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from .owlprimitive import OWLPrimitive
+from owlapy.util import accept_default, accept_default_ex
 
 
 class OWLAnonymousIndividual(OWLIndividual, OWLAnnotationValue,
@@ -17,6 +24,20 @@ class OWLAnonymousIndividual(OWLIndividual, OWLAnnotationValue,
         """:param node_id: a owlapy.model.NodeID object"""
         super().__init__()
         self.id = node_id
+
+        self._accept_fn_for_visitor_cls[OWLAnnotationSubjectVisitor] = \
+            accept_default
+        self._accept_fn_for_visitor_cls[OWLAnnotationSubjectVisitorEx] = \
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLAnnotationValueVisitor] = \
+            accept_default
+        self._accept_fn_for_visitor_cls[OWLAnnotationValueVisitorEx] = \
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLIndividualVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLIndividualVisitorEx] = \
+            accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
 
     def __str__(self):
         return str(self.id)
