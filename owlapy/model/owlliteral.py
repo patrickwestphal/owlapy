@@ -7,6 +7,7 @@ from .owlannotationvaluevisitor import OWLAnnotationValueVisitor, \
 from .owlobject import OWLObject
 from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from owlapy.util import str_compare_to, accept_default, accept_default_ex
+from owlapy.vocab.owl2datatype import OWL2Datatype
 
 
 @total_ordering
@@ -14,7 +15,8 @@ class OWLLiteral(OWLObject):
     """TODO: implement
     TODO: add literal wrapper
     """
-    RDF_PLAIN_LITERAL = 23  # FIXME: just a dummy value
+    RDF_PLAIN_LITERAL = \
+        OWL2Datatype.get_datatype(OWL2Datatype.RDF_PLAIN_LITERAL)
 
     def __init__(self, literal, lang=None, datatype=None):
         """
