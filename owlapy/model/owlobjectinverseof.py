@@ -1,4 +1,8 @@
 from .owlobjectpropertyexpression import OWLObjectPropertyExpression
+from .owlpropertyexpressionvisitor import OWLPropertyExpressionVisitor, \
+    OWLPropertyExpressionVisitorEx
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
+from owlapy.util import accept_default, accept_default_ex
 
 
 class OWLObjectInverseOf(OWLObjectPropertyExpression):
@@ -11,3 +15,10 @@ class OWLObjectInverseOf(OWLObjectPropertyExpression):
         """
         super().__init__()
         self.inverse = inverse_property
+
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLPropertyExpressionVisitor] = \
+            accept_default
+        self._accept_fn_for_visitor_cls[OWLPropertyExpressionVisitorEx] = \
+            accept_default_ex
