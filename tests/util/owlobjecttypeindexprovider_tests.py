@@ -1547,7 +1547,7 @@ class TestOWLObjectTypeIndexProvider(unittest.TestCase):
                     model.OWLDatatype(model.IRI('http://ex.org/dtype/negint'))}
         visitee = model.OWLDataUnionOf(operands)
         otip.visit(visitee)
-        self.assertEqual(OWLObjectTypeIndexProvider.AXIOM_TYPE_INDEX_BASE + 5,
+        self.assertEqual(OWLObjectTypeIndexProvider.DATA_TYPE_INDEX_BASE + 5,
                          otip.type)
 
     def test_visit_71(self):
