@@ -19,4 +19,16 @@ class OWLAxiom(OWLObject, CollectionContainer):
         else:
             self.annotations = []
 
+        from owlapy import CollectionContainerVisitor
+        self._accept_fn_for_visitor_cls[CollectionContainerVisitor] = \
+            self._accept_coll_cont_visitor
 
+    @staticmethod
+    def _accept_coll_cont_visitor(self, t):
+        """
+        :param t: :param visitor: an owlapy.CollectionContainerVisitor object
+        """
+        size = len(self.annotations)
+
+        for item in self.annotations:
+            t.visit_item(item)
