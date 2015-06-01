@@ -543,7 +543,7 @@ class TestOWLObjectTypeIndexProvider(unittest.TestCase):
         visitee = model.OWLObjectOneOf(values)
         otip.visit(visitee)
         self.assertEqual(
-            OWLObjectTypeIndexProvider.CLASS_EXPRESSION_TYPE_INDEX_BASE + 5,
+            OWLObjectTypeIndexProvider.CLASS_EXPRESSION_TYPE_INDEX_BASE + 4,
             otip.get_type_index(visitee))
 
     def test_get_type_index_53(self):
@@ -553,7 +553,7 @@ class TestOWLObjectTypeIndexProvider(unittest.TestCase):
         visitee = model.OWLObjectSomeValuesFrom(prop, filler)
         otip.visit(visitee)
         self.assertEqual(
-            OWLObjectTypeIndexProvider.CLASS_EXPRESSION_TYPE_INDEX_BASE + 4,
+            OWLObjectTypeIndexProvider.CLASS_EXPRESSION_TYPE_INDEX_BASE + 5,
             otip.get_type_index(visitee))
 
     def test_get_type_index_54(self):
