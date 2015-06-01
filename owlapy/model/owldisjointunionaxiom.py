@@ -1,5 +1,8 @@
 from .axiomtype import AxiomType
+from .owlaxiomvisitor import OWLAxiomVisitor, OWLAxiomVisitorEx
 from .owlclassaxiom import OWLClassAxiom
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
+from owlapy.util import accept_default, accept_default_ex
 
 
 class OWLDisjointUnionAxiom(OWLClassAxiom):
@@ -14,6 +17,11 @@ class OWLDisjointUnionAxiom(OWLClassAxiom):
         super().__init__(annotations)
         self.owl_class = owl_class
         self.class_expressions = class_expressions
+
+        self._accept_fn_for_visitor_cls[OWLAxiomVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLAxiomVisitorEx] = accept_default_ex
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
 
     @classmethod
     def get_axiom_type(cls):
