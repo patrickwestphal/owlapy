@@ -1,5 +1,8 @@
-from owlapy.vocab.owlrdfvocabulary import OWLRDFVocabulary
+from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from .swrlbinaryatom import SWRLBinaryAtom
+from .swrlobjectvisitor import SWRLObjectVisitor, SWRLObjectVisitorEx
+from owlapy.util import accept_default, accept_default_ex
+from owlapy.vocab.owlrdfvocabulary import OWLRDFVocabulary
 
 
 class SWRLSameIndividualAtom(SWRLBinaryAtom):
@@ -15,3 +18,8 @@ class SWRLSameIndividualAtom(SWRLBinaryAtom):
             data_factory.get_owl_object_property(
                 OWLRDFVocabulary.OWL_DIFFERENT_FROM.iri),
             arg0, arg1)
+
+        self._accept_fn_for_visitor_cls[OWLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[OWLObjectVisitorEx] = accept_default_ex
+        self._accept_fn_for_visitor_cls[SWRLObjectVisitor] = accept_default
+        self._accept_fn_for_visitor_cls[SWRLObjectVisitorEx] = accept_default_ex
