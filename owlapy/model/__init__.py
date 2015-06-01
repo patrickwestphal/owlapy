@@ -5,6 +5,7 @@ from .exceptions import OWLRuntimeException, NoneValueException, \
 from .entitytype import EntityType
 from .iri import IRI
 from .nodeid import NodeID
+from .owl2datatype import OWL2Datatype
 from .owlannotation import OWLAnnotation
 from .owlannotationassertionaxiom import OWLAnnotationAssertionAxiom
 from .owlannotationaxiomvisitor import OWLAnnotationAxiomVisitor
