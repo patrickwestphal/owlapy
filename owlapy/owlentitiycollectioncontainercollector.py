@@ -136,12 +136,14 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
     def visit(self, visitee):
         # TODO: check the elif order and type hierarchy!!!
         # ---------------- axiom visits ----------------
+        # 01
         if isinstance(visitee, OWLSubClassOfAxiom):
             visitee.sub_class.accept(self)
             visitee.super_class.accept(self)
             self._process_axiom_annotations(visitee)
 
         # TODO: common superclass OWLIndividualRelationshipAxiom sufficient???
+        # 02
         elif isinstance(visitee, OWLNegativeObjectPropertyAssertionAxiom) or \
                 isinstance(visitee, OWLNegativeDataPropertyAssertionAxiom) or \
                 isinstance(visitee, OWLObjectPropertyAssertionAxiom) or \
@@ -153,6 +155,7 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
 
         # TODO: common supercls OWLObjectPropertyCharacteristicAxiom sufficient?
         #                   &   OWLPropertyRangeAxiom
+        # 03
         elif isinstance(visitee, OWLAsymmetricObjectPropertyAxiom) or \
                 isinstance(visitee, OWLReflexiveObjectPropertyAxiom) or \
                 isinstance(visitee, OWLFunctionalObjectPropertyAxiom) or \
@@ -164,6 +167,7 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
             visitee.property.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 04
         elif isinstance(visitee, OWLDisjointClassesAxiom) or \
                 isinstance(visitee, OWLEquivalentClassesAxiom):
             for desc in visitee.class_expressions:
@@ -171,6 +175,7 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
             self._process_axiom_annotations(visitee)
 
         # TODO: common superclass OWLPropertyDomainaxiom sufficient???
+        # 05
         elif isinstance(visitee, OWLDataPropertyDomainAxiom) or \
                 isinstance(visitee, OWLObjectPropertyDomainAxiom):
             visitee.domain.accept(self)
@@ -178,6 +183,7 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
             self._process_axiom_annotations(visitee)
 
         # TODO: common superclass OWLNaryPropertyAxiom sufficient???
+        # 06
         elif isinstance(visitee, OWLEquivalentObjectPropertiesAxiom) or \
                 isinstance(visitee, OWLDisjointDataPropertiesAxiom) or \
                 isinstance(visitee, OWLEquivalentDataPropertiesAxiom):
@@ -185,6 +191,7 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
                 prop.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 07
         elif isinstance(visitee, OWLDifferentIndividualsAxiom) or \
                 isinstance(visitee, OWLSameIndividualAxiom):
             for ind in visitee.individuals:
@@ -192,44 +199,52 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
             self._process_axiom_annotations(visitee)
 
         # TODO: common superclass OWLPropertyRangeAxiom sufficient???
+        # 08
         elif isinstance(visitee, OWLObjectPropertyRangeAxiom) or \
                 isinstance(visitee, OWLDataPropertyRangeAxiom):
             visitee.range.accept(self)
             visitee.property.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 09
         elif isinstance(visitee, OWLSubObjectPropertyOfAxiom) or \
                 isinstance(visitee, OWLSubDataPropertyOfAxiom):
             visitee.sub_property.accept(self)
             visitee.super_property.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 10
         elif isinstance(visitee, OWLDisjointUnionAxiom):
             visitee.owl_class.accept(self)
             for desc in visitee.class_expressions:
                 desc.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 11
         elif isinstance(visitee, OWLDeclarationAxiom):
             visitee.entity.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 12
         elif isinstance(visitee, OWLClassAssertionAxiom):
             visitee.class_expression.accept(self)
             visitee.individual.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 13
         elif isinstance(visitee, OWLSubPropertyChainOfAxiom):
             for prop in visitee.property_chain:
                 prop.accept(self)
             visitee.super_property.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 14
         elif isinstance(visitee, OWLInverseObjectPropertiesAxiom):
             visitee.first_property.accept(self)
             visitee.second_property.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 15
         elif isinstance(visitee, OWLHasKeyAxiom):
             visitee.class_expression.accept(self)
             for prop in visitee.property_expressions:
@@ -237,19 +252,23 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
             self._process_axiom_annotations(visitee)
 
         # ---------------- class expression visits ----------------
+        # 16
         elif isinstance(visitee, OWLClass):
             if self.collect_classes:
                 self._objects.add(visitee)
 
         # TODO: common superclass OWLNaryBooleanClassExpressionImpl sufficient??
+        # 17
         elif isinstance(visitee, OWLObjectIntersectionOf) or \
                 isinstance(visitee, OWLObjectUnionOf):
             for operand in visitee.operands:
                 operand.accept(self)
 
+        # 18
         elif isinstance(visitee, OWLObjectComplementOf):
             visitee.operand.accept(self)
 
+        # 19
         elif isinstance(visitee, OWLObjectSomeValuesFrom) or \
                 isinstance(visitee, OWLObjectAllValuesFrom) or \
                 isinstance(visitee, OWLObjectMinCardinality) or \
@@ -263,102 +282,125 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
             visitee.property.accept(self)
             visitee.filler.accept(self)
 
+        # 20
         elif isinstance(visitee, OWLObjectHasValue) or \
                 isinstance(visitee, OWLDataHasValue):
             visitee.property.accept(self)
             visitee.value.accept(self)
 
+        # 21
         elif isinstance(visitee, OWLObjectHasSelf):
             visitee.property.accept(self)
 
+        # 22
         elif isinstance(visitee, OWLObjectOneOf):
             for ind in visitee.individuals:
                 ind.accept(self)
 
         # ---------------- data visits ----------------
+        # 23
         elif isinstance(visitee, OWLDataComplementOf):
             visitee.data_range.accept(self)
 
+        # 24
         elif isinstance(visitee, OWLDataOneOf):
             for val in visitee.values:
                 val.accept(self)
 
+        # 25
         elif isinstance(visitee, OWLDataIntersectionOf) or \
                 isinstance(visitee, OWLDataUnionOf):
             for data_range in visitee.operands:
                 data_range.accept(self)
 
+        # 26
         elif isinstance(visitee, OWLDatatypeRestriction):
             visitee.datatype.accept(self)
             for facet_restriction in visitee.facet_restrictions:
                 facet_restriction.accept(self)
 
+        # 27
         elif isinstance(visitee, OWLFacetRestriction):
             visitee.facet_value.accept(self)
 
+        # 28
         elif isinstance(visitee, OWLLiteral):
             visitee.datatype.accept(self)
 
         # ---------------- property expression visits ----------------
+        # 29
         elif isinstance(visitee, OWLObjectInverseOf):
             visitee.inverse.accept(self)
 
         # ---------------- entity visits ----------------
+        # 30
         elif isinstance(visitee, OWLObjectProperty):
             if self.collect_object_properties:
                 self._objects.add(visitee)
 
+        # 31
         elif isinstance(visitee, OWLDataProperty):
             if self.collect_data_properties:
                 self._objects.add(visitee)
 
+        # 32
         elif isinstance(visitee, OWLNamedIndividual):
             if self.collect_individuals:
                 self._objects.add(visitee)
 
+        # 33
         elif isinstance(visitee, OWLDatatype):
             if self.collect_datatypes:
                 self._objects.add(visitee)
 
+        # 34
         elif isinstance(visitee, OWLAnnotation):
             visitee.property.accept(self)
             visitee.value.accept(self)
             for anno in visitee.annotations:
                 anno.accept(self)
 
+        # 35
         elif isinstance(visitee, OWLAnnotationAssertionAxiom):
             visitee.subject.accept(self)
             visitee.property.accept(self)
             visitee.value.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 36
         elif isinstance(visitee, OWLAnonymousIndividual):
             # Anon individuals aren't entities
             # But store them in a set anyway for utility
             self._anonymous_individuals.add(visitee)
 
+        # 37
         elif isinstance(visitee, OWLOntology):
             self._objects = self._objects.union(visitee.get_signature())
 
+        # 38
         elif isinstance(visitee, OWLAnnotationProperty):
             self._objects.add(visitee)
 
+        # 39
         elif isinstance(visitee, OWLAnnotationPropertyDomainAxiom) or \
                 isinstance(visitee, OWLAnnotationPropertyRangeAxiom):
             visitee.property.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 40
         elif isinstance(visitee, OWLSubAnnotationPropertyOfAxiom):
             visitee.sub_property.accept(self)
             visitee.super_property.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 41
         elif isinstance(visitee, OWLDatatypeDefinitionAxiom):
             visitee.datatype.accept(self)
             visitee.data_range.accept(self)
             self._process_axiom_annotations(visitee)
 
         # ---------------- SWRL object visits ----------------
+        # 42
         elif isinstance(visitee, SWRLRule):
             for atom in visitee.body:
                 atom.accept(self)
@@ -366,29 +408,36 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
                 atom.accept(self)
             self._process_axiom_annotations(visitee)
 
+        # 43
         elif isinstance(visitee, SWRLClassAtom) or \
                 isinstance(visitee, SWRLDataRangeAtom):
             visitee.argument.accept(self)
             visitee.predicate.accept(self)
 
+        # 44
         elif isinstance(visitee, SWRLObjectPropertyAtom) or \
                 isinstance(visitee, SWRLDataPropertyAtom):
             visitee.predicate.accept(self)
             visitee.first_argument.accept(self)
             visitee.second_argument.accept(self)
 
+        # 45
         elif isinstance(visitee, SWRLBuiltInAtom):
             for obj in visitee.arguments:
                 obj.accept(self)
 
+        # 46
         elif isinstance(visitee, SWRLIndividualArgument):
             visitee.individual.accept(self)
 
+        # 47
         elif isinstance(visitee, SWRLLiteralArgument):
             visitee.literal.accept(self)
 
+        # 48
         elif isinstance(visitee, SWRLDifferentIndividualsAtom):
             visitee.first_argument.accept(self)
 
+        # 49
         elif isinstance(visitee, SWRLSameIndividualAtom):
             visitee.second_argument.accept(self)
