@@ -1,7 +1,8 @@
 import unittest
 
 from owlapy.model import OWLIndividual
-from owlapy.model import OWLVisitor
+from owlapy.model import OWLObjectVisitor
+from owlapy.model import OWLRuntimeException
 
 
 class TestOWLIndividual(unittest.TestCase):
@@ -69,7 +70,7 @@ class TestOWLIndividual(unittest.TestCase):
         self.fail()  # OWLOntology has to be implemented first
 
     def test_accept(self):
-        visitor = OWLVisitor()
+        visitor = OWLObjectVisitor()
         indiv = OWLIndividual()
-        self.assertRaises(NotImplementedError, OWLIndividual.accept,
+        self.assertRaises(OWLRuntimeException, OWLIndividual.accept,
                           indiv, visitor)

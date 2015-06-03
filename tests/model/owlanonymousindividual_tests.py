@@ -2,8 +2,9 @@ import unittest
 
 from owlapy.model import NodeID
 from owlapy.model import OWLAnonymousIndividual
+from owlapy.model import OWLObjectVisitor
+from owlapy.model import OWLObjectVisitorEx
 from owlapy.model import OWLRuntimeException
-from owlapy.model import OWLVisitor, OWLVisitorEx
 
 
 class TestOWLAnonymousIndividual(unittest.TestCase):
@@ -143,7 +144,7 @@ class TestOWLAnonymousIndividual(unittest.TestCase):
 
     def test_accept_01(self):
         """visitor without return value for visit method"""
-        class DummyVisitor(OWLVisitor):
+        class DummyVisitor(OWLObjectVisitor):
             def __init__(self):
                 self.called = False
 
@@ -161,7 +162,7 @@ class TestOWLAnonymousIndividual(unittest.TestCase):
     
     def test_accept_02(self):
         """visitor without return value for visit method"""
-        class DummyVisitor(OWLVisitorEx):
+        class DummyVisitor(OWLObjectVisitorEx):
             def __init__(self):
                 self.called = False
 
