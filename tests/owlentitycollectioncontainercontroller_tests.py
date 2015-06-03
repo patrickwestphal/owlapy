@@ -7,6 +7,7 @@ from owlapy.model import IRI
 from owlapy.model import NodeID
 from owlapy.model import OWLAnonymousIndividual
 from owlapy.model import OWLClass
+from owlapy.vocab.owlfacet import OWLFacet
 
 
 class DummyVisitor(CollectionContainerVisitor):
@@ -367,64 +368,506 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
         self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_08(self):
-        # prop = model.OWLDataProperty(model.IRI('http://ex.org/prop'))
-        # axiom = model.OWLDataPropertyRangeAxiom(prop, rnge, anns)
-        # go on here
-        self.fail()
+        prop = model.OWLDataProperty(model.IRI('http://ex.org/prop'))  # e
+        rnge = model.OWLDatatype(model.IRI('http://ex.org/dtype/int'))  # e
+
+        ann_prop1 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp'))
+        ann_val1_dtype = model.OWLDatatype(  # e
+            model.IRI('http://ex.org/dtype/string'))
+        ann_val1 = model.OWLLiteral('annotation 1', None, ann_val1_dtype)
+        ann1 = model.OWLAnnotation(ann_prop1, ann_val1, [])
+        ann_prop2 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp2'))
+        # rdf:plainLiteral dtype is implicitly set --> e
+        ann_val2 = model.OWLLiteral('annotation 2')
+        ann2 = model.OWLAnnotation(ann_prop2, ann_val2, [])
+        anns = {ann1, ann2}
+
+        axiom = model.OWLDataPropertyRangeAxiom(prop, rnge, anns)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(axiom)
+        self.assertEqual(6, len(entities))
+        self.assertEqual(0, len(anons))
+
+        self.assertIn(prop, entities)
+        self.assertIn(rnge, entities)
+        self.assertIn(ann_prop1, entities)
+        self.assertIn(ann_val1_dtype, entities)
+        self.assertIn(ann_prop2, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_09(self):
-        self.fail()
+        sub_prop = model.OWLDataProperty(model.IRI('http://ex.org/prop1'))  # e
+        tmp_prop = model.OWLDataProperty(model.IRI('http://ex.org/prop2'))  # e
+        super_prop = model.OWLDataComplementOf(tmp_prop)
+
+        ann_prop1 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp'))
+        ann_val1_dtype = model.OWLDatatype(  # e
+            model.IRI('http://ex.org/dtype/string'))
+        ann_val1 = model.OWLLiteral('annotation 1', None, ann_val1_dtype)
+        ann1 = model.OWLAnnotation(ann_prop1, ann_val1, [])
+        ann_prop2 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp2'))
+        # rdf:plainLiteral dtype is implicitly set --> e
+        ann_val2 = model.OWLLiteral('annotation 2')
+        ann2 = model.OWLAnnotation(ann_prop2, ann_val2, [])
+        anns = {ann1, ann2}
+
+        axiom = model.OWLSubDataPropertyOfAxiom(sub_prop, super_prop, anns)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(axiom)
+        self.assertEqual(6, len(entities))
+        self.assertEqual(0, len(anons))
+
+        self.assertIn(sub_prop, entities)
+        self.assertIn(tmp_prop, entities)
+        self.assertIn(ann_prop1, entities)
+        self.assertIn(ann_val1_dtype, entities)
+        self.assertIn(ann_prop2, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_10(self):
-        self.fail()
+        owl_cls = model.OWLClass(model.IRI('http://ex.org/SomeClass'))  # e
+
+        ce_cls1 = model.OWLClass(model.IRI('http://ex.org/CECls1'))  # e
+        ce_cls2 = model.OWLClass(model.IRI('http://ex.org/CECls2'))  # e
+        ce1 = model.OWLObjectIntersectionOf({ce_cls1, ce_cls2})
+
+        ce2 = model.OWLClass(model.IRI('http://ex.org/AnotherClass'))  # e
+
+        ces = {ce1, ce2}
+
+        ann_prop1 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp'))
+        ann_val1_dtype = model.OWLDatatype(  # e
+            model.IRI('http://ex.org/dtype/string'))
+        ann_val1 = model.OWLLiteral('annotation 1', None, ann_val1_dtype)
+        ann1 = model.OWLAnnotation(ann_prop1, ann_val1, [])
+        ann_prop2 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp2'))
+        # rdf:plainLiteral dtype is implicitly set --> e
+        ann_val2 = model.OWLLiteral('annotation 2')
+        ann2 = model.OWLAnnotation(ann_prop2, ann_val2, [])
+        anns = {ann1, ann2}
+
+        axiom = model.OWLDisjointUnionAxiom(owl_cls, ces, anns)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(axiom)
+        self.assertEqual(8, len(entities))
+        self.assertEqual(0, len(anons))
+
+        self.assertIn(owl_cls, entities)
+        self.assertIn(ce_cls1, entities)
+        self.assertIn(ce_cls2, entities)
+        self.assertIn(ce2, entities)
+        self.assertIn(ann_prop1, entities)
+        self.assertIn(ann_val1_dtype, entities)
+        self.assertIn(ann_prop2, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_11(self):
-        self.fail()
+        entity = model.OWLDataProperty(model.IRI('http://ex.org/prop'))  # e
+
+        ann_prop1 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp'))
+        ann_val1_dtype = model.OWLDatatype(  # e
+            model.IRI('http://ex.org/dtype/string'))
+        ann_val1 = model.OWLLiteral('annotation 1', None, ann_val1_dtype)
+        ann1 = model.OWLAnnotation(ann_prop1, ann_val1, [])
+        ann_prop2 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp2'))
+        # rdf:plainLiteral dtype is implicitly set --> e
+        ann_val2 = model.OWLLiteral('annotation 2')
+        ann2 = model.OWLAnnotation(ann_prop2, ann_val2, [])
+        anns = {ann1, ann2}
+
+        axiom = model.OWLDeclarationAxiom(entity, anns)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(axiom)
+        self.assertEqual(5, len(entities))
+        self.assertEqual(0, len(anons))
+
+        self.assertIn(entity, entities)
+        self.assertIn(ann_prop1, entities)
+        self.assertIn(ann_val1_dtype, entities)
+        self.assertIn(ann_prop2, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_12(self):
-        self.fail()
+        # a (but not evaluated)
+        indiv = model.OWLAnonymousIndividual(model.NodeID('_:23'))
+        ce = model.OWLClass(model.IRI('http://ex.org/SomeClass'))  # e
+
+        ann_prop1 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp'))
+        ann_val1_dtype = model.OWLDatatype(  # e
+            model.IRI('http://ex.org/dtype/string'))
+        ann_val1 = model.OWLLiteral('annotation 1', None, ann_val1_dtype)
+        ann1 = model.OWLAnnotation(ann_prop1, ann_val1, [])
+        ann_prop2 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp2'))
+        # rdf:plainLiteral dtype is implicitly set --> e
+        ann_val2 = model.OWLLiteral('annotation 2')
+        ann2 = model.OWLAnnotation(ann_prop2, ann_val2, [])
+        anns = {ann1, ann2}
+
+        axiom = model.OWLClassAssertionAxiom(indiv, ce, anns)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(axiom)
+        self.assertEqual(5, len(entities))
+        self.assertEqual(0, len(anons))
+
+        self.assertIn(ce, entities)
+        self.assertIn(ann_prop1, entities)
+        self.assertIn(ann_val1_dtype, entities)
+        self.assertIn(ann_prop2, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_13(self):
-        self.fail()
+        prop1 = model.OWLObjectProperty(model.IRI('http://ex.org/prop1'))  # e
+        prop2 = model.OWLObjectProperty(model.IRI('http://ex.org/prop2'))  # e
+        prop3 = model.OWLObjectProperty(model.IRI('http://ex.org/prop3'))  # e
+        prop_chain = [prop1, prop2, prop3]
+
+        # e
+        super_prop = model.OWLObjectProperty(model.IRI('http://ex.org/prop4'))
+
+        ann_prop1 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp'))
+        ann_val1_dtype = model.OWLDatatype(  # e
+            model.IRI('http://ex.org/dtype/string'))
+        ann_val1 = model.OWLLiteral('annotation 1', None, ann_val1_dtype)
+        ann1 = model.OWLAnnotation(ann_prop1, ann_val1, [])
+        ann_prop2 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp2'))
+        # rdf:plainLiteral dtype is implicitly set --> e
+        ann_val2 = model.OWLLiteral('annotation 2')
+        ann2 = model.OWLAnnotation(ann_prop2, ann_val2, [])
+        anns = {ann1, ann2}
+
+        axiom = model.OWLSubPropertyChainOfAxiom(prop_chain, super_prop, anns)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(axiom)
+        self.assertEqual(8, len(entities))
+        self.assertEqual(0, len(anons))
+
+        self.assertIn(prop1, entities)
+        self.assertIn(prop2, entities)
+        self.assertIn(prop3, entities)
+        self.assertIn(super_prop, entities)
+        self.assertIn(ann_prop1, entities)
+        self.assertIn(ann_val1_dtype, entities)
+        self.assertIn(ann_prop2, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_14(self):
-        self.fail()
+        first = model.OWLObjectProperty(model.IRI('http://ex.org/prop1'))  # e
+        second = model.OWLObjectProperty(model.IRI('http://ex.org/prop2'))  # e
+
+        ann_prop1 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp'))
+        ann_val1_dtype = model.OWLDatatype(  # e
+            model.IRI('http://ex.org/dtype/string'))
+        ann_val1 = model.OWLLiteral('annotation 1', None, ann_val1_dtype)
+        ann1 = model.OWLAnnotation(ann_prop1, ann_val1, [])
+        ann_prop2 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp2'))
+        # rdf:plainLiteral dtype is implicitly set --> e
+        ann_val2 = model.OWLLiteral('annotation 2')
+        ann2 = model.OWLAnnotation(ann_prop2, ann_val2, [])
+        anns = {ann1, ann2}
+
+        axiom = model.OWLInverseObjectPropertiesAxiom(first, second, anns)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(axiom)
+        self.assertEqual(6, len(entities))
+        self.assertEqual(0, len(anons))
+
+        self.assertIn(first, entities)
+        self.assertIn(second, entities)
+        self.assertIn(ann_prop1, entities)
+        self.assertIn(ann_val1_dtype, entities)
+        self.assertIn(ann_prop2, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_15(self):
-        self.fail()
+        cls1 = model.OWLClass(model.IRI('http://ex.org/SomeClass'))  # e
+        cls2 = model.OWLClass(model.IRI('http://ex.org/AnotherClass'))  # e
+        ce = model.OWLObjectUnionOf({cls1, cls2})
+
+        prop1 = model.OWLObjectProperty(model.IRI('http://ex.org/prop1'))  # e
+        prop2 = model.OWLObjectProperty(model.IRI('http://ex.org/prop2'))  # e
+        pes = {prop1, prop2}
+
+        ann_prop1 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp'))
+        ann_val1_dtype = model.OWLDatatype(  # e
+            model.IRI('http://ex.org/dtype/string'))
+        ann_val1 = model.OWLLiteral('annotation 1', None, ann_val1_dtype)
+        ann1 = model.OWLAnnotation(ann_prop1, ann_val1, [])
+        ann_prop2 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp2'))
+        # rdf:plainLiteral dtype is implicitly set --> e
+        ann_val2 = model.OWLLiteral('annotation 2')
+        ann2 = model.OWLAnnotation(ann_prop2, ann_val2, [])
+        anns = {ann1, ann2}
+
+        axiom = model.OWLHasKeyAxiom(ce, pes, anns)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(axiom)
+        self.assertEqual(8, len(entities))
+        self.assertEqual(0, len(anons))
+
+        self.assertIn(cls1, entities)
+        self.assertIn(cls2, entities)
+        self.assertIn(prop1, entities)
+        self.assertIn(prop2, entities)
+        self.assertIn(ann_prop1, entities)
+        self.assertIn(ann_val1_dtype, entities)
+        self.assertIn(ann_prop2, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_16(self):
-        self.fail()
+        cls = model.OWLClass(model.IRI('http://ex.org/SomeClass'))  # e
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(cls)
+        self.assertEqual(1, len(entities))
+        self.assertIn(cls, entities)
 
     def test_visit_17(self):
-        self.fail()
+        cls1 = model.OWLClass(model.IRI('http://ex.org/SomeClass'))  # e
+        cls2 = model.OWLClass(model.IRI('http://ex.org/AnotherClass'))  # e
+        ce = model.OWLObjectUnionOf({cls1, cls2})
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(ce)
+        self.assertEqual(2, len(entities))
+        self.assertIn(cls1, entities)
+        self.assertIn(cls2, entities)
 
     def test_visit_18(self):
-        self.fail()
+        op = model.OWLClass(model.IRI('http://ex.org/SomeClass'))  # e
+        ce = model.OWLObjectComplementOf(op)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(ce)
+        self.assertEqual(1, len(entities))
+        self.assertIn(op, entities)
 
     def test_visit_19(self):
-        self.fail()
+        prop = model.OWLDataProperty(model.IRI('http://ex.org/prop'))  # e
+        filler = model.OWLDatatype(model.IRI('http://ex.org/dtype/int'))  # e
+        ce = model.OWLDataAllValuesFrom(prop, filler)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(ce)
+        self.assertEqual(2, len(entities))
+        self.assertIn(prop, entities)
+        self.assertIn(filler, entities)
 
     def test_visit_20(self):
-        self.fail()
+        prop = model.OWLDataProperty(model.IRI('http://ex.org/prop'))  # e
+        # rdf:plainLiteral dtype is implicitly set --> e
+        val = model.OWLLiteral('plain')
+
+        ce = model.OWLDataHasValue(prop, val)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(ce)
+        self.assertEqual(2, len(entities))
+        self.assertIn(prop, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_21(self):
-        self.fail()
+        prop = model.OWLObjectProperty(model.IRI('http://ex.org/prop'))
+        re = model.OWLObjectHasSelf(prop)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(re)
+        self.assertEqual(1, len(entities))
+        self.assertIn(prop, entities)
 
     def test_visit_22(self):
-        self.fail()
+        # e
+        indiv1 = model.OWLNamedIndividual(model.IRI('http://ex.org/indivABC'))
+        # a (but not evaluated)
+        indiv2 = model.OWLAnonymousIndividual(model.NodeID('_:23'))
+        # e
+        indiv3 = model.OWLNamedIndividual(model.IRI('http://ex.org/indivXYZ'))
+        ce = model.OWLObjectOneOf({indiv1, indiv2, indiv3})
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(ce)
+        self.assertEqual(2, len(entities))
+        self.assertIn(indiv1, entities)
+        self.assertIn(indiv3, entities)
 
     def test_visit_23(self):
-        self.fail()
+        # e
+        data_range = model.OWLDatatype(model.IRI('http://ex.org/dtype/negInt'))
+        ce = model.OWLDataComplementOf(data_range)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(ce)
+        self.assertEqual(1, len(entities))
+        self.assertIn(data_range, entities)
 
     def test_visit_24(self):
-        self.fail()
+        # rdf:plainLiteral dtype is implicitly set --> e
+        val1 = model.OWLLiteral('one', 'en')
+        # rdf:plainLiteral dtype is implicitly set --> e (not counted twice...)
+        val2 = model.OWLLiteral('two')
+        dtype = model.OWLDatatype(model.IRI('http://ex.org/dtype/int'))  # e
+        val3 = model.OWLLiteral('three', None, dtype)
+
+        ce = model.OWLDataOneOf({val1, val2, val3})
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(ce)
+        self.assertEqual(2, len(entities))
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
+        self.assertIn(dtype, entities)
 
     def test_visit_25(self):
-        self.fail()
+        # e
+        data_range1 = model.OWLDatatype(model.IRI('http://ex.org/dtype/negInt'))
+        # e
+        data_range2 = model.OWLDatatype(model.IRI('http://ex.org/dtype/posInt'))
+        ce = model.OWLDataUnionOf({data_range1, data_range2})
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(ce)
+        self.assertEqual(2, len(entities))
+        self.assertIn(data_range1, entities)
+        self.assertIn(data_range2, entities)
 
     def test_visit_26(self):
-        self.fail()
+        dtype = model.OWLDatatype(model.IRI('http://ex.org/dtype/string'))  # e
+
+        facet1 = OWLFacet.LANG_RANGE
+        # rdf:plainLiteral dtype is implicitly set --> e
+        facet_val1 = model.OWLLiteral('en')
+        fr1 = model.OWLFacetRestriction(facet1, facet_val1)
+
+        facet2 = OWLFacet.LENGTH
+        f_dtype = model.OWLDatatype(model.IRI('http://ex.org/dytpe/int'))  # e
+        facet_val2 = model.OWLLiteral('23', None, f_dtype)
+        fr2 = model.OWLFacetRestriction(facet2, facet_val2)
+
+        re = model.OWLDatatypeRestriction(dtype, {fr1, fr2})
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(re)
+        self.assertEqual(3, len(entities))
+        self.assertIn(dtype, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
+        self.assertIn(f_dtype, entities)
 
     def test_visit_27(self):
         self.fail()
