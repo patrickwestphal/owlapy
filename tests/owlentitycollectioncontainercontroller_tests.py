@@ -134,7 +134,7 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
         # e
         subj = model.OWLNamedIndividual(model.IRI('http://ex.org/indivXYZ'))
         prop = model.OWLObjectProperty(model.IRI('http://ex.org/prop'))  # e
-        # a (not counted)
+        # a
         obj = model.OWLAnonymousIndividual(model.NodeID('_:23'))
 
         ann_prop1 = model.OWLAnnotationProperty(  # e
@@ -161,7 +161,7 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
 
         eccc.visit(axiom)
         self.assertEqual(6, len(entities))
-        self.assertEqual(0, len(anons))
+        self.assertEqual(1, len(anons))
 
         self.assertIn(subj, entities)
         self.assertIn(prop, entities)
@@ -169,6 +169,8 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
         self.assertIn(ann_val1_dtype, entities)
         self.assertIn(ann_prop2, entities)
         self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
+
+        self.assertIn(obj, anons)
 
     def test_visit_03(self):
         prop = model.OWLObjectProperty(model.IRI('http://ex.org/property'))  # e
@@ -330,8 +332,7 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
 
     def test_visit_07(self):
         i1 = model.OWLNamedIndividual(model.IRI('http://ex.org/indivABC'))  # e
-        # a, but not counted
-        i2 = model.OWLAnonymousIndividual(model.NodeID('_:23'))
+        i2 = model.OWLAnonymousIndividual(model.NodeID('_:23'))  # a
         i3 = model.OWLNamedIndividual(model.IRI('http://ex.org/indivXYZ'))  # e
         indivs = {i1, i2, i3}
 
@@ -358,7 +359,7 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
 
         eccc.visit(axiom)
         self.assertEqual(6, len(entities))
-        self.assertEqual(0, len(anons))
+        self.assertEqual(1, len(anons))
 
         self.assertIn(i1, entities)
         self.assertIn(i3, entities)
@@ -366,6 +367,8 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
         self.assertIn(ann_val1_dtype, entities)
         self.assertIn(ann_prop2, entities)
         self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
+
+        self.assertIn(i2, anons)
 
     def test_visit_08(self):
         prop = model.OWLDataProperty(model.IRI('http://ex.org/prop'))  # e
@@ -520,8 +523,7 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
         self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_12(self):
-        # a (but not evaluated)
-        indiv = model.OWLAnonymousIndividual(model.NodeID('_:23'))
+        indiv = model.OWLAnonymousIndividual(model.NodeID('_:23'))  # a
         ce = model.OWLClass(model.IRI('http://ex.org/SomeClass'))  # e
 
         ann_prop1 = model.OWLAnnotationProperty(  # e
@@ -547,13 +549,15 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
 
         eccc.visit(axiom)
         self.assertEqual(5, len(entities))
-        self.assertEqual(0, len(anons))
+        self.assertEqual(1, len(anons))
 
         self.assertIn(ce, entities)
         self.assertIn(ann_prop1, entities)
         self.assertIn(ann_val1_dtype, entities)
         self.assertIn(ann_prop2, entities)
         self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
+
+        self.assertIn(indiv, anons)
 
     def test_visit_13(self):
         prop1 = model.OWLObjectProperty(model.IRI('http://ex.org/prop1'))  # e
@@ -771,8 +775,7 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
     def test_visit_22(self):
         # e
         indiv1 = model.OWLNamedIndividual(model.IRI('http://ex.org/indivABC'))
-        # a (but not evaluated)
-        indiv2 = model.OWLAnonymousIndividual(model.NodeID('_:23'))
+        indiv2 = model.OWLAnonymousIndividual(model.NodeID('_:23'))  # a
         # e
         indiv3 = model.OWLNamedIndividual(model.IRI('http://ex.org/indivXYZ'))
         ce = model.OWLObjectOneOf({indiv1, indiv2, indiv3})
@@ -785,8 +788,11 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
 
         eccc.visit(ce)
         self.assertEqual(2, len(entities))
+        self.assertEqual(1, len(anons))
         self.assertIn(indiv1, entities)
         self.assertIn(indiv3, entities)
+
+        self.assertIn(indiv2, anons)
 
     def test_visit_23(self):
         # e
@@ -870,34 +876,191 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
         self.assertIn(f_dtype, entities)
 
     def test_visit_27(self):
-        self.fail()
+        facet = OWLFacet.LANG_RANGE
+        # rdf:plainLiteral dtype is implicitly set --> e
+        facet_value = model.OWLLiteral('en')
+        re = model.OWLFacetRestriction(facet, facet_value)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(re)
+        self.assertEqual(1, len(entities))
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
 
     def test_visit_28(self):
-        self.fail()
+        dtype = model.OWLDatatype(model.IRI('http://ex.org/dtype/int'))  # e
+        node = model.OWLLiteral('34', None, dtype)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(node)
+        self.assertEqual(1, len(entities))
+        self.assertIn(dtype, entities)
 
     def test_visit_29(self):
-        self.fail()
+        inv_prop = model.OWLObjectProperty(model.IRI('http://ex.org/prop'))  # e
+        pe = model.OWLObjectInverseOf(inv_prop)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(pe)
+        self.assertEqual(1, len(entities))
+        self.assertIn(inv_prop, entities)
 
     def test_visit_30(self):
-        self.fail()
+        pe = model.OWLObjectProperty(model.IRI('http://ex.org/prop'))  # e
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(pe)
+        self.assertEqual(1, len(entities))
+        self.assertIn(pe, entities)
 
     def test_visit_31(self):
-        self.fail()
+        pe = model.OWLDataProperty(model.IRI('http://ex.org/prop'))  # e
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(pe)
+        self.assertEqual(1, len(entities))
+        self.assertIn(pe, entities)
 
     def test_visit_32(self):
-        self.fail()
+        # e
+        indiv = model.OWLNamedIndividual(model.IRI('http://ex.org/indivABC'))
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(indiv)
+        self.assertEqual(1, len(entities))
+        self.assertIn(indiv, entities)
 
     def test_visit_33(self):
-        self.fail()
+        dtype = model.OWLDatatype(model.IRI('http://ex.org/dtype/int'))  # e
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(dtype)
+        self.assertEqual(1, len(entities))
+        self.assertIn(dtype, entities)
 
     def test_visit_34(self):
-        self.fail()
+        prop = model.OWLAnnotationProperty(model.IRI('http://ex.org/prop'))  # e
+        # rdf:plainLiteral dtype is implicitly set --> e
+        val = model.OWLLiteral('foo')
+
+        ann_prop1 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp'))
+        ann_val1_dtype = model.OWLDatatype(  # e
+            model.IRI('http://ex.org/dtype/string'))
+        ann_val1 = model.OWLLiteral('annotation 1', None, ann_val1_dtype)
+        ann1 = model.OWLAnnotation(ann_prop1, ann_val1, [])
+        ann_prop2 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp2'))
+        # rdf:plainLiteral dtype is implicitly set --> e (not counted twice)
+        ann_val2 = model.OWLLiteral('annotation 2')
+        ann2 = model.OWLAnnotation(ann_prop2, ann_val2, [])
+        anns = {ann1, ann2}
+
+        ann = model.OWLAnnotation(prop, val, anns)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(ann)
+        self.assertEqual(5, len(entities))
+        self.assertIn(prop, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
+        self.assertIn(ann_prop1, entities)
+        self.assertIn(ann_val1_dtype, entities)
+        self.assertIn(ann_prop2, entities)
 
     def test_visit_35(self):
-        self.fail()
+        subj = model.OWLAnonymousIndividual(model.NodeID('_:23'))  # a
+        prop = model.OWLAnnotationProperty(model.IRI('http://ex.org/prop'))  # e
+
+        dtype = model.OWLDatatype('http://ex.org/dtype/int')  # e
+        val = model.OWLLiteral('23', None, dtype)
+
+        ann_prop1 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp'))
+        ann_val1_dtype = model.OWLDatatype(  # e
+            model.IRI('http://ex.org/dtype/string'))
+        ann_val1 = model.OWLLiteral('annotation 1', None, ann_val1_dtype)
+        ann1 = model.OWLAnnotation(ann_prop1, ann_val1, [])
+        ann_prop2 = model.OWLAnnotationProperty(  # e
+            model.IRI('http://ex.org/anProp2'))
+        # rdf:plainLiteral dtype is implicitly set --> e (not counted twice)
+        ann_val2 = model.OWLLiteral('annotation 2')
+        ann2 = model.OWLAnnotation(ann_prop2, ann_val2, [])
+        anns = {ann1, ann2}
+
+        axiom = model.OWLAnnotationAssertionAxiom(subj, prop, val, anns)
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(axiom)
+        self.assertEqual(6, len(entities))
+        self.assertEqual(1, len(anons))
+
+        self.assertIn(prop, entities)
+        self.assertIn(dtype, entities)
+        self.assertIn(ann_prop1, entities)
+        self.assertIn(ann_val1_dtype, entities)
+        self.assertIn(ann_prop2, entities)
+        self.assertIn(model.OWLLiteral.RDF_PLAIN_LITERAL, entities)
+
+        self.assertIn(subj, anons)
 
     def test_visit_36(self):
-        self.fail()
+        indiv = model.OWLAnonymousIndividual(model.NodeID('_:23'))
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(indiv)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(1, len(anons))
+
+        self.assertIn(indiv, anons)
 
     def test_visit_37(self):
         self.fail()

@@ -95,8 +95,8 @@ class OWLEntityCollectionContainerCollector(OWLObjectVisitor):
             owlapy.model.OWLAnonymousIndividual objects
         """
         self._objects = to_return
-        self._anonymous_individuals = set(anons_to_return) \
-            if anons_to_return else set()
+        self._anonymous_individuals = anons_to_return \
+            if anons_to_return is not None else set()
 
         self.collect_classes = True
         self.collect_object_properties = True
