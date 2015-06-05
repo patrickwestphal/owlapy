@@ -1063,10 +1063,22 @@ class TestOWLEntityCollectionContainerCollector(unittest.TestCase):
         self.assertIn(indiv, anons)
 
     def test_visit_37(self):
-        self.fail()
+        self.fail('OWLOntology need to be implemented first')
 
     def test_visit_38(self):
-        self.fail()
+        prop = model.OWLAnnotationProperty(model.IRI('http://ex.org/prop'))
+
+        entities = set()
+        anons = set()
+        eccc = OWLEntityCollectionContainerCollector(entities, anons)
+        self.assertEqual(0, len(entities))
+        self.assertEqual(0, len(anons))
+
+        eccc.visit(prop)
+        self.assertEqual(1, len(entities))
+        self.assertEqual(0, len(anons))
+
+        self.assertIn(prop, entities)
 
     def test_visit_39(self):
         self.fail()
