@@ -4,6 +4,7 @@ from .exceptions import OWLRuntimeException, NoneValueException, \
     IllegalArgumentException, IRIException
 from .entitytype import EntityType
 from .hasapplychanges import HasApplyChanges
+from .hasaddaxioms import HasAddAxioms
 from .hasdatafactory import HasDataFactory
 from .hasgetontologies import HasGetOntologies
 from .hasgetontologybyid import HasGetOntologyById
