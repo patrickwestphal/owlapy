@@ -116,6 +116,7 @@ from .owlobjectunionof import OWLObjectUnionOf
 from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from .owlontology import OWLOntology
 from .owlontologymanager import OWLOntologyManager
+from .owlontologysetprovider import OWLOntologySetProvider
 from .owlontologyid import OWLOntologyID
 from .owlprimitive import OWLPrimitive
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
