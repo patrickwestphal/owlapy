@@ -5,6 +5,7 @@ from .exceptions import OWLRuntimeException, NoneValueException, \
 from .entitytype import EntityType
 from .hasdatafactory import HasDataFactory
 from .hasgetontologies import HasGetOntologies
+from .hasgetontologybyid import HasGetOntologyById
 from .iri import IRI
 from .nodeid import NodeID
 from .owl2datatype import OWL2Datatype
