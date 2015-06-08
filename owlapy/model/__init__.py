@@ -3,6 +3,7 @@ from .datarangetype import DataRangeType
 from .exceptions import OWLRuntimeException, NoneValueException, \
     IllegalArgumentException, IRIException
 from .entitytype import EntityType
+from .hasdatafactory import HasDataFactory
 from .hasgetontologies import HasGetOntologies
 from .iri import IRI
 from .nodeid import NodeID
