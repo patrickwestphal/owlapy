@@ -74,6 +74,7 @@ from .owlfacetrestriction import OWLFacetRestriction
 from .owlfunctionalobjectpropertyaxiom import OWLFunctionalObjectPropertyAxiom
 from .owlfunctionaldatapropertyaxiom import OWLFunctionalDataPropertyAxiom
 from .owlhaskeyaxiom import OWLHasKeyAxiom
+from .owlimportsdeclaration import OWLImportsDeclaration
 from .owlindividual import OWLIndividual
 from .owlindividualvisitor import OWLIndividualVisitor
 from .owlindividualaxiom import OWLIndividualAxiom
@@ -123,7 +124,9 @@ from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from .owlontology import OWLOntology
 from .owlontologyfactory import OWLOntologyFactory
 from .owlontologyid import OWLOntologyID
+from .owlontologyirimapper import OWLOntologyIRIMapper
 from .owlontologymanager import OWLOntologyManager
+from .owlontologymanagerproperties import OWLOntologyManagerProperties
 from .owlontologysetprovider import OWLOntologySetProvider
 from .owlprimitive import OWLPrimitive
 from .owlpropertyassertionaxiom import OWLPropertyAssertionAxiom
