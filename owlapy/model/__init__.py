@@ -1,5 +1,8 @@
 from .axiomtype import AxiomType
 from .datarangetype import DataRangeType
+from .defaultchangebroadcaststrategy import DefaultChangeBroadcastStrategy
+from .defaultimpendingchangebroadcaststrategy import \
+    DefaultImpendingChangeBroadcastStrategy
 from .exceptions import OWLRuntimeException, NoneValueException, \
     IllegalArgumentException, IRIException
 from .entitytype import EntityType
