@@ -1,5 +1,8 @@
-from .owlontologychange
+from .owlontologychangebroadcaststrategy import \
+    OWLOntologyChangeBroadcastStrategy
 
 
 class DefaultChangeBroadcastStrategy(OWLOntologyChangeBroadcastStrategy):
-    """TODO: implement"""
+
+    def broadcast_changes(self, listener, changes):
+        listener.ontologies_changed(changes)
