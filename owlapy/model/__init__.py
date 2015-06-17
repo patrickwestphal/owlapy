@@ -10,6 +10,8 @@ from .hasdatafactory import HasDataFactory
 from .hasgetontologies import HasGetOntologies
 from .hasgetontologybyid import HasGetOntologyById
 from .hasiri import HasIRI
+from .impendingowlontologychangebroadcaststrategy import \
+    ImpendingOWLOntologyChangeBroadcastStrategy
 from .iri import IRI
 from .nodeid import NodeID
 from .owl2datatype import OWL2Datatype
