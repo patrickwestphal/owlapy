@@ -124,6 +124,7 @@ from .owlobjectvisitor import OWLObjectVisitor, OWLObjectVisitorEx
 from .owlontology import OWLOntology
 from .owlontologychangebroadcaststrategy import \
     OWLOntologyChangeBroadcastStrategy
+from .owlontologychangelistener import OWLOntologyChangeListener
 from .owlontologyfactory import OWLOntologyFactory
 from .owlontologyid import OWLOntologyID
 from .owlontologyirimapper import OWLOntologyIRIMapper
