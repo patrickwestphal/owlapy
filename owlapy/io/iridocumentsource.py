@@ -16,6 +16,9 @@ class IRIDocumentSource(OWLOntologyDocumentSource):
     def __repr__(self):
         return str(self.document_iri)
 
+    def get_document_iri(self):
+        return self.document_iri
+
     def is_input_stream_available(self):
         return False
 

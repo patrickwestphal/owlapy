@@ -25,6 +25,12 @@ class TestIRIDocumentSource(unittest.TestCase):
 
         self.assertEqual(str(doc_iri), doc_source.__repr__())
 
+    def test_get_document_iri(self):
+        doc_iri = IRI('http://example.com/docXYZ')
+        doc_source = IRIDocumentSource(doc_iri)
+
+        self.assertEqual(doc_iri, doc_source.get_document_iri())
+
     def test_is_input_stream_available(self):
         doc_iri = IRI('http://example.com/docXYZ')
         doc_source = IRIDocumentSource(doc_iri)
