@@ -39,3 +39,11 @@ class OWLOntologyDocumentSource(object):
         :return: A new file-like object which the ontology can be read from.
         """
         raise NotImplementedError()
+
+    def get_document_iri(self):
+        """Gets the IRI of the ontology document.
+
+        :return: An owlapy.model.IRI object which represents the ontology
+            document IRI - this will never be None.
+        """
+        raise NotImplementedError()
