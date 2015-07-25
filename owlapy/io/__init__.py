@@ -1,1 +1,2 @@
+from .exceptions import OWLOntologyInputSourceException
 from .owlontologydocumentsource import OWLOntologyDocumentSource

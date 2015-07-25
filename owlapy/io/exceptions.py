@@ -1,0 +1,2 @@
+class OWLOntologyInputSourceException(Exception):
+    pass
