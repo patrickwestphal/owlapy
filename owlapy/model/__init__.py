@@ -16,6 +16,7 @@ from .hasiri import HasIRI
 from .impendingowlontologychangebroadcaststrategy import \
     ImpendingOWLOntologyChangeBroadcastStrategy
 from .iri import IRI
+from .missingimporthandlingstrategy import MissingImportHandlingStrategy
 from .nodeid import NodeID
 from .owl2datatype import OWL2Datatype
 from .owlannotation import OWLAnnotation
